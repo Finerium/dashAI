@@ -1,0 +1,1111 @@
+{
+  "legal": [
+    {
+      "key": "lawan-arus",
+      "name": "Berkendara melawan arah (wrong-way driving)",
+      "uu": "Undang-Undang Republik Indonesia Nomor 22 Tahun 2009 tentang Lalu Lintas dan Angkutan Jalan (UU LLAJ)",
+      "pasal": "Pasal 287",
+      "ayat": "ayat (1)",
+      "bunyi": "Setiap orang yang mengemudikan Kendaraan Bermotor di Jalan yang melanggar aturan perintah atau larangan yang dinyatakan dengan Rambu Lalu Lintas sebagaimana dimaksud dalam Pasal 106 ayat (4) huruf a atau Marka Jalan sebagaimana dimaksud dalam Pasal 106 ayat (4) huruf b dipidana dengan pidana kurungan paling lama 2 (dua) bulan atau denda paling banyak Rp500.000,00 (lima ratus ribu rupiah).",
+      "ancaman_pidana": "Pidana kurungan paling lama 2 (dua) bulan atau denda paling banyak Rp500.000,00 (lima ratus ribu rupiah). Sifatnya alternatif (kurungan ATAU denda).",
+      "denda_max_rupiah": "Rp500.000",
+      "kurungan_max": "2 bulan",
+      "related_articles": [
+        "Pasal 106 ayat (4) huruf a - kewajiban pengemudi mematuhi rambu perintah atau rambu larangan (dasar larangan melawan arah, mis. rambu larangan masuk / jalan satu arah)",
+        "Pasal 106 ayat (4) huruf b - kewajiban mematuhi marka jalan (mis. marka arah lajur)",
+        "Pasal 287 ayat (2) - pelanggaran terhadap Alat Pemberi Isyarat Lalu Lintas (kurungan max 2 bulan / denda max Rp500.000)",
+        "Pasal 310 - jika mengakibatkan kecelakaan lalu lintas (luka ringan/berat/meninggal): pidana penjara hingga 6 tahun dan/atau denda hingga Rp12.000.000 (ayat 4, korban meninggal)",
+        "Pasal 311 - dengan sengaja mengemudikan kendaraan secara membahayakan nyawa/barang: pidana penjara hingga 12 tahun (jika mengakibatkan korban meninggal)"
+      ],
+      "detection_basis": "A dashcam computer-vision system can detect wrong-way (melawan arah) driving by combining: opposing motion-vector / optical-flow analysis of the target vehicle relative to the lane's legal travel direction; detection and classification of regulatory signs (rambu larangan masuk / 'no entry' R.7, one-way arrows) and directional road markings (marka panah); GPS heading vs. mapped one-way road bearing (~180 deg opposition triggers a flag); and multi-object trajectory tracking where a vehicle persistently moves against the dominant traffic-flow vector. The strongest, legally-mapped signal pairs an opposing-direction trajectory with recognition of a violated no-entry/one-way sign (Pasal 106 ayat 4 huruf a) or directional marka (huruf b).",
+      "sources": [
+        "https://kumparan.com/info-otomotif/pasal-287-uu-lalu-lintas-isinya-apa-1z4eFyksUVL",
+        "https://dishub.kedirikota.go.id/uu-no-22-tahun-2009-tentang-llaj-pasal-106-ayat-4/",
+        "https://korlantas.polri.go.id/jangan-lawan-arus-di-jalan-ini-aturan-sanksi-tegas-dan-dendanya/",
+        "https://www.hukumonline.com/berita/a/nekat-melawan-arus-ingat-nyawa-dan-sanksi-ini-lt5bcdd167c3710/",
+        "https://oto.detik.com/catatan-pengendara-motor/d-6043570/masih-nekat-lawan-arus-siap-siap-denda-rp-500-ribu",
+        "https://dishub.malangkota.go.id/wp-content/uploads/sites/16/2016/05/Undang-Undang-No.-22-tahun-2009-Tentang-Lalulintas.pdf"
+      ],
+      "confidence": "high",
+      "verified": true,
+      "confirm_votes": 3,
+      "corrections": []
+    },
+    {
+      "key": "tanpa-helm",
+      "name": "Pengendara sepeda motor tidak memakai helm SNI",
+      "uu": "Undang-Undang No. 22 Tahun 2009 tentang Lalu Lintas dan Angkutan Jalan (LLAJ)",
+      "pasal": "Pasal 291",
+      "ayat": "ayat (1)",
+      "bunyi": "\"Setiap orang yang mengemudikan Sepeda Motor tidak mengenakan helm standar nasional Indonesia sebagaimana dimaksud dalam Pasal 106 ayat (8) dipidana dengan pidana kurungan paling lama 1 (satu) bulan atau denda paling banyak Rp250.000,00 (dua ratus lima puluh ribu rupiah).\" Kewajiban dasarnya diatur dalam Pasal 106 ayat (8): \"Setiap orang yang mengemudikan Sepeda Motor dan Penumpang Sepeda Motor wajib mengenakan helm yang memenuhi standar nasional Indonesia.\"",
+      "ancaman_pidana": "Pidana kurungan paling lama 1 (satu) bulan atau denda paling banyak Rp250.000,00. (Sanksi bersifat alternatif: kurungan ATAU denda.)",
+      "denda_max_rupiah": "250000",
+      "kurungan_max": "1 bulan",
+      "related_articles": [
+        "Pasal 106 ayat (8) UU 22/2009 - kewajiban pengemudi dan penumpang sepeda motor mengenakan helm SNI (norma yang dirujuk)",
+        "Pasal 291 ayat (2) UU 22/2009 - pengemudi yang membiarkan penumpangnya tidak mengenakan helm: kurungan maks 1 bulan atau denda maks Rp250.000,00",
+        "Pasal 57 ayat (1) dan ayat (2) UU 22/2009 - helm SNI sebagai perlengkapan wajib sepeda motor"
+      ],
+      "detection_basis": "Sistem computer-vision dashcam dapat mendeteksi pelanggaran ini dengan: (1) deteksi & pelacakan objek sepeda motor (mis. YOLO/SSD) untuk mengisolasi kandidat pengendara; (2) deteksi keypoint/pose kepala pengendara lalu klasifikasi \"helm vs tanpa helm\" pada region of interest kepala; (3) untuk membedakan helm SNI vs non-SNI perlu fitur sekunder (bentuk/cakupan helm, dan idealnya verifikasi logo/label SNI), namun pembedaan SNI secara visual sulit dan rawan false positive sehingga deteksi praktis difokuskan pada \"tidak mengenakan helm\"; (4) asosiasi kepala-tanpa-helm dengan rider vs passenger untuk memetakan ke ayat (1) atau ayat (2); (5) OCR pelat nomor (ANPR); (6) capture timestamp + frame bukti, dengan verifikasi manual petugas untuk unsur \"tidak ber-SNI\".",
+      "sources": [
+        "https://www.hukumonline.com/klinik/a/undang--undang-yang-mengatur-penggunaan-helm-standar-kendaraan-roda-dua-cl4957/",
+        "https://www.medcom.id/otomotif/tips-otomotif/Rkj1e4Qb-helm-wajib-digunakan-pengendara-motor-ini-dasar-hukum-dan-sanksinya",
+        "https://otomotif.kompas.com/read/2023/12/07/101200015/tidak-menggunakan-helm-saat-naik-motor-bisa-kena-tilang-rp-250.000",
+        "https://tribratanews.kepri.polri.go.id/2021/06/17/penggunaan-helm-standar-yang-diatur-dalam-uu-lalu-lintas-dan-angkutan-jalan-2/",
+        "https://daihatsu.co.id/en/tips-and-event/tips-sahabat/detail-content/penumpang-motor-nggak-pakai-helm-bisa-dipidana-pasal-291-ayat-2-/"
+      ],
+      "confidence": "high",
+      "verified": true,
+      "confirm_votes": 3,
+      "corrections": []
+    },
+    {
+      "key": "penumpang-tanpa-helm",
+      "name": "Penumpang sepeda motor tidak memakai helm",
+      "uu": "Undang-Undang Republik Indonesia Nomor 22 Tahun 2009 tentang Lalu Lintas dan Angkutan Jalan (UU LLAJ)",
+      "pasal": "Pasal 291",
+      "ayat": "ayat (2)",
+      "bunyi": "Setiap orang yang mengemudikan Sepeda Motor yang membiarkan penumpangnya tidak mengenakan helm sebagaimana dimaksud dalam Pasal 106 ayat (8) dipidana dengan pidana kurungan paling lama 1 (satu) bulan atau denda paling banyak Rp250.000,00 (dua ratus lima puluh ribu rupiah).",
+      "ancaman_pidana": "Pidana kurungan paling lama 1 (satu) bulan atau denda paling banyak Rp250.000,00 (dua ratus lima puluh ribu rupiah). Catatan: subjek hukum yang dipidana adalah PENGEMUDI yang membiarkan penumpangnya tidak berhelm (bukan penumpang itu sendiri).",
+      "denda_max_rupiah": "250000",
+      "kurungan_max": "1 bulan",
+      "related_articles": [
+        "Pasal 106 ayat (8) UU 22/2009 - kewajiban dasar: pengemudi dan penumpang Sepeda Motor wajib mengenakan helm yang memenuhi Standar Nasional Indonesia (SNI)",
+        "Pasal 291 ayat (1) UU 22/2009 - sanksi untuk PENGEMUDI sepeda motor yang sendiri tidak mengenakan helm SNI (kurungan maks 1 bulan / denda maks Rp250.000)",
+        "Pasal 57 ayat (2) UU 22/2009 - helm SNI termasuk perlengkapan wajib sepeda motor"
+      ],
+      "detection_basis": "A dashcam CV system detects this by: (1) detecting two-wheeled vehicles (motorcycles) in frame; (2) counting/locating riders via multi-person detection and pose estimation to distinguish the passenger (rear/pillion position) from the driver; (3) running a head/helmet classifier on each detected head bounding box (helmet vs no-helmet). The violation is flagged when a passenger (the 2nd+ person in the pillion position) is detected with a bare head. Typical pipeline: YOLO/SSD object detection for motorcycle + persons, helmet classification on head crops, plus spatial rider-vs-passenger association. Limitations: CV cannot verify SNI compliance (law requires SNI helmet), and occlusion, camera angle, night/weather reduce accuracy, so confidence thresholds and human review are recommended.",
+      "sources": [
+        "https://www.hukumonline.com/klinik/a/undang--undang-yang-mengatur-penggunaan-helm-standar-kendaraan-roda-dua-cl4957/",
+        "https://daihatsu.co.id/en/tips-and-event/tips-sahabat/detail-content/penumpang-motor-nggak-pakai-helm-bisa-dipidana-pasal-291-ayat-2-/",
+        "https://humas.polri.go.id/news/detail/2331476-kepatuhan-berkendara-pengendara-wajib-gunakan-helm-sesuai-uullaj-pasal-106-ayat-8",
+        "https://otomotif.kompas.com/read/2021/09/13/141200515/pengendara-motor-tidak-pakai-helm-sni-bisa-didenda-rp-250.000-ini-aturannya",
+        "https://pid.kepri.polri.go.id/penggunaan-helm-standar-yang-diatur-dalam-uu-lalu-lintas-dan-angkutan-jalan-2/"
+      ],
+      "confidence": "high",
+      "verified": true,
+      "confirm_votes": 3,
+      "corrections": []
+    },
+    {
+      "key": "terobos-lampu-merah",
+      "name": "Menerobos lampu lalu lintas (traffic light) merah",
+      "uu": "Undang-Undang Republik Indonesia Nomor 22 Tahun 2009 tentang Lalu Lintas dan Angkutan Jalan (LLAJ)",
+      "pasal": "Pasal 287",
+      "ayat": "Ayat (2) (jo. Pasal 106 ayat (4) huruf c)",
+      "bunyi": "\"Setiap orang yang mengemudikan Kendaraan Bermotor di Jalan yang melanggar aturan perintah atau larangan yang dinyatakan dengan Alat Pemberi Isyarat Lalu Lintas sebagaimana dimaksud dalam Pasal 106 ayat (4) huruf c dipidana dengan pidana kurungan paling lama 2 (dua) bulan atau denda paling banyak Rp500.000,00 (lima ratus ribu rupiah).\" Alat Pemberi Isyarat Lalu Lintas (APILL) mencakup lampu lalu lintas (lampu merah). Pasal 106 ayat (4) huruf c mewajibkan setiap pengemudi kendaraan bermotor di jalan untuk mematuhi Alat Pemberi Isyarat Lalu Lintas.",
+      "ancaman_pidana": "Pidana kurungan paling lama 2 (dua) bulan atau denda paling banyak Rp500.000,00 (lima ratus ribu rupiah).",
+      "denda_max_rupiah": "500000",
+      "kurungan_max": "2 bulan",
+      "related_articles": [
+        "Pasal 106 ayat (4) huruf c UU 22/2009 (kewajiban pengemudi mematuhi Alat Pemberi Isyarat Lalu Lintas/APILL)",
+        "Pasal 287 ayat (1) UU 22/2009 (pelanggaran rambu/marka lalu lintas: kurungan maks 2 bulan atau denda maks Rp500.000)",
+        "Pasal 1 angka 19 UU 22/2009 (definisi Alat Pemberi Isyarat Lalu Lintas)",
+        "Pasal 104 ayat (1) UU 22/2009 (pengecualian dalam keadaan tertentu/darurat atas perintah petugas)",
+        "Perkapolri No. 10 Tahun 2012 (pengaturan lalu lintas dalam keadaan tertentu)"
+      ],
+      "detection_basis": "A dashcam computer-vision pipeline can detect this violation by: (1) detecting and classifying the traffic signal (APILL) state via object detection plus color/state classification of the lamp (red/yellow/green), restricted to the ego-vehicle's relevant signal head; (2) localizing the stop line / crosswalk marking via lane and marking detection as the spatial boundary; (3) tracking the ego-vehicle's forward motion across frames (optical flow / speed estimation) to confirm it crossed the stop line while the signal was RED; (4) applying a temporal rule: violation = signal confirmed RED for N consecutive frames AND ego-vehicle crossed the stop-line boundary while moving forward; (5) capturing timestamped, geotagged before/at/after frames plus signal-state confidence to support ETLE-style enforcement. Edge cases: emergency-vehicle exception, permitted turn-on-red, occluded/multiple signal heads, night/glare.",
+      "sources": [
+        "https://peraturan.bpk.go.id/Download/27961/UU%20Nomor%2022%20Tahun%202009.pdf",
+        "https://www.dpr.go.id/dokjdih/document/uu/UU_2009_22.pdf",
+        "https://id.wikisource.org/wiki/Undang-Undang_Republik_Indonesia_Nomor_22_Tahun_2009",
+        "https://dishub.kedirikota.go.id/uu-no-22-tahun-2009-tentang-llaj-pasal-106-ayat-4/",
+        "https://tirto.id/isi-denda-tilang-slip-biru-sesuai-pasal-287-ayat-1-uu-lalu-lintas-ehsc",
+        "https://kumparan.com/info-otomotif/pasal-287-uu-lalu-lintas-isinya-apa-1z4eFyksUVL"
+      ],
+      "confidence": "high",
+      "verified": true,
+      "confirm_votes": 3,
+      "corrections": []
+    },
+    {
+      "key": "langgar-marka",
+      "name": "Melanggar marka atau rambu lalu lintas",
+      "uu": "Undang-Undang Republik Indonesia Nomor 22 Tahun 2009 tentang Lalu Lintas dan Angkutan Jalan (UU LLAJ)",
+      "pasal": "Pasal 287",
+      "ayat": "ayat (1)",
+      "bunyi": "Setiap orang yang mengemudikan Kendaraan Bermotor di Jalan yang melanggar aturan perintah atau larangan yang dinyatakan dengan Rambu Lalu Lintas sebagaimana dimaksud dalam Pasal 106 ayat (4) huruf a atau Marka Jalan sebagaimana dimaksud dalam Pasal 106 ayat (4) huruf b dipidana dengan pidana kurungan paling lama 2 (dua) bulan atau denda paling banyak Rp500.000,00 (lima ratus ribu rupiah).",
+      "ancaman_pidana": "Pidana kurungan paling lama 2 (dua) bulan atau denda paling banyak Rp500.000,00 (lima ratus ribu rupiah).",
+      "denda_max_rupiah": "500000",
+      "kurungan_max": "2 bulan",
+      "confidence": "high",
+      "detection_basis": "A dashcam computer-vision pipeline detects this by combining: (1) Marka Jalan detection via lane-line semantic segmentation - flag a tracked vehicle crossing/straddling a solid line (garis utuh), entering a hatched exclusion zone, crossing a stop line, or driving on the wrong side of the centerline. (2) Rambu detection via a traffic-sign detection/classification model fine-tuned on Indonesian rambu perintah/larangan (e.g., larangan masuk/one-way, dilarang belok, dilarang berhenti), then correlate the detected mandatory/prohibitory sign with the vehicle's heading and trajectory to flag non-compliance (e.g., melawan arus = entering against a one-way arrow). (3) Fuse with GPS/IMU and timestamped frames for geolocation and evidentiary metadata, plus ANPR/OCR for the plate. Output an evidence clip with confidence score and the matched sign/marking for tilang/e-TLE. Because this carries criminal sanctions, human/officer review of flagged clips is recommended.",
+      "related_articles": [
+        "Pasal 106 ayat (4) huruf a UU 22/2009 (kewajiban mematuhi rambu perintah atau rambu larangan)",
+        "Pasal 106 ayat (4) huruf b UU 22/2009 (kewajiban mematuhi marka jalan)",
+        "Pasal 287 ayat (2) UU 22/2009 (melanggar Alat Pemberi Isyarat Lalu Lintas / APILL - kurungan 2 bulan atau denda Rp500.000)",
+        "Pasal 287 ayat (3) UU 22/2009 (melanggar aturan gerakan lalu lintas atau tata cara berhenti dan parkir - kurungan 1 bulan atau denda Rp250.000)",
+        "Pasal 287 ayat (5) UU 22/2009 (melanggar batas kecepatan - kurungan 2 bulan atau denda Rp500.000)",
+        "Pasal 1 angka 17 UU 22/2009 (definisi Marka Jalan)"
+      ],
+      "sources": [
+        "https://kumparan.com/info-otomotif/pasal-287-uu-lalu-lintas-isinya-apa-1z4eFyksUVL",
+        "https://www.hukumonline.com/klinik/a/kena-e-tilang-karena-melawan-arus-lalu-lintas-lt5e4571a25e585/",
+        "https://tirto.id/isi-denda-tilang-slip-biru-sesuai-pasal-287-ayat-1-uu-lalu-lintas-ehsc",
+        "https://dishub.kedirikota.go.id/uu-no-22-tahun-2009-tentang-llaj-pasal-106-ayat-4/",
+        "https://repository.ung.ac.id/skripsi/show/1011416062/implementasi-pasal-287-ayat-1-undang-undang-nomor-22-tahun-2009-tentang-lalu-lintas-angkutan-jalan-terhadap-pelanggar-marka-jalan.html",
+        "https://www.catatanhukum.com/DOC-PUU/UU_No_22_Tahun_2009-Lalu_Lintas_Dan_Angkutan_Jalan/index.html",
+        "https://dishub.malangkota.go.id/wp-content/uploads/sites/16/2016/05/Undang-Undang-No.-22-tahun-2009-Tentang-Lalulintas.pdf"
+      ],
+      "verified": true,
+      "confirm_votes": 3,
+      "corrections": []
+    },
+    {
+      "key": "boncengan-lebih",
+      "name": "Sepeda motor mengangkut lebih dari satu penumpang",
+      "uu": "Undang-Undang Republik Indonesia Nomor 22 Tahun 2009 tentang Lalu Lintas dan Angkutan Jalan (UU LLAJ)",
+      "pasal": "292",
+      "ayat": "- (Pasal 292 tidak memiliki ayat; merujuk pada larangan di Pasal 106 ayat (9))",
+      "bunyi": "Pasal 292: \"Setiap orang yang mengemudikan Sepeda Motor tanpa kereta samping yang mengangkut Penumpang lebih dari 1 (satu) orang sebagaimana dimaksud dalam Pasal 106 ayat (9) dipidana dengan pidana kurungan paling lama 1 (satu) bulan atau denda paling banyak Rp250.000,00 (dua ratus lima puluh ribu rupiah).\" | Larangan dasar di Pasal 106 ayat (9): \"Setiap orang yang mengemudikan Sepeda Motor tanpa kereta samping dilarang membawa Penumpang lebih dari 1 (satu) orang.\"",
+      "ancaman_pidana": "Pidana kurungan paling lama 1 (satu) bulan ATAU denda paling banyak Rp250.000,00 (alternatif/kumulatif-alternatif).",
+      "denda_max_rupiah": "Rp250.000 (dua ratus lima puluh ribu rupiah)",
+      "kurungan_max": "1 (satu) bulan",
+      "related_articles": [
+        "Pasal 106 ayat (9) UU 22/2009 - larangan dasar membawa lebih dari 1 penumpang pada sepeda motor tanpa kereta samping",
+        "Pasal 106 ayat (1) - kewajiban mengemudi dengan penuh konsentrasi",
+        "Pasal 291 - sanksi tidak mengenakan helm SNI (sering melengkapi penindakan bonceng tiga)"
+      ],
+      "detection_basis": "Sistem computer-vision dashcam dapat mendeteksi pelanggaran ini dengan: (1) deteksi & klasifikasi objek kendaraan untuk mengidentifikasi sepeda motor di frame; (2) deteksi person + pose/keypoint estimation untuk menghitung jumlah orang yang berada di atas unit sepeda motor yang sama (asosiasi person-ke-motor via IoU bounding-box dan konsistensi tracking antar-frame); (3) jika jumlah orang pada satu sepeda motor >= 3 (1 pengemudi + 2 penumpang atau lebih), tandai sebagai dugaan pelanggaran bonceng tiga; (4) verifikasi temporal melalui multi-frame tracking (ByteTrack/DeepSORT) untuk menekan false positive akibat oklusi atau orang yang sekadar lewat; (5) deteksi keberadaan kereta samping/sidecar sebagai pengecualian, karena larangan hanya berlaku untuk sepeda motor tanpa kereta samping. Untuk penindakan ETLE resmi diperlukan ALPR/OCR plat nomor dan validasi manual petugas.",
+      "sources": [
+        "https://www.basishukum.com/uu/22/2009/XX/292?m=d",
+        "https://polreskudus.com/2024/11/28/jangan-boncengan-lebih-dari-satu-pasal-292/",
+        "https://www.hukumonline.com/klinik/a/undang--undang-yang-mengatur-penggunaan-helm-standar-kendaraan-roda-dua-cl4957/",
+        "https://otomotif.kompas.com/read/2024/02/05/111200015/bonceng-penumpang-motor-lebih-dari-1-orang-bisa-kena-denda-rp-250.000",
+        "https://www.researchgate.net/publication/398323920_Implementasi_Pasal_106_Ayat_9_dan_Sanksi_Pasal_292_UU_LLAJ_terhadap_Pelanggaran_Bonceng_Tiga",
+        "https://tribratanews.gunungkidul.jogja.polri.go.id/read/pasal-tilang-dan-daftar-denda-pelanggaran-lalu-lintas"
+      ],
+      "confidence": "high",
+      "verified": true,
+      "confirm_votes": 3,
+      "corrections": []
+    },
+    {
+      "key": "melebihi-kecepatan",
+      "name": "Mengemudi melebihi batas kecepatan (speeding)",
+      "uu": "Undang-Undang Republik Indonesia Nomor 22 Tahun 2009 tentang Lalu Lintas dan Angkutan Jalan (UU LLAJ)",
+      "pasal": "Pasal 287",
+      "ayat": "ayat (5)",
+      "bunyi": "Setiap orang yang mengemudikan Kendaraan Bermotor di Jalan yang melanggar aturan batas kecepatan paling tinggi atau paling rendah sebagaimana dimaksud dalam Pasal 106 ayat (4) huruf g atau Pasal 115 huruf a dipidana dengan pidana kurungan paling lama 2 (dua) bulan atau denda paling banyak Rp500.000,00 (lima ratus ribu rupiah).",
+      "ancaman_pidana": "Pidana kurungan paling lama 2 (dua) bulan atau denda paling banyak Rp500.000,00 (lima ratus ribu rupiah).",
+      "denda_max_rupiah": "500000",
+      "kurungan_max": "2 bulan",
+      "related_articles": [
+        "Pasal 106 ayat (4) huruf g - kewajiban mematuhi ketentuan kecepatan maksimal atau minimal",
+        "Pasal 115 huruf a - larangan mengemudikan kendaraan melebihi batas kecepatan paling tinggi yang diperbolehkan",
+        "Pasal 21 - setiap jalan memiliki batas kecepatan paling tinggi yang ditetapkan secara nasional (dasar penetapan batas kecepatan)"
+      ],
+      "detection_basis": "A dashcam CV system can estimate the ego-vehicle's speed via GPS/IMU telemetry or via visual-odometry / optical-flow from the road surface and tracked static features (lane markings, poles), then compare it against the applicable speed limit. The limit can be obtained by: (a) OCR detection and classification of speed-limit traffic signs (Rambu Lalu Lintas) in-frame; (b) map/geofence lookup of the national/local limit per road class (kawasan permukiman, perkotaan, jalan antarkota, jalan bebas hambatan) keyed by GPS position. A violation is flagged when measured speed exceeds the detected/looked-up maximum (or falls below the minimum) for a sustained window, with the offending sign frame, timestamp, GPS coordinates, and computed speed retained as evidence.",
+      "sources": [
+        "https://pelayanan.jakarta.go.id/download/regulasi/undang-undang-nomor-22-tahun-2009-tentang-lalu-lintas-dan-angkutan-jalan.pdf",
+        "https://dishub.malangkota.go.id/wp-content/uploads/sites/16/2016/05/Undang-Undang-No.-22-tahun-2009-Tentang-Lalulintas.pdf",
+        "https://m.facebook.com/DivHumasPolri/photos/pasal-287-ayat-5-uullaj-no-22-th-2009-setiap-orang-yang-mengemudikan-kendaraan-b/586431204719073/",
+        "https://pid.kepri.polri.go.id/hukum-mengemudikan-kendaraan-melebihi-batas-kecepatan/"
+      ],
+      "confidence": "high",
+      "verified": true,
+      "confirm_votes": 3,
+      "corrections": []
+    },
+    {
+      "key": "tanpa-sabuk",
+      "name": "Pengemudi/penumpang mobil tidak memakai sabuk keselamatan",
+      "uu": "Undang-Undang Republik Indonesia Nomor 22 Tahun 2009 tentang Lalu Lintas dan Angkutan Jalan (UU LLAJ)",
+      "pasal": "Pasal 289",
+      "ayat": "Pasal 289 adalah pasal tunggal (tanpa pembagian ayat). Pasal ini merujuk kewajiban dalam Pasal 106 ayat (6) sebagai dasar pelanggaran.",
+      "bunyi": "Pasal 289: \"Setiap orang yang mengemudikan Kendaraan Bermotor atau Penumpang yang duduk di samping Pengemudi yang tidak mengenakan sabuk keselamatan sebagaimana dimaksud dalam Pasal 106 ayat (6) dipidana dengan pidana kurungan paling lama 1 (satu) bulan atau denda paling banyak Rp250.000,00 (dua ratus lima puluh ribu rupiah).\" Kewajiban dasarnya, Pasal 106 ayat (6): \"Setiap orang yang mengemudikan Kendaraan Bermotor beroda empat atau lebih di Jalan dan Penumpang yang duduk di sampingnya wajib mengenakan sabuk keselamatan.\"",
+      "ancaman_pidana": "Pidana kurungan paling lama 1 (satu) bulan atau denda paling banyak Rp250.000,00 (dua ratus lima puluh ribu rupiah). Sanksi bersifat alternatif (kurungan ATAU denda).",
+      "denda_max_rupiah": "Rp250.000,00 (dua ratus lima puluh ribu rupiah)",
+      "kurungan_max": "1 (satu) bulan",
+      "related_articles": [
+        "Pasal 106 ayat (6) UU 22/2009 - kewajiban pengemudi kendaraan beroda empat atau lebih dan penumpang di sampingnya mengenakan sabuk keselamatan (pasal kewajiban yang dirujuk Pasal 289)",
+        "Pasal 106 ayat (1) UU 22/2009 - kewajiban mengemudikan kendaraan dengan wajar dan penuh konsentrasi",
+        "Pasal 57 ayat (2) dan (3) UU 22/2009 - sabuk keselamatan sebagai bagian perlengkapan/persyaratan teknis kendaraan bermotor"
+      ],
+      "detection_basis": "Deteksi via computer vision pada feed dashcam (atau kamera kabin/menghadap ke dalam). Pipeline: (1) Deteksi & lokalisasi kendaraan dan kursi depan; untuk dashcam yang menghadap ke depan, deteksi terbatas pada kendaraan lain dari sudut depan/samping melalui kaca depan. (2) Deteksi keberadaan orang di kursi pengemudi dan kursi penumpang depan (person/face/upper-body detection). (3) Estimasi pose tubuh bagian atas (bahu, dada, pinggul) lalu deteksi garis sabuk diagonal yang melintang dada dari bahu ke pinggul - klasifikasi biner 'seatbelt ON/OFF' menggunakan CNN/ViT yang dilatih pada crop area dada. (4) Indikator utama: ada/tidaknya pita sabuk diagonal melintasi torso; sabuk yang diselipkan di belakang/dijepit palsu (clip buckle tanpa dipakai) menjadi false-negative yang perlu ditangani dengan training data khusus. (5) Tantangan praktis: oklusi (tangan, pakaian gelap senada sabuk), pantulan/silau kaca depan, kondisi malam/low-light (butuh IR), dan privasi. (6) Untuk penegakan, hanya pengemudi dan penumpang kursi depan (samping pengemudi) yang relevan secara hukum (Pasal 106 ayat (6)); penumpang baris belakang di luar cakupan sanksi, jadi sistem sebaiknya membatasi region-of-interest ke dua kursi depan untuk menghindari pelanggaran palsu.",
+      "sources": [
+        "https://www.hukumonline.com/klinik/a/aturan-sabuk-keselamatan-untuk-pengemudi-dan-penumpang-mobil-lt5d3a9d9aa4ce4/",
+        "https://polrespangandaran.id/intelkam/mengupas-tuntas-kewajiban-pengendara-dan-penumpang-berdasarkan-uu-no-22-tahun-2009/",
+        "https://polreskudus.com/2024/01/30/berkendara-roda-empat-ke-atas-wajib-menggunakan-sabuk-keselamatan/",
+        "https://www.toyota.astra.co.id/toyota-connect/news/aturan-penggunaan-sabuk-pengaman-mobil-wajib-untuk-penumpang-depan-dan-ada-denda-jika-kamu-lalai",
+        "https://peraturan.bpk.go.id/Details/38654/uu-no-22-tahun-2009"
+      ],
+      "confidence": "high",
+      "verified": true,
+      "confirm_votes": 3,
+      "corrections": []
+    },
+    {
+      "key": "main-hp",
+      "name": "Mengemudi sambil menggunakan telepon genggam",
+      "uu": "Undang-Undang Republik Indonesia Nomor 22 Tahun 2009 tentang Lalu Lintas dan Angkutan Jalan (LLAJ)",
+      "pasal": "Pasal 283 jo. Pasal 106 ayat (1)",
+      "ayat": "Pasal 283 tidak berayat (pasal tunggal); merujuk pada Pasal 106 ayat (1). Larangan penggunaan telepon dinyatakan tegas dalam Penjelasan Pasal 106 ayat (1).",
+      "bunyi": "Pasal 283: \"Setiap orang yang mengemudikan Kendaraan Bermotor di Jalan secara tidak wajar dan melakukan kegiatan lain atau dipengaruhi oleh suatu keadaan yang mengakibatkan gangguan konsentrasi dalam mengemudi di Jalan sebagaimana dimaksud dalam Pasal 106 ayat (1) dipidana dengan pidana kurungan paling lama 3 (tiga) bulan atau denda paling banyak Rp750.000,00 (tujuh ratus lima puluh ribu rupiah).\" | Pasal 106 ayat (1): \"Setiap orang yang mengemudikan Kendaraan Bermotor di Jalan wajib mengemudikan kendaraannya dengan wajar dan penuh konsentrasi.\" | Penjelasan Pasal 106 ayat (1) menegaskan bahwa yang dimaksud \"penuh konsentrasi\" adalah mengemudi dengan penuh perhatian dan tidak terganggu perhatiannya karena sakit, lelah, mengantuk, menggunakan telepon atau menonton televisi/video yang terpasang di kendaraan, atau meminum minuman beralkohol/obat-obatan. Penggunaan telepon genggam saat mengemudi karena itu termasuk perbuatan yang mengakibatkan gangguan konsentrasi dan dijerat Pasal 283.",
+      "ancaman_pidana": "Pidana kurungan paling lama 3 (tiga) bulan atau denda paling banyak Rp750.000,00 (tujuh ratus lima puluh ribu rupiah). Sifat ancaman bersifat alternatif (kurungan ATAU denda).",
+      "denda_max_rupiah": "Rp750.000",
+      "kurungan_max": "3 bulan",
+      "related_articles": [
+        "Pasal 106 ayat (1) UU 22/2009 - kewajiban mengemudi dengan wajar dan penuh konsentrasi (norma yang dilanggar)",
+        "Penjelasan Pasal 106 ayat (1) - definisi 'penuh konsentrasi' yang secara eksplisit menyebut 'menggunakan telepon' sebagai pengganggu konsentrasi",
+        "Pasal 310 UU 22/2009 - jika kelalaian (termasuk akibat distraksi telepon) menyebabkan kecelakaan lalu lintas dengan kerusakan, luka, atau korban meninggal (ancaman lebih berat)",
+        "Pasal 311 UU 22/2009 - mengemudikan kendaraan secara sengaja dengan cara membahayakan nyawa/barang"
+      ],
+      "detection_basis": "Sistem computer vision pada dashcam (kamera kabin/DMS) dapat mendeteksi pelanggaran ini melalui: (1) Object detection model (mis. YOLO/SSD, kelas 'cell phone' dari COCO) untuk mendeteksi telepon genggam di tangan pengemudi; (2) Hand/face keypoint & pose estimation untuk mengenali gestur menelepon (tangan-ke-telinga) atau menatap layar; (3) Driver monitoring berbasis gaze/head-pose estimation untuk mendeteksi pandangan menunduk (eyes-off-road); (4) ROI di area kursi pengemudi agar deteksi terkait pengemudi, bukan penumpang; (5) Temporal tracking lintas-frame untuk menekan false positive (deteksi persisten beberapa frame); (6) Fusi dengan kecepatan GPS/OBD untuk memastikan kendaraan sedang melaju (unsur 'mengemudi'). Output berupa klip/citra bertimestamp menjadi bukti pendukung untuk tilang elektronik.",
+      "sources": [
+        "https://www.hukumonline.com/berita/a/penggunaan-telepon-dua-arah-saat-berkendara-ganggu-konsentrasi-lt5af55908c04be/",
+        "https://jdih.sukoharjokab.go.id/berita/detail/benarkah-menggunakan-gps-saat-berkendara-bisa-dipidana",
+        "https://m.tribunnews.com/nasional/2021/12/28/berkendara-sambil-bermain-ponsel-melanggar-uu-llaj-bisa-dipenjara-atau-didenda-ini-penjelasannya?page=all",
+        "https://www.tribratakutim.com/berita-terkini/vigilansi-tanpa-distraksi-penegakan-pasal-283-uu-llaj-dalam-menjaga-konsentrasi-mudik-2026/188716.html"
+      ],
+      "confidence": "high",
+      "verified": true,
+      "confirm_votes": 3,
+      "corrections": []
+    },
+    {
+      "key": "tanpa-plat",
+      "name": "Kendaraan tidak dipasangi Tanda Nomor Kendaraan Bermotor (pelat) yang sah",
+      "uu": "Undang-Undang Republik Indonesia Nomor 22 Tahun 2009 tentang Lalu Lintas dan Angkutan Jalan (LLAJ)",
+      "pasal": "280",
+      "ayat": "Pasal 280 tidak memiliki ayat (tunggal / tanpa ayat). Pasal ini merujuk pada kewajiban dalam Pasal 68 ayat (1).",
+      "bunyi": "Pasal 280: \"Setiap orang yang mengemudikan Kendaraan Bermotor di Jalan yang tidak dipasangi Tanda Nomor Kendaraan Bermotor yang ditetapkan oleh Kepolisian Negara Republik Indonesia sebagaimana dimaksud dalam Pasal 68 ayat (1) dipidana dengan pidana kurungan paling lama 2 (dua) bulan atau denda paling banyak Rp500.000,00 (lima ratus ribu rupiah).\" Pasal yang dirujuk, Pasal 68 ayat (1): \"Setiap Kendaraan Bermotor yang dioperasikan di Jalan wajib dilengkapi dengan Surat Tanda Nomor Kendaraan Bermotor dan Tanda Nomor Kendaraan Bermotor.\"",
+      "ancaman_pidana": "Pidana kurungan paling lama 2 (dua) bulan atau denda paling banyak Rp500.000,00 (lima ratus ribu rupiah).",
+      "denda_max_rupiah": "Rp500.000 (lima ratus ribu rupiah)",
+      "kurungan_max": "2 bulan (paling lama dua bulan)",
+      "related_articles": [
+        "Pasal 68 ayat (1) UU 22/2009 - kewajiban setiap Kendaraan Bermotor yang dioperasikan di jalan dilengkapi STNK dan TNKB (norma yang dirujuk Pasal 280)",
+        "Pasal 64 ayat (1) UU 22/2009 - kewajiban registrasi Kendaraan Bermotor",
+        "Pasal 39 PP No. 80 Tahun 2012 dan Perpol/Perkap tentang Registrasi dan Identifikasi Kendaraan Bermotor - spesifikasi bentuk, ukuran, bahan, warna, dan cara pemasangan TNKB yang sah",
+        "Pasal 288 ayat (1) UU 22/2009 - tidak dapat menunjukkan STNK (pelanggaran terkait namun berbeda objek)"
+      ],
+      "detection_basis": "Sistem computer vision pada dashcam dapat mendeteksi pelanggaran ini melalui pipeline berikut: (1) Deteksi kendaraan (vehicle detection, mis. YOLO/SSD) untuk melokalisasi setiap kendaraan bermotor dalam frame; (2) Deteksi region pelat (license plate detection) pada area standar pemasangan (depan dan belakang kendaraan). Jika tidak ada region pelat yang terdeteksi pada kendaraan yang seharusnya memiliki pelat, ini indikasi kuat \"tidak dipasangi TNKB\"; (3) Verifikasi keabsahan/standar pelat bila terdeteksi - klasifikasi warna dasar (hitam untuk kendaraan pribadi, kuning untuk umum, merah untuk dinas pemerintah, putih sejak penerapan baru), rasio dimensi, font/tipografi standar Korlantas, dan keberadaan masa berlaku - untuk membedakan pelat sah vs pelat tidak standar/dimodifikasi/ditutupi; (4) OCR (ANPR/ALPR) untuk membaca karakter; kegagalan OCR sistematis akibat pelat ditekuk, ditutup stiker/aksesori, dicat, atau diburamkan menjadi sinyal pelanggaran; (5) Temporal/multi-frame tracking untuk mengurangi false positive akibat oklusi sesaat, sudut pandang, atau blur gerakan, dengan menggabungkan beberapa frame sebelum menandai pelanggaran. Catatan kehati-hatian: deteksi otomatis hanya bersifat indikatif (alat bantu/bukti awal); penilangan tetap memerlukan verifikasi manusia karena oklusi, pencahayaan, dan kondisi nyata (mis. baut copot) dapat menimbulkan positif palsu.",
+      "sources": [
+        "https://peraturan.bpk.go.id/Download/27961/UU%20Nomor%2022%20Tahun%202009.pdf (Database peraturan resmi BPK RI - teks lengkap UU 22/2009)",
+        "https://id.wikisource.org/wiki/Undang-Undang_Republik_Indonesia_Nomor_22_Tahun_2009 (Wikisource - teks lengkap, diverifikasi untuk Pasal 68 ayat (1))",
+        "https://korlantas.polri.go.id/2026-06-05-operasi-patuh-2026-incar-pelat-nomor-tak-sesuai-aturan-ini-risikonya/ (Korlantas Polri - sumber resmi penegakan)",
+        "https://humas.polri.go.id/news/detail/2411713-operasi-patuh-2026-incar-pelat-nomor-tak-sesuai-aturan-ini-risikonya (Humas Polri - sumber resmi)",
+        "https://www.hukumonline.com/klinik/a/tidak-pasang-pelat-nomor-karena-baut-copot--tetap-ditilang-lt5c6a634abd98d/ (Hukumonline - database hukum mapan, analisis Pasal 280 & 68)"
+      ],
+      "confidence": "high",
+      "verified": true,
+      "confirm_votes": 3,
+      "corrections": []
+    },
+    {
+      "key": "tanpa-lampu-malam",
+      "name": "Tidak menyalakan lampu utama pada malam hari",
+      "uu": "Undang-Undang Republik Indonesia Nomor 22 Tahun 2009 tentang Lalu Lintas dan Angkutan Jalan (UU LLAJ)",
+      "pasal": "Pasal 293",
+      "ayat": "ayat (1)",
+      "bunyi": "Setiap orang yang mengemudikan Kendaraan Bermotor di Jalan tanpa menyalakan lampu utama pada malam hari dan kondisi tertentu sebagaimana dimaksud dalam Pasal 107 ayat (1) dipidana dengan pidana kurungan paling lama 1 (satu) bulan atau denda paling banyak Rp250.000,00 (dua ratus lima puluh ribu rupiah).",
+      "ancaman_pidana": "Pidana kurungan paling lama 1 (satu) bulan atau denda paling banyak Rp250.000,00 (dua ratus lima puluh ribu rupiah).",
+      "denda_max_rupiah": "250000",
+      "kurungan_max": "1 bulan",
+      "related_articles": [
+        "Pasal 107 ayat (1) UU 22/2009 - kewajiban: Pengemudi Kendaraan Bermotor wajib menyalakan lampu utama Kendaraan Bermotor yang digunakan di Jalan pada malam hari dan pada kondisi tertentu (ini adalah pasal kewajiban yang dirujuk/jo. oleh Pasal 293 ayat (1))",
+        "Pasal 107 ayat (2) UU 22/2009 - kewajiban pengemudi Sepeda Motor menyalakan lampu utama pada siang hari",
+        "Pasal 293 ayat (2) UU 22/2009 - sanksi tidak menyalakan lampu utama pada siang hari (Sepeda Motor): kurungan paling lama 15 (lima belas) hari atau denda paling banyak Rp100.000,00, jo. Pasal 107 ayat (2)"
+      ],
+      "detection_basis": "A dashcam computer-vision system can detect this violation by combining ambient-light/time detection with vehicle headlight-state classification. (1) Confirm night/malam hari condition: use frame luminance (low mean brightness/histogram), camera auto-exposure/gain metadata, or device clock plus GPS-based sunset/sunrise lookup. (2) Detect and track the target vehicle with an object detector (e.g., YOLO-class). (3) Classify the front headlamp (lampu utama) state: within the vehicle bounding box, locate headlamp regions and measure local brightness, bloom/glare halo, and saturated-pixel blobs versus the dark surroundings - an ON headlight yields bright, often over-exposed glare regions with high local contrast, while OFF lamps appear dark. (4) Flag the violation when, under a confirmed night condition, no significant headlight emission is detected across multiple consecutive tracked frames (temporal smoothing reduces false negatives from occlusion). Caveats: distinguish headlamp glow from street lamps, other vehicles, reflections, and daytime running lights; require the vehicle to be in traffic; capture plate via ANPR/OCR plus timestamp for evidentiary tilang.",
+      "sources": [
+        "https://www.hukumonline.com/klinik/a/dasar-hukum-kewajiban-menyalakan-lampu-kendaraan-pada-siang-hari-lt52458947a935d/",
+        "https://www.pn-tamianglayang.go.id/denda-tilang/",
+        "https://pid.kepri.polri.go.id/aturan-sepeda-motor-wajib-menyalakan-lampu-utama-di-siang-hari/",
+        "https://news.detik.com/berita/d-6220055/viral-pemotor-protes-ditilang-tak-nyalakan-lampu-utama-ini-aturannya",
+        "https://www.cnnindonesia.com/otomotif/20220810173453-595-833000/lampu-utama-motor-mati-siang-hari-ditilang-berikut-aturannya",
+        "https://dishub.malangkota.go.id/wp-content/uploads/sites/16/2016/05/Undang-Undang-No.-22-tahun-2009-Tentang-Lalulintas.pdf"
+      ],
+      "confidence": "high",
+      "verified": true,
+      "confirm_votes": 3,
+      "corrections": []
+    },
+    {
+      "key": "motor-lampu-siang",
+      "name": "Sepeda motor tidak menyalakan lampu utama pada siang hari",
+      "uu": "Undang-Undang Republik Indonesia Nomor 22 Tahun 2009 tentang Lalu Lintas dan Angkutan Jalan (UU LLAJ)",
+      "pasal": "Pasal 293 (sanksi pidana); kewajiban diatur dalam Pasal 107",
+      "ayat": "Pasal 293 ayat (2); kewajiban pada Pasal 107 ayat (2)",
+      "bunyi": "Pasal 107 ayat (2): \"Pengemudi Sepeda Motor selain mematuhi ketentuan sebagaimana dimaksud pada ayat (1) wajib menyalakan lampu utama pada siang hari.\" Pasal 293 ayat (2): \"Setiap orang yang mengemudikan Sepeda Motor di Jalan tanpa menyalakan lampu utama pada siang hari sebagaimana dimaksud dalam Pasal 107 ayat (2) dipidana dengan pidana kurungan paling lama 15 (lima belas) hari atau denda paling banyak Rp100.000,00 (seratus ribu rupiah).\"",
+      "ancaman_pidana": "Pidana kurungan paling lama 15 (lima belas) hari atau denda paling banyak Rp100.000,00 (seratus ribu rupiah) — Pasal 293 ayat (2)",
+      "denda_max_rupiah": "100000",
+      "kurungan_max": "15 hari",
+      "related_articles": [
+        "Pasal 107 ayat (1) UU No. 22 Tahun 2009 - kewajiban menyalakan lampu pada malam hari dan kondisi tertentu (dasar kewajiban ayat 2)",
+        "Pasal 107 ayat (2) UU No. 22 Tahun 2009 - kewajiban sepeda motor menyalakan lampu utama pada siang hari",
+        "Pasal 293 ayat (1) UU No. 22 Tahun 2009 - sanksi tidak menyalakan lampu utama pada malam hari/kondisi tertentu (kurungan maks 1 bulan atau denda maks Rp250.000,00)"
+      ],
+      "detection_basis": "Sistem computer vision pada dashcam dapat mendeteksi pelanggaran ini melalui pipeline: (1) Deteksi & klasifikasi objek kendaraan untuk mengidentifikasi sepeda motor (model deteksi seperti YOLO/SSD dengan kelas roda dua); (2) Lokalisasi region lampu utama di bagian depan motor (front headlight bounding box / keypoint); (3) Klasifikasi status lampu nyala/mati dengan menganalisis luminansi, saturasi warna, dan kontras region lampu relatif terhadap bodi motor dan pencahayaan sekitar (deteksi 'glow'/bright spot, opsional thresholding HSV atau klasifier CNN on/off); (4) Penentuan kondisi 'siang hari' dari timestamp frame, estimasi brightness ambient/exposure, metadata EXIF/GPS, atau perhitungan posisi matahari (sun elevation > 0). Pelanggaran ditandai bila objek = sepeda motor DAN status lampu utama = mati DAN kondisi = siang hari. Untuk akurasi: tracking multi-frame guna mengurangi false positive akibat oklusi/pantulan, plat nomor (ANPR) untuk identifikasi, dan ambang kepercayaan minimum sebelum flag.",
+      "sources": [
+        "https://www.cnnindonesia.com/otomotif/20220810173453-595-833000/lampu-utama-motor-mati-siang-hari-ditilang-berikut-aturannya",
+        "https://otomotif.kompas.com/read/2022/01/29/173200715/aturan-sepeda-motor-wajib-menyalakan-lampu-utama-di-siang-hari",
+        "https://www.hukumonline.com/klinik/a/dasar-hukum-kewajiban-menyalakan-lampu-kendaraan-pada-siang-hari-lt52458947a935d/",
+        "https://www.hukumonline.com/berita/a/menguji-konstitusionalitas-aturan-nyalakan-lampu-motor-siang-hari-lt5e3a2e97a09ce/",
+        "https://pid.kepri.polri.go.id/aturan-sepeda-motor-wajib-menyalakan-lampu-utama-di-siang-hari/"
+      ],
+      "confidence": "high",
+      "verified": true,
+      "confirm_votes": 3,
+      "corrections": []
+    }
+  ],
+  "legal_verified_count": 12,
+  "tech": {
+    "cv": {
+      "summary": "For a real-time CV dashcam web app on Next.js with phone camera (getUserMedia), the realistic 2026 stack is: MediaPipe Tasks Vision for face/pose (it is the most mature, mobile-tuned, GPU-delegated option and the only one truly built for live video), onnxruntime-web with a quantized YOLOv8n for general object/vehicle detection (best accuracy-per-ms when WebGPU is available, with WASM fallback), and TensorFlow.js + coco-ssd as an easy baseline/fallback rather than the primary detector. tesseract.js for license-plate OCR is deployable but weak in the wild — treat it as best-effort on a cropped, pre-processed plate ROI, not a reliable ANPR engine. All of this is deployable on Vercel as static assets if you self-host model weights on your own origin and configure cross-origin isolation headers in next.config / vercel.json; the dominant constraints are mobile thermal/throttling, iOS WebGPU instability (notably Safari/WebKit 26 JSEP memory blowups), and GPU tensor memory leaks. The single biggest architectural decision is to run only ONE heavy model at a time, downscale camera frames to 256–320px before inference, and throttle to 5–15 FPS via requestVideoFrameCallback rather than chasing 30 FPS.\n\nKEY DECISION MATRIX:\n- Face + pose (driver monitoring): MediaPipe Tasks Vision @mediapipe/tasks-vision 0.10.35. FaceLandmarker / FaceDetector (BlazeFace) / PoseLandmarker. Uses GPU delegate (WebGL2/WebGPU under the hood), runMode VIDEO with timestamps, designed for real-time webcam. Lowest effort, best mobile FPS for these specific tasks (often 20-30 FPS for face on mid-range phones).\n- General object / vehicle detection: onnxruntime-web 1.27.0 running YOLOv8n exported to ONNX (opset 12, ideally INT8/quantized or fp16), WebGPU EP with WASM fallback. Best accuracy and速度 ceiling, but the most integration/maintenance burden (NMS + letterbox pre/post-processing you write yourself).\n- Baseline / fallback object detection: @tensorflow-models/coco-ssd 2.2.3 on @tensorflow/tfjs 4.22.0 (webgl backend; webgpu backend exists at 4.22.0 but is less battle-tested). Trivial API (a few lines), ~80 COCO classes incl. car/truck/person, but lower accuracy and slower than YOLOv8n. Good as the universal fallback and for quick prototyping.\n- License plate OCR: tesseract.js 7.0.0 — deployable client-side (WASM, caches traineddata in IndexedDB) but accuracy on real-world angled/blurry plates is poor (~90% on clean crops, much worse in the wild). Must run on a tightly cropped, deskewed, thresholded plate ROI with a restricted charset (A-Z0-9). For production-grade ANPR, plan a server/cloud API (e.g. Plate Recognizer) fallback.\n\nBACKENDS: WebGPU is the target for ONNX/tfjs heavy models — now shipping in Chrome/Edge (since 113), Firefox, and Safari 26 (iOS 26/macOS Tahoe). But it is fragile on Apple: onnxruntime-web WebGPU/JSEP has documented severe CPU/memory blowups on Safari/WebKit 26 and fp16 numerical issues, so you need WASM fallback and capability detection. WASM (multi-threaded + SIMD) is the reliable cross-platform floor but needs SharedArrayBuffer => cross-origin isolation. WebGL is the stable tfjs/MediaPipe default on iOS today. MediaPipe abstracts the backend for you, which is a major reason to prefer it for face/pose.\n\nVERCEL DEPLOYMENT: Fully feasible as static assets + CDN. Self-host model weights and the ORT/tesseract .wasm files from your own origin (under /public) — do NOT rely on jsdelivr/HF CDN if you enable COEP, because require-corp blocks cross-origin assets without CORP headers. Set Cross-Origin-Opener-Policy: same-origin and Cross-Origin-Embedder-Policy: require-corp (or credentialless) via next.config headers()/vercel.json to unlock SharedArrayBuffer for multi-threaded WASM. Long-cache (immutable) the model/wasm files. Models are downloaded client-side at runtime; Vercel just serves bytes, so there is zero serverless/edge compute cost for inference.",
+      "recommendations": [
+        "Use MediaPipe Tasks Vision (@mediapipe/tasks-vision@0.10.35) as the PRIMARY engine for any face detection / face landmarks / pose / driver-attention features. It is purpose-built for live video (runningMode: 'VIDEO', call detectForVideo(video, performance.now())), uses the GPU delegate automatically, and gives the best mobile FPS with the least code. Load the WASM fileset + .task model from your own /public origin, not the gstatic CDN, if you enable COEP.",
+        "Use onnxruntime-web@1.27.0 with a quantized YOLOv8n ONNX model as the PRIMARY general object/vehicle detector when you need accuracy beyond COCO-SSD. Export the model at opset 12 with a fixed small input (e.g. 320x320 or 416x416), prefer INT8 or fp16, and set executionProviders: ['webgpu','wasm'] so it falls back automatically. You must implement letterbox preprocessing + sigmoid/NMS postprocessing yourself.",
+        "Keep @tensorflow-models/coco-ssd@2.2.3 (on @tensorflow/tfjs@4.22.0, webgl backend) as the easy baseline and universal fallback detector. It is the fastest path to a working demo (model.detect(videoEl) returns boxes+classes), covers car/truck/bus/person, and works everywhere including older iOS — accept its lower accuracy/speed vs YOLOv8n.",
+        "Treat tesseract.js@7.0.0 license-plate OCR as best-effort only: detect the plate first (with YOLO/a plate model), crop+deskew+grayscale+threshold the ROI on a canvas, then run Tesseract with tessedit_char_whitelist='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' and PSM 7/8 (single line/word). Create the worker ONCE and reuse it; never call recognize() with a fresh worker per frame. For reliable ANPR, design a cloud-API fallback (e.g. Plate Recognizer) from day one.",
+        "Run only ONE heavy model per frame. Do not run YOLO + face + pose + OCR simultaneously on a phone — they contend for the same GPU and will thermally throttle. Time-slice: e.g. object detection every frame, OCR only on demand/every Nth frame when a plate box is stable.",
+        "Throttle inference with requestVideoFrameCallback (preferred over requestAnimationFrame for camera streams — it fires per decoded video frame and gives you frame metadata) and cap effective inference to ~5-15 FPS using a 'skip if previous inference still running' guard (a boolean inFlight flag), so you never queue frames faster than the model can process.",
+        "Downscale aggressively before inference: draw the video to a small offscreen canvas (256-320px longest side) and feed that to the model. Camera frames are 1080p+; running detection at native resolution is the #1 cause of jank. Keep display resolution full but inference resolution tiny.",
+        "Aggressively manage GPU memory in tfjs/ONNX: wrap tfjs ops in tf.tidy(), explicitly dispose() input tensors and ImageBitmaps each frame, and reuse a single input tensor/buffer where possible. Monitor tf.memory().numTensors in dev — a steadily climbing count means a leak. For onnxruntime-web use IO binding / GPU tensors to avoid CPU<->GPU copies and reuse output buffers.",
+        "Run inference in a Web Worker (onnxruntime-web supports a proxy worker; MediaPipe and tfjs can run in workers too) to keep the main thread free for camera rendering and UI. Transfer frames as ImageBitmap (transferable) or via OffscreenCanvas to avoid copy overhead.",
+        "On Vercel, self-host ALL model weights and .wasm runtime files under /public on your own origin, set long immutable Cache-Control, and add cross-origin isolation headers (Cross-Origin-Opener-Policy: same-origin, Cross-Origin-Embedder-Policy: require-corp or credentialless) in next.config.js headers() so SharedArrayBuffer/multi-threaded WASM works. Verify self.crossOriginIsolated === true at runtime.",
+        "Implement robust capability detection and graceful degradation: check 'gpu' in navigator for WebGPU, fall back to WASM (multi-thread if crossOriginIsolated, else single-thread), and on iOS prefer WebGL/MediaPipe or WASM over onnxruntime-web WebGPU due to documented Safari 26 JSEP memory/CPU blowups and fp16 instability.",
+        "Lazy-load the CV libraries and models with dynamic import() and only after the user starts the camera — these bundles + weights are multi-MB and must not block initial Next.js page load. Show a download/initialization progress UI (tesseract.js and ORT both expose progress callbacks).",
+        "Set getUserMedia constraints explicitly: { video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 }, frameRate: { ideal: 30 } } }, request a rear camera for road view, and handle iOS quirks (HTTPS required, autoplay+playsinline+muted on the <video>, user-gesture to start, lens-switching behavior on multi-cam iPhones)."
+      ],
+      "libraries": [
+        "@mediapipe/tasks-vision@0.10.35 — face detector / face landmarker / pose landmarker; primary for face & pose, GPU delegate, built for live video",
+        "onnxruntime-web@1.27.0 — runs YOLOv8n ONNX with WebGPU EP + WASM fallback; primary high-accuracy object/vehicle detector",
+        "@tensorflow/tfjs@4.22.0 — core runtime (webgl backend default; webgpu backend available but less mature on mobile/iOS)",
+        "@tensorflow-models/coco-ssd@2.2.3 — turnkey COCO object detection; easy baseline + universal fallback",
+        "@tensorflow/tfjs-backend-webgpu@4.22.0 — optional WebGPU backend for tfjs on capable devices",
+        "tesseract.js@7.0.0 — client-side WASM OCR for license plates (best-effort on cropped ROI; v7 has improved memory mgmt over v6)",
+        "Plate Recognizer / cloud ALPR API — recommended server-side fallback for production-grade license plate accuracy (not a browser lib)"
+      ],
+      "pitfalls": [
+        "iOS WebGPU is fragile: onnxruntime-web's WebGPU/JSEP path has documented SEVERE CPU (400%+) and memory (1GB->14GB+) blowups on Safari/WebKit 26, plus fp16 numerical/overflow bugs. Always provide WASM fallback and avoid relying on ORT WebGPU on Apple devices.",
+        "COEP require-corp breaks cross-origin model/CDN loads: once you enable cross-origin isolation for SharedArrayBuffer, any model weight or .wasm fetched from jsdelivr/unpkg/HuggingFace without CORP headers is blocked. Self-host everything on your own origin.",
+        "GPU/tensor memory leaks: tf.browser.fromPixels(video) and per-frame tensors leak if not disposed; undisposed tensors exhaust WebGL/WebGPU memory and crash the tab. Use tf.tidy()/dispose() and watch tf.memory().numTensors. ImageBitmaps must be .close()'d too.",
+        "Running native-resolution (1080p+) camera frames through detection = severe jank/heat. Must downscale to ~256-320px before inference.",
+        "Running multiple heavy models concurrently (YOLO + pose + OCR) thermally throttles phones within minutes; FPS collapses and the device gets hot. Time-slice to one model per frame.",
+        "tesseract.js gives poor real-world plate accuracy (angled, blurry, low-light, varied fonts). It is NOT production ANPR. Needs heavy preprocessing + charset restriction, and even then expect failures; plan a cloud fallback.",
+        "Creating a new Tesseract worker / reloading traineddata per recognize() call is extremely slow — initialize the worker once and reuse it across frames.",
+        "requestAnimationFrame is the wrong loop for camera inference (it ties to display refresh and queues frames faster than inference completes). Use requestVideoFrameCallback + an in-flight guard so you drop frames instead of backlogging them.",
+        "Not gating with an inFlight flag causes inference requests to pile up faster than they complete, leading to growing latency and eventual OOM.",
+        "Multi-threaded WASM silently falls back to single-thread (much slower) if crossOriginIsolated is false — easy to ship a 'working but slow' build because you forgot the COOP/COEP headers in production.",
+        "Large model/runtime bundles (several MB) eagerly imported will tank Next.js initial load and Core Web Vitals; they must be dynamically imported and loaded only on camera start, with progress UI.",
+        "iOS getUserMedia requires HTTPS, a user gesture to start, and the <video> must be muted + playsinline + autoplay or it won't render; multi-camera iPhones may auto-switch lenses mid-stream.",
+        "@tensorflow/tfjs-backend-webgpu (4.22.0) is less battle-tested than the webgl backend on mobile/iOS; don't assume webgpu is faster everywhere — benchmark and fall back to webgl.",
+        "YOLOv8n in ONNX requires you to implement letterbox/resize preprocessing AND NMS + coordinate-rescaling postprocessing yourself; getting box coordinates wrong (forgetting the letterbox padding offset) is a very common bug.",
+        "Vercel functions/edge are irrelevant to inference (all client-side) — but don't accidentally try to run these libs server-side in a Route Handler; ORT-web/MediaPipe/tfjs-webgl assume a browser/GPU context."
+      ],
+      "sources": [
+        "https://onnxruntime.ai/docs/tutorials/web/ep-webgpu.html",
+        "https://onnxruntime.ai/docs/performance/device-tensor.html",
+        "https://www.npmjs.com/package/onnxruntime-web",
+        "https://github.com/microsoft/onnxruntime/issues/26827",
+        "https://github.com/microsoft/onnxruntime/issues/26732",
+        "https://github.com/microsoft/onnxruntime/issues/22776",
+        "https://pyimagesearch.com/2025/07/28/run-yolo-model-in-the-browser-with-onnx-webassembly-and-next-js/",
+        "https://github.com/nomi30701/yolo-object-detection-onnxruntime-web",
+        "https://ai.google.dev/edge/mediapipe/solutions/vision/face_landmarker/web_js",
+        "https://ai.google.dev/edge/mediapipe/solutions/vision/pose_landmarker/web_js",
+        "https://www.npmjs.com/package/@mediapipe/tasks-vision",
+        "https://web.dev/blog/webgpu-supported-major-browsers",
+        "https://webkit.org/blog/16993/news-from-wwdc25-web-technology-coming-this-fall-in-safari-26-beta/",
+        "https://tesseract.projectnaptha.com/",
+        "https://github.com/naptha/tesseract.js/issues/213",
+        "https://platerecognizer.com/license-plate-recognition/",
+        "https://www.oreilly.com/library/view/deep-learning-with/9781617296178/kindle_split_033.html",
+        "https://github.com/tensorflow/tfjs/issues/2459",
+        "https://vercel.com/kb/guide/fix-shared-array-buffer-not-defined-nextjs-react",
+        "https://www.sitepoint.com/optimizing-transformers-js-production/",
+        "https://arxiv.org/pdf/2502.15737",
+        "https://harryli0088.github.io/tfjs-test/"
+      ]
+    },
+    "geo": {
+      "summary": "For a dashcam-style Next.js app you need three data layers: (1) the browser Geolocation API for live position/speed/heading, (2) OpenStreetMap Overpass API for road metadata (oneway direction + maxspeed), and (3) Nominatim for reverse geocoding (address from coordinates). All three can run without an API key, but each has strict usage policies and real-world reliability quirks.\n\nGEOLOCATION API: Use navigator.geolocation.watchPosition(success, error, { enableHighAccuracy: true, maximumAge: 0, timeout: 10000 }) and store the returned id to clearWatch() on unmount. The success callback gives GeolocationCoordinates: latitude/longitude (always present, WGS84), accuracy (meters, always present), and the nullable altitude, altitudeAccuracy, heading, and speed. speed is m/s and heading is degrees from true north (0-360). CRITICAL: heading is null whenever speed is 0 (stationary) and is frequently null/unreliable when not moving; speed and heading are GPS-derived (Doppler), so they are only meaningful with enableHighAccuracy:true on a real device that is actually moving — on desktop or Wi-Fi/IP positioning they are almost always null. Requires a secure context (HTTPS; localhost is exempt) and can be blocked by the geolocation Permissions-Policy. Error codes: PERMISSION_DENIED(1), POSITION_UNAVAILABLE(2), TIMEOUT(3). On iOS Safari the GPS heading from watchPosition only updates while moving; for a live compass while stationary you must use DeviceOrientationEvent.webkitCompassHeading, which on iOS 13+ requires DeviceOrientationEvent.requestPermission() triggered by a user gesture.\n\nOVERPASS API (oneway + maxspeed, no key): Query the way nearest the GPS point with an around filter and return geometry, e.g. POST to https://overpass-api.de/api/interpreter with body: [out:json][timeout:25]; way(around:25,LAT,LON)[highway]; out tags geom; — then pick the nearest way client/server-side (Overpass has no distance/sort function, so you post-process by computing point-to-segment distance yourself). Read tag['oneway'] (yes/no/-1/reversible) and tag['maxspeed'] (e.g. '50', '30 mph', or implicit values like 'RO:urban'). Note oneway can be implicit (motorway, roundabout/junction=roundabout imply oneway=yes) and maxspeed is often absent — fall back to maxspeed:type or country defaults. Public-instance fair use: ~10,000 requests/day and <1GB/day per IP; default per-query quota is 180s timeout and 512MiB; over-limit yields HTTP 429 (rate limited) or HTTP 504 (resource quota). Endpoints: overpass-api.de (load-balanced) plus the kumi/Private.coffee mirror (overpass.kumi.systems) which advertises no hard rate limit but asks for fair use. Public instances often lack permissive CORS, so call Overpass from a Next.js Route Handler (server-to-server) rather than the browser.\n\nNOMINATIM (reverse geocoding, no key): GET https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=LAT&lon=LON&zoom=18&addressdetails=1. Usage policy is strict: absolute max 1 request/second, a valid identifying User-Agent or HTTP Referer is REQUIRED (requests without one are blocked), bulk/grid querying and autocomplete are forbidden, results MUST be cached, and ODbL attribution ('© OpenStreetMap contributors') must be displayed. For anything beyond light personal use, self-host Nominatim or use a commercial geocoder.\n\nNO-KEY ARCHITECTURE FOR NEXT.JS: Put Overpass and Nominatim behind your own Route Handlers (app/api/road/route.ts, app/api/reverse/route.ts) so you (a) avoid CORS, (b) set a proper User-Agent, (c) inject server-side caching and rate limiting, and (d) hide users' IPs. The geolocation hook stays purely client-side.\n\nCACHING STRATEGY: Cache aggressively because vehicles repeatedly traverse the same roads. Snap each GPS fix to a coarse geohash/grid cell (e.g. round lat/lon to ~4-5 decimals or use a geohash of length 7-8) and key your cache by that cell so nearby fixes reuse one Overpass result. Use an in-memory LRU plus a persistent KV (Upstash Redis / Vercel KV) with a TTL of hours-to-days (road metadata changes rarely). Throttle reverse geocoding to <=1 req/s and only call it on meaningful movement (debounce by distance, e.g. every >50-100m) — never on every GPS tick. Respect HTTP 429 with exponential backoff and a client-side request queue.</summary>\n<recommendations\">[\"Use watchPosition (not repeated getCurrentPosition) with { enableHighAccuracy: true, maximumAge: 0, timeout: 10000 }; save the returned watch id and call clearWatch(id) in the React effect cleanup to avoid leaks and battery drain.\", \"Treat speed and heading as optional: render them only when non-null and accuracy is acceptable. Provide a fallback (compute heading from consecutive lat/lon deltas via the haversine bearing formula) for when the GPS heading is null at low speed.\", \"On iOS, add a one-time 'Enable compass' button that calls DeviceOrientationEvent.requestPermission() on tap, then read webkitCompassHeading for a stationary heading; fall back to GeolocationCoordinates.heading while moving.\", \"Proxy Overpass and Nominatim through Next.js Route Handlers (server-side fetch) to eliminate CORS, set a descriptive User-Agent (e.g. 'DashcamApp/1.0 (dudungdotnet@gmail.com)'), and centralize caching + rate limiting.\", \"Overpass query for road data: [out:json][timeout:25]; way(around:25,LAT,LON)[highway]; out tags geom; then post-process to pick the nearest way by point-to-segment distance and read tags.oneway and tags.maxspeed.\", \"Handle oneway values fully: 'yes', 'no', '-1'/'reverse' (direction opposite to way node order), 'reversible'; infer oneway=yes for motorways and junction=roundabout when the tag is absent.\", \"Normalize maxspeed: parse plain km/h numbers, 'NN mph' (convert), 'none' (e.g. German autobahn), and implicit codes (maxspeed:type / zone tags); fall back to per-country defaults when missing.\", \"Geohash/grid-snap each GPS fix (round coords to ~4-5 decimals or geohash length 7-8) and key the cache by that cell so the same road segment is fetched once; use Upstash/Vercel KV with a multi-hour-to-day TTL plus an in-memory LRU.\", \"Strictly rate-limit Nominatim to <=1 request/second and debounce reverse-geocode calls by distance (only when moved >50-100m or address cell changed); cache results and never use it for autocomplete or bulk/grid queries.\", \"Always display OSM attribution '© OpenStreetMap contributors' (ODbL) wherever Overpass/Nominatim data is shown.\", \"Implement HTTP 429/504 handling: exponential backoff, a server-side request queue, and a secondary Overpass mirror (overpass.kumi.systems) as failover.\", \"If usage will be more than light/personal, self-host Overpass and/or Nominatim (or use a commercial provider) — the public OSM instances are not meant for production traffic from many users.\"]",
+      "recommendations": [
+        "Use watchPosition (not repeated getCurrentPosition) with { enableHighAccuracy: true, maximumAge: 0, timeout: 10000 }; save the returned watch id and call clearWatch(id) in the React effect cleanup to avoid leaks and battery drain.",
+        "Treat speed and heading as optional: render them only when non-null and accuracy is acceptable. Provide a fallback that computes heading from consecutive lat/lon deltas (haversine bearing) for when the GPS heading is null at low speed.",
+        "On iOS, add a one-time 'Enable compass' button that calls DeviceOrientationEvent.requestPermission() on tap, then read webkitCompassHeading for a stationary heading; fall back to GeolocationCoordinates.heading while moving.",
+        "Proxy Overpass and Nominatim through Next.js Route Handlers (server-side fetch) to eliminate CORS, set a descriptive User-Agent (e.g. 'DashcamApp/1.0 (dudungdotnet@gmail.com)'), and centralize caching plus rate limiting.",
+        "Overpass query for road data: [out:json][timeout:25]; way(around:25,LAT,LON)[highway]; out tags geom; then post-process to pick the nearest way by point-to-segment distance and read tags.oneway and tags.maxspeed.",
+        "Handle oneway values fully: 'yes', 'no', '-1'/'reverse' (opposite to node order), 'reversible'; infer oneway=yes for motorways and junction=roundabout when the tag is absent.",
+        "Normalize maxspeed: parse plain km/h numbers, 'NN mph' (convert), 'none' (e.g. German autobahn), and implicit codes (maxspeed:type / zone tags); fall back to per-country defaults when missing.",
+        "Geohash/grid-snap each GPS fix (round coords to ~4-5 decimals or geohash length 7-8) and key the cache by that cell so the same road segment is fetched once; use Upstash/Vercel KV with a multi-hour-to-day TTL plus an in-memory LRU.",
+        "Strictly rate-limit Nominatim to <=1 request/second and debounce reverse-geocode calls by distance (only when moved >50-100m or the address cell changed); cache results and never use it for autocomplete or bulk/grid queries.",
+        "Always display OSM attribution '© OpenStreetMap contributors' (ODbL) wherever Overpass/Nominatim data is shown.",
+        "Implement HTTP 429/504 handling: exponential backoff, a server-side request queue, and a secondary Overpass mirror (overpass.kumi.systems) as failover.",
+        "If usage exceeds light/personal scale, self-host Overpass and/or Nominatim (or use a commercial provider) — the public OSM instances are not meant for production traffic from many users."
+      ],
+      "pitfalls": [
+        "heading is null whenever speed is 0 and is unreliable at low speed; never assume it's always present. Same for speed on non-GPS/desktop positioning.",
+        "Without enableHighAccuracy:true, speed/heading are almost always null and accuracy is poor (Wi-Fi/IP based, 20-100m+), which is unusable for a dashcam.",
+        "Geolocation requires HTTPS — it silently fails on plain HTTP in production (localhost is the only exempt origin).",
+        "iOS Safari's GeolocationCoordinates.heading only updates while moving and the DeviceOrientation alpha is non-absolute; you must use webkitCompassHeading and request orientation permission via a user gesture (iOS 13+).",
+        "Calling Overpass/Nominatim directly from the browser usually fails with CORS errors on public instances — proxy through your server.",
+        "Nominatim blocks requests with no/invalid User-Agent and enforces 1 req/s; hammering it (or using it for autocomplete/per-tick reverse geocoding) gets your IP banned.",
+        "Overpass public instances return HTTP 429 (rate limited) and HTTP 504 (resource/timeout) under load; a naive retry loop makes it worse — use backoff.",
+        "Overpass has no distance/ORDER BY function, so 'nearest road' must be computed in your own code from the returned geometry; an around radius too small misses the road, too large returns many ways.",
+        "maxspeed is frequently missing or non-numeric ('none', 'NN mph', signed/implicit zone codes); a parser that assumes an integer km/h will break.",
+        "oneway is often implicit (motorways, roundabouts) and uses '-1' to mean 'one-way against the digitization direction' — mishandling sign flips the displayed travel direction.",
+        "Filesystem caching does not work on serverless (Vercel/Netlify) — use Vercel KV/Upstash Redis or another external store; in-memory caches are per-instance and reset on cold starts.",
+        "Vercel serverless functions have ~10s execution and ~4.5MB payload limits; keep Overpass timeouts and bounding boxes small or you'll hit them.",
+        "Without geohash/grid snapping, every GPS tick (often 1/sec) becomes a new Overpass+Nominatim call, instantly blowing the fair-use budget.",
+        "OSM data accuracy varies by region; rural roads may lack maxspeed/oneway entirely — design the UI to degrade gracefully when data is unknown."
+      ],
+      "libraries": [
+        "No API key needed for any of these. Optional helpers: ngeohash (geohash grid keys for caching), @turf/turf or just a small haversine/bearing helper (nearest-segment distance + heading fallback), lru-cache (in-memory cache), @upstash/redis or @vercel/kv (persistent serverless cache), @upstash/ratelimit (Nominatim 1 req/s limiting), p-queue (server-side request queue/throttle), and overpass-frontend or query-overpass if you want a typed Overpass client (or just fetch). For maps/visualization, react-leaflet + leaflet with OSM tiles (also requires OSM attribution)."
+      ],
+      "sources": [
+        "https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition",
+        "https://developer.mozilla.org/en-US/docs/Web/API/GeolocationPositionError",
+        "https://developer.apple.com/documentation/webkitjs/deviceorientationevent/1804777-webkitcompassheading",
+        "https://operations.osmfoundation.org/policies/nominatim/",
+        "https://nominatim.org/release-docs/develop/api/Reverse/",
+        "https://dev.overpass-api.de/overpass-doc/en/preface/commons.html",
+        "https://wiki.openstreetmap.org/wiki/Overpass_API",
+        "https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_API_by_Example",
+        "https://wiki.openstreetmap.org/wiki/Key:maxspeed",
+        "https://wiki.openstreetmap.org/wiki/Key:oneway",
+        "https://overpass.kumi.systems/",
+        "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+        "https://allotmentandy.github.io/blog/2022-01-19-Using-Overpass-API-Mirrors-CORS-Errors/"
+      ]
+    },
+    "crypto": {
+      "summary": "The dashcam-project (Next.js 16.2.9, React 19, pnpm) already has a working server-side signing layer in lib/crypto/ (sign.ts, verify.ts, canonical.ts, keys.ts) and domain types in lib/evidence/types.ts. Installed and ready: @noble/ed25519@3.1.0, @noble/hashes@2.2.0, @react-pdf/renderer@4.5.1, qrcode@1.5.4, idb. NOT yet built: any app/api/* routes (no /api/seal, /api/public-key, PDF report route, or /verify page), the @react-pdf/renderer report component, and QR wiring. The architecture is sound and the existing crypto is largely v3-correct. FLOW: (1) client builds EvidencePayload with sha-256 MediaHashes of imagery (signature commits to media without bloating the envelope); (2) POST to a Node-runtime /api/seal that stamps the authoritative server sealedAt, canonicalizes, sha-256 hashes, Ed25519-signs with the env-var key, returns SealedEvidence; (3) a Node-runtime PDF route renders @react-pdf/renderer with a human-readable report, a signature block (algorithm, publicKeyId, payloadHash, signature, sealedAt) and a QR (qrcode.toDataURL PNG) linking to a public /verify page; (4) /verify + /api/public-key let anyone re-verify in-browser via verifySealed against the published key. VERIFIED: noble v3 prohibits hex-string inputs (Uint8Array only) and the existing sign/verify correctly convert via hexToBytes/utf8ToBytes; signAsync/verifyAsync default to hashes.sha512Async which falls back to WebCrypto crypto.subtle SHA-512, so NO ed.hashes.sha512 assignment is needed for the async path (only for the sync sign()/verify()). Runs unchanged on Node serverless and in the browser.",
+      "recommendations": [
+        "Build app/api/seal/route.ts with `export const runtime = 'nodejs'` (NOT edge). IGNORE any client sealedAt and stamp it server-side (the design intent: 'server-stamped, authoritative'), then call sealPayload(). Whitelist/validate payload fields server-side before signing so clients cannot inject arbitrary JSON into a signed artifact.",
+        "Build the PDF route with `export const runtime = 'nodejs'`. In next.config.ts add serverExternalPackages: ['@react-pdf/renderer'] (Next 16 renamed serverComponentsExternalPackages -> serverExternalPackages) to stop the bundler mangling react-pdf — this is the documented fix for the 'PDFDocument/Component is not a constructor' error in App Router route handlers. Use renderToBuffer and return the Buffer with Content-Type application/pdf.",
+        "Define the PDF as a .tsx component using @react-pdf primitives (Document/Page/View/Text/Image). Generate the QR with `await QRCode.toDataURL(verifyUrl)` BEFORE renderToBuffer and pass the data URL into <Image src={dataUrl}/>; never rely on network fetches at render time.",
+        "Fonts: register LOCAL bundled TTF/OTF (not a Google Fonts WOFF2 URL). Serverless cold starts can run renderToBuffer before a remote font downloads (silent fallback), and react-pdf supports TTF/OTF far better than WOFF2. Built-in Helvetica is the zero-risk option.",
+        "Add /api/public-key returning getPublicKeyInfo() (publicKeyHex, keyId, algorithm, isDev) so verifiers never have to trust the dashAI UI. Surface isDev prominently; keys.ts ships a hardcoded DEV_KEY_HEX fallback that must never yield authoritative evidence.",
+        "Build the public /verify page as a client component that reconstructs SealedEvidence (URL fragment or fetched id), fetches the published key, and calls verifySealed(). Display the two independent checks (hashMatches AND signatureValid) separately, as VerificationResult already exposes, so tampered-payload vs wrong-key failures are distinguishable.",
+        "Add REPLAY/FRESHNESS protection beyond the signature: Ed25519 does not stop a valid envelope being copied/re-submitted. Keep server-stamped sealedAt + unique eventId in the signed payload; on any endpoint that ACCEPTS sealed evidence, persist seen eventIds + reject duplicates, and reject sealedAt outside an acceptable window. For higher assurance treat sealedAt as an RFC-3161-style trusted timestamp.",
+        "Key management: keep DASHAI_SIGNING_KEY (32-byte hex Ed25519 seed) in Vercel Project Env Vars, server-only, never NEXT_PUBLIC_*. Use separate keys per environment; rotate by publishing multiple public keys keyed by publicKeyId (keyId already embeds a key fingerprint, enabling rotation without invalidating old signatures). Env-var secrets can leak via logs/dumps — for a higher bar move to KMS/HSM, but env var is acceptable here if Vercel project access is tightly controlled.",
+        "Optionally upgrade canonicalization toward RFC 8785 (JCS) if cross-language verification is ever needed. Current canonicalize() uses JS Array.sort() (UTF-16 code-unit order) vs JCS's Unicode code-POINT order, and relies on JSON.stringify number formatting — byte-stable JS-to-JS (all that's needed today) but would diverge from a Python/Go JCS impl for non-BMP keys or unusual numbers. Document the canonical form as 'JS JSON.stringify with recursively code-unit-sorted keys', not strict JCS."
+      ],
+      "pitfalls": [
+        "Edge runtime trap: do NOT let seal or PDF routes use the Edge runtime. @react-pdf/renderer needs Node APIs and you want process.env for the key server-side. Always set `export const runtime = 'nodejs'`.",
+        "react-pdf App Router 'not a constructor' bug: without serverExternalPackages, Next's bundler mangles react-pdf and renderToBuffer throws 'PDFDocument/Component is not a constructor'. The single most common react-pdf-on-Next-App-Router failure.",
+        "Signing the wrong bytes: hash and sign the SAME canonical string. Existing code does this (canon -> sha256 for payloadHash, signs utf8ToBytes(canon)). Keep canonicalize() the single source of truth for both sign and verify or verification silently breaks.",
+        "Treating unsigned report content as attested: anything outside EvidencePayload (UI text, presentation fields) carries NO evidentiary weight. The PDF must visually scope what the signature covers (payload + media hashes) vs decorative content.",
+        "Media binding gap: the signature commits to sha-256 MediaHashes, not the pixels. If images are distributed separately, a verifier MUST re-hash received images and compare to mediaHashes, else images can be swapped while the signature still 'verifies'. Make /verify re-hash presented media.",
+        "What the signature does NOT prove (state this in the report): NOT that the camera witnessed physical reality, that GPS/speed/plate-OCR are accurate, anyone's identity, or that timestamps reflect true wall-clock beyond the server clock. It ONLY proves this exact payload was sealed by this dashAI key and is unaltered since sealedAt. dashAI is tamper-EVIDENT, not tamper-proof, and not a notary of facts.",
+        "DEV key leakage to production: keys.ts falls back to a hardcoded public DEV_KEY_HEX if DASHAI_SIGNING_KEY is missing/malformed. Fail closed (throw) in production or hard-gate report generation when isDev is true, rather than silently signing with a known key.",
+        "Replay/duplication: a valid sealed envelope can be replayed or reattached to another context. Signature gives integrity+authenticity but NOT freshness/uniqueness; add eventId de-dup and sealedAt windowing at consumers.",
+        "Canonical JSON edge cases: undefined drops; NaN/Infinity are not JSON-representable; floating-point coords/speeds can carry engine-dependent precision. Keep payload numbers plain finite JSON; today only the server hashes, which sidesteps most issues — preserve that invariant.",
+        "Web Crypto Ed25519 availability: native crypto.subtle Ed25519 only became broadly cross-browser in 2025 (~79%+ users). For max reach on public /verify, keep @noble/ed25519 for verification (zero-dep, works on older browsers) rather than depending solely on Web Crypto Ed25519."
+      ],
+      "libraries": [
+        "@noble/ed25519@3.1.0 — Ed25519 sign/verify (installed). v3: Uint8Array inputs only (no hex strings); async methods use WebCrypto SHA-512 by default, so no ed.hashes.sha512 setup needed for signAsync/verifyAsync. Runs on Node serverless and in browser.",
+        "@noble/hashes@2.2.0 — sha256 for canonical payload hashing and media hashes; bytesToHex/hexToBytes/utf8ToBytes (already used in lib/crypto).",
+        "@react-pdf/renderer@4.5.1 — server-side PDF via renderToBuffer in a Node-runtime route; requires serverExternalPackages in next.config and local TTF/OTF fonts.",
+        "qrcode@1.5.4 (+ @types/qrcode) — QRCode.toDataURL(url) -> PNG data URL embeddable in react-pdf <Image>; generate before renderToBuffer.",
+        "Web Crypto API (crypto.subtle, { name: 'Ed25519' }) — optional native browser verification path; broadly supported as of 2025 but keep @noble as fallback for older clients.",
+        "idb@8 — already present; suitable for client-side persistence of pending/sealed events.",
+        "Optional strict RFC 8785 (JCS) library — only if cross-language (non-JS) verifiers are required; current JS-only canonicalize() suffices for JS-to-JS verification."
+      ],
+      "sources": [
+        "https://github.com/paulmillr/noble-ed25519/blob/main/README.md",
+        "https://raw.githubusercontent.com/paulmillr/noble-ed25519/main/index.ts",
+        "https://www.npmjs.com/package/@noble/ed25519",
+        "https://github.com/diegomura/react-pdf/issues/3074",
+        "https://github.com/diegomura/react-pdf/issues/2460",
+        "https://pdf4.dev/blog/pdf-generation-nextjs",
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/verify",
+        "https://blog.ipfs.tech/2025-08-ed25519/",
+        "https://caniuse.com/mdn-api_subtlecrypto_verify_ed25519",
+        "https://www.rfc-editor.org/info/rfc8785/",
+        "https://datatracker.ietf.org/doc/html/rfc8785",
+        "https://csrc.nist.gov/glossary/term/digital_signature",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+        "https://securityscorecard.com/blog/implementing-non-repudiation-in-your-security-strategy/",
+        "/Users/ghaisan/Documents/dashcam-project/lib/crypto/sign.ts",
+        "/Users/ghaisan/Documents/dashcam-project/lib/crypto/verify.ts",
+        "/Users/ghaisan/Documents/dashcam-project/lib/crypto/canonical.ts",
+        "/Users/ghaisan/Documents/dashcam-project/lib/crypto/keys.ts",
+        "/Users/ghaisan/Documents/dashcam-project/lib/evidence/types.ts"
+      ]
+    },
+    "sensors": {
+      "summary": "Research on using the browser DeviceMotion/DeviceOrientation APIs to auto-trigger evidence capture on a vehicle collision or hard-braking event, for the \"dashai\" Next.js 16 / React 19 dashcam project. The project already has a working baseline at /Users/ghaisan/Documents/dashcam-project/lib/sensors/motion.ts that listens to `devicemotion`, computes net g-force magnitude (preferring `acceleration`, falling back to `accelerationIncludingGravity` minus 1g baseline), debounces, and classifies hard-brake (>=0.75g) vs impact (>=2.5g). The implementation is fundamentally sound; the main gaps are false-positive hardening (no GPS-speed gating, no axis isolation, no peak-window/multi-sample confirmation), a too-low impact threshold for a true \"crash,\" reliance on the often-unavailable gravity-free `acceleration` field, and a permission flow that must be driven from a real user gesture over HTTPS. Concrete thresholds, the iOS 13+ permission flow, sampling-rate realities, debouncing strategy, and pitfalls are below.\n\nKEY API FACTS (MDN + W3C orientation-event spec):\n- `devicemotion` gives accelerationIncludingGravity (raw, includes ~9.81 m/s^2 gravity) and acceleration (gravity-compensated). acceleration is frequently null on Android/older devices and on iOS unless the gyroscope-fused value is available, so accelerationIncludingGravity is the reliable field. Axes: x=west->east, y=south->north, z=down->up; units m/s^2. Magnitude g = sqrt(x^2+y^2+z^2)/9.81; with gravity included a device at rest reads ~1g, so the \"net\" excess is |mag-1| (only a rough approximation while the phone tilts).\n- DeviceMotionEvent.interval = hardware sampling interval in ms (constant). Real-world rates: iOS caps third-party access ~100 Hz; browsers typically deliver ~60-67 Hz and can drop to as low as 1 Hz; Android SENSOR_DELAY_UI yields ~20-60 Hz. Low Power Mode and background/hidden tabs throttle or stop events (events only fire when document visibility is \"visible\").\n- Secure context (HTTPS) is REQUIRED. Spec mandates precision clamping (acceleration to 0.1 m/s^2, orientation to 0.1 deg) for anti-fingerprinting.\n- DeviceOrientationEvent gives alpha (0-360 yaw), beta (-180..180 pitch), gamma (-90..90 roll); a rollover shows up as beta/gamma swinging toward +-90. Also needs iOS permission.\n\nTHRESHOLDS (synthesized from fleet telematics + crash-detection patents/papers):\n- Normal city driving: peaks ~0.2-0.3g.\n- Harsh/hard braking & harsh accel/turn (Samsara/GPS Insight defaults): ~0.4-0.5g typical alert threshold, up to ~0.6-0.8g for \"hard.\" Project's 0.75g hard-brake value is reasonable-to-conservative.\n- Crash/impact: production smartphone systems trigger crashes around 2.0g and up; patents cite 3G/4G/8G tiers; heavier vehicles use higher thresholds. The project's 2.5g impact threshold is on the LOW side for a confident \"collision\" claim and will catch severe potholes/curb hits/phone knocks — recommend ~4g for a high-confidence crash (matching the well-known \"speed >15 mph AND accel >4G\" rule), with 2.0-2.5g treated as a lower-confidence \"possible impact\" that still seals footage but is labeled accordingly.\n\niOS 13+ PERMISSION FLOW: DeviceMotionEvent.requestPermission()/DeviceOrientationEvent.requestPermission() are static methods that exist only on iOS Safari (and iOS Chrome/Firefox which use WebKit). They MUST be called synchronously inside a user-gesture handler (click/tap) over HTTPS, else NotAllowedError. They return a Promise resolving to 'granted' | 'denied'. Feature-detect with `typeof DeviceMotionEvent.requestPermission === 'function'`; on non-iOS just add the listener (no prompt). Permission is per-session-ish and must be re-requested if the listener was never attached. The project's requestMotionPermission() already does this correctly; just ensure the call site is a button tap and that orientation permission is requested too if rollover detection is added.",
+      "recommendations": [
+        "Use accelerationIncludingGravity as the primary signal, not acceleration. event.acceleration is null on most Android and many iOS devices, so the current `ev.acceleration ?? ev.accelerationIncludingGravity` path silently degrades. Always read accelerationIncludingGravity and subtract a dynamically estimated gravity baseline (a low-pass/EMA filter of the magnitude, alpha~0.8) instead of a fixed 1g, so phone tilt while mounted doesn't bias the net g. Net g = |instantaneous magnitude - lowpass baseline| / 9.81.",
+        "Adopt tiered thresholds: hard-brake/harsh ~0.45-0.75g (keep 0.75g if you want only clearly hard braking), 'possible impact' ~2.0-2.5g (seal footage, low confidence), and 'crash' >=4.0g (high confidence). Reserve the strong wording/auto-report for the >=4g tier. Optionally distinguish hard braking from impact by axis: braking is dominated by the vehicle's longitudinal axis with a sustained ramp, whereas a collision is a sharp omnidirectional spike with high jerk (d(accel)/dt).",
+        "Gate on GPS speed to kill the dominant false positives. Adopt the well-established rule: only treat a high-g spike as a crash if GPS shows the vehicle was moving (>~15 mph / ~6.7 m/s) before the event AND/OR speed drops sharply right after. The project already collects GeoPoint with speedMps in lib/evidence/types.ts and lib/geo/location.ts, so cross-reference the latest fix. If accel spikes but GPS speed is unchanged, it's almost certainly a phone drop/knock, not a crash.",
+        "Confirm with a short peak-detection window rather than a single sample. Buffer the last ~1-2s of magnitude samples (a ring buffer). Fire only when the peak exceeds threshold AND enough samples corroborate (e.g. the event spans >1 sample but resolves within the window, ruling out a single spurious reading). Report the true peakG over the window, not the first sample that crossed. This also lets you compute jerk to separate crashes from bumps.",
+        "Keep debouncing but split it from cooldown. The 3000ms debounce prevents duplicate fires from one impact — keep it. Separately, after a confirmed capture, apply a longer cooldown (e.g. 10-30s) before re-arming auto-capture so a multi-impact collision or post-crash jostling doesn't spawn many evidence bundles. Always report the max peak within the debounce window.",
+        "Drive the permission request from an explicit user gesture over HTTPS and surface state in the UI. requestMotionPermission() is correct, but it must be invoked from an onClick/onTouch handler (e.g. an 'Enable crash detection' button), not on mount/useEffect, or iOS throws NotAllowedError. Show granted/denied state, and on non-iOS attach the listener directly. Re-request on each new session since the grant is not durable.",
+        "Handle the lifecycle and throttling realities: events stop when the tab is hidden or backgrounded and slow dramatically in iOS Low Power Mode. For a dashcam the screen should be kept awake (Screen Wake Lock API) and the tab foregrounded; warn the user that locking the phone or Low Power Mode disables detection. Re-attach/verify the listener on visibilitychange.",
+        "Add DeviceOrientationEvent-based rollover detection as a complementary, higher-severity signal: a sustained beta or gamma swing toward +-90 degrees (vehicle on its side/roof) over a short window. It needs its own iOS requestPermission() call (request both in the same gesture). Treat rollover as top-severity, bypassing the speed gate.",
+        "On a confirmed event, auto-trigger the evidence pipeline: seal the surrounding video buffer plus a MotionEvent record (peakG, kind, axis breakdown, timestamp) and the concurrent GeoPoint, then run it through the existing seal flow. Consider extending EvidencePayload (lib/evidence/types.ts) or ViolationEvent with a motion/impact field and adding a 'kecelakaan' (accident) ReportKind path so crash captures are cryptographically sealed like violation evidence.",
+        "Calibrate empirically and make thresholds configurable. Log raw magnitude traces during real test drives (normal, hard brake, speed bumps, curb strikes, phone-on-seat) to tune per-device, since sampling rate and noise floor vary widely (60-100 Hz, precision clamped to 0.1 m/s^2). Expose thresholds as constants/settings rather than hard-coding, given the wide device variance."
+      ],
+      "pitfalls": [
+        "event.acceleration (gravity-free) is null on most Android and many iOS devices; code that prefers it silently falls back and the fixed '-1g' baseline is wrong whenever the mounted phone is tilted, biasing net g. Use accelerationIncludingGravity with a dynamic low-pass gravity estimate.",
+        "A single high-g sample is not a crash. Phone drops, knocks against the mount, dropping the phone on the seat, slamming a door, potholes, speed bumps, and curb strikes all produce 2-4g+ spikes. Without GPS-speed gating and peak-window/jerk confirmation, the current 2.5g impact threshold will false-positive frequently.",
+        "iOS requestPermission() throws NotAllowedError if not called synchronously inside a user gesture, and the whole API is blocked on non-HTTPS origins. Calling it from useEffect/onload fails. requestPermission exists ONLY on iOS WebKit — feature-detect or you crash on Android/desktop.",
+        "devicemotion events stop when the tab/app is hidden or the screen locks, and slow to as low as 1 Hz in iOS Low Power Mode — exactly the conditions during/after a real crash when the driver can't touch the phone. Detection silently dies unless you hold a Wake Lock and keep the page foregrounded; even then a locked phone defeats it.",
+        "Sampling rate is non-deterministic and capped (~60-100 Hz, sometimes far lower) and the spec clamps acceleration precision to 0.1 m/s^2 for anti-fingerprinting, so very brief impact peaks can be under-sampled or rounded. Don't assume you'll catch the true peak; widen the detection window.",
+        "Magnitude-only detection cannot distinguish a hard brake (sustained longitudinal ramp) from a collision (sharp omnidirectional spike) or from device handling — the project's kind classification by magnitude alone will mislabel events. Use axis decomposition and jerk.",
+        "Orientation/motion permission is per-session and not durable; if the grant lapses or the listener was never attached, detection appears 'on' in the UI but receives nothing. Verify the listener is actually firing.",
+        "The 2.5g impact threshold is too low to assert a 'collision' for evidentiary/legal purposes (this project produces signed legal evidence). Overclaiming a crash from a pothole undermines the evidence's credibility; gate strong claims behind ~4g + speed + multi-sensor corroboration and label lower-confidence tiers honestly.",
+        "Mount orientation/looseness changes the axis mapping and adds vibration noise; a phone vibrating in a loose mount raises the noise floor and can mask or mimic events. Per-device/per-mount calibration is needed."
+      ],
+      "libraries": [
+        "Web DeviceMotionEvent API (window 'devicemotion' event; accelerationIncludingGravity, acceleration, rotationRate, interval) — primary signal, already used in lib/sensors/motion.ts",
+        "Web DeviceOrientationEvent API (window 'deviceorientation' event; alpha/beta/gamma) — for rollover detection",
+        "Geolocation API (already wrapped in lib/geo/location.ts; GeoPoint.speedMps in lib/evidence/types.ts) — for GPS speed gating to cut false positives",
+        "Screen Wake Lock API (navigator.wakeLock) — keep screen awake so motion events keep firing during dashcam use",
+        "Generic Sensor API Accelerometer/LinearAccelerationSensor (optional, Chromium-only) — higher-fidelity alternative to DeviceMotion where supported, with explicit frequency control",
+        "No third-party npm dependency needed; existing project deps (zustand for state, idb for buffering) suffice. Avoid pulling in a library for this."
+      ],
+      "sources": [
+        "https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent/accelerationIncludingGravity",
+        "https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Window/devicemotion_event",
+        "https://www.w3.org/TR/orientation-event/",
+        "https://dev.to/li/how-to-requestpermission-for-devicemotion-and-deviceorientation-events-in-ios-13-46g2",
+        "https://kb.samsara.com/hc/en-us/articles/5321169919501-Harsh-Event-Detection",
+        "https://help.gpsinsight.com/deep-dive/how-do-i-detect-a-crash/",
+        "https://patents.google.com/patent/US9767625B1/en",
+        "https://www.researchgate.net/figure/Thresholds-g-forces-for-Accident-Detection_tbl1_271155472",
+        "https://www.researchgate.net/publication/352251445_Effective_Car_Collision_Detection_with_Mobile_Phone_Only",
+        "https://developer.apple.com/forums/thread/813136",
+        "https://damoov.com/how-your-smartphone-understands-driving/",
+        "/Users/ghaisan/Documents/dashcam-project/lib/sensors/motion.ts",
+        "/Users/ghaisan/Documents/dashcam-project/lib/evidence/types.ts"
+      ]
+    }
+  },
+  "context": {
+    "summary": "Research synthesis for a citizen dashcam traffic-enforcement app in Indonesia, covering (1) the ETLE system, (2) admissibility of citizen-submitted video, and (3) obligations under UU No. 27/2022 (PDP), with concrete privacy-by-design implications.\n\n1) ETLE SYSTEM (state-run): Electronic Traffic Law Enforcement is the Polri/Korlantas system that automatically captures violations via fixed CCTV plus a growing \"ETLE Mobile\" fleet (dashcam, helmet-cam, body-cam, and drone-cam on patrol vehicles), increasingly using AI to detect ~12 violation types (red-light, no-helmet, no-seatbelt, phone use, speeding, odd-even, overload, etc.). Workflow: camera captures evidence with time/location/type -> data goes to a Back Office -> a human officer verifies and matches the plate against the Regident/vehicle database -> a confirmation notice (surat konfirmasi) is sent to the registered owner -> if confirmed/unpaid, payment via virtual account and STNK (registration) can be blocked. Korlantas is centralizing ETLE nationally (target ~5,000 cameras by 2027) and has rolled out ETLE Handheld devices that print tickets on site. Key design lesson: ETLE is two-stage — automated DETECTION followed by mandatory HUMAN VERIFICATION and an owner-confirmation step before any sanction. No fully-automated punishment.\n\n2) CITIZEN VIDEO ADMISSIBILITY: There is NO established legal mechanism for citizens to submit private dashcam footage as direct evidence for a tilang. Police (Dirlantas Polda Metro Jaya) have explicitly stated private-car dashcam recordings \"belum bisa\" be used as evidence because the regulation and SOP do not yet exist. Only recordings from police/official-duty vehicles feed the official ETLE evidentiary chain. BUT: (a) Electronically, UU ITE (Pasal 5 ayat (1)-(2)) makes Electronic Information/Documents and their printouts valid evidence in addition to KUHAP Pasal 184, provided integrity/authenticity is preserved and the recording was lawfully obtained; CCTV/video is routinely accepted in court as alat bukti (esp. as \"petunjuk\"). (b) In practice, citizen/viral footage and reports filed via Polri's public-complaint channels (Dumas Presisi / PRESISI super-app, WhatsApp 0855-5555-4141) can TRIGGER police follow-up/investigation, but they are leads, not self-executing tickets — an officer must still verify and act. So an app should be framed as a reporting/lead-generation tool feeding human police review, NOT as an evidence-grade enforcement system that issues penalties itself.\n\n3) UU PDP No. 27/2022 OBLIGATIONS: Recording strangers' faces and plates is \"pemrosesan data pribadi.\" A face is \"data pribadi spesifik/biometrik\" (Pasal 4) requiring stricter protection and explicit consent; name/address/license plate are general personal data (data is still personal because a plate is linkable to an identifiable owner). The app operator is a Pengendali Data Pribadi. Pasal 20 sets the lawful bases (explicit consent; contract; legal obligation; vital interest; public-task/public interest; legitimate interest). Crucially, the public-interest and law-enforcement EXCEPTIONS in Pasal 15 (penegakan hukum, keamanan nasional, kepentingan umum penyelenggaraan negara, etc.) are available to STATE actors carrying out those functions — a private app cannot simply self-declare itself exempt; it generally cannot obtain consent from filmed bystanders, so it must rely carefully on legitimate-interest balancing and data minimization, and route enforcement-purpose data to the competent authority. Core controller duties: lawful basis + transparency/notice (Pasal 20-21), purpose limitation and data minimization, accuracy, storage limitation with deletion/destruction after retention period or on request (Pasal 16), security safeguards, DPO where required, and breach notification in writing within 3x24 hours to data subjects and the authority (Pasal 46). Data subject rights (Pasal 5-13) include access, correction, erasure, objection, and withdrawal of consent. Sanctions range from administrative fines to criminal liability for unlawfully obtaining/disclosing others' personal data; publicly posting identifiable footage without basis can itself violate PDP (and risk defamation/UU ITE exposure).",
+    "recommendations": [
+      "Position the product as a REPORTING/LEAD tool that feeds human police review, not a self-executing enforcement system. Mirror ETLE's two-stage model: automated capture/detection, then mandatory human (police) verification before any consequence. Never let the app assert guilt or issue penalties.",
+      "Apply privacy-by-design distinction DETECTION vs RECOGNITION: do on-device DETECTION only (a face/plate is present, a violation is occurring) and avoid biometric face RECOGNITION/matching against any identity database. Face recognition triggers Pasal 4 'data biometrik/spesifik' with explicit-consent requirements you cannot realistically obtain from filmed bystanders.",
+      "Blur by default at capture: auto-blur all faces and (for anyone other than the reported violator) license plates before storage/upload and before any human reviewer sees the clip. Keep the reported violator's plate unblurred only in the package that is transmitted to police, not in any user-visible or public surface.",
+      "Do NOT publish, share, or socially expose submitted footage. Public posting of identifiable faces/plates without a lawful basis can violate UU PDP (and risk UU ITE defamation exposure). Route evidence privately to the competent authority (Korlantas/Polda) or via official channels like Dumas Presisi rather than feeds.",
+      "Establish a lawful basis and explicit notice: the operator is a Pengendali Data Pribadi under Pasal 20. Since bystander consent is impractical, rely on a documented legitimate-interest / public-interest assessment (DPIA-style balancing test) AND get explicit consent from the APP USER (the recorder) for their own footage processing; provide a clear privacy notice covering purpose, data types, retention, recipients, and rights.",
+      "Implement strict data minimization and retention limits (Pasal 16): collect only the clip segment and metadata needed for the specific report; auto-delete after a short, defined retention window or after the report is closed/rejected; honor erasure and consent-withdrawal requests. Default to deletion of non-violation footage immediately on-device.",
+      "Build PDP compliance machinery: appoint/assign a DPO function, maintain a record of processing, implement encryption and access controls, log access, and stand up a breach-response process that notifies affected data subjects and the data protection authority in writing within 3x24 hours (Pasal 46).",
+      "Engage Korlantas/Polda formally before launch. There is currently NO SOP for citizen dashcam evidence; pursue an MoU or integration with the official ETLE / Dumas Presisi pipeline so submissions become legitimate police leads, the police (a Pasal 15 law-enforcement actor) handle the evidentiary/identity-matching step, and the app stays on the right side of the consent gap.",
+      "Preserve evidentiary integrity for clips routed to police: keep original (pre-blur) source secured with hashing/chain-of-custody, capture reliable timestamp/geolocation metadata, and avoid edits — UU ITE/KUHAP admissibility depends on authenticity and that the recording was lawfully obtained.",
+      "Add anti-abuse and anti-doxxing controls: prevent users from downloading/re-sharing others' footage, prohibit bounty/vigilante framing, require user identity verification for submissions (as Dumas Presisi does), and screen out clips that primarily expose innocent bystanders."
+    ],
+    "pitfalls": [
+      "Assuming citizen dashcam footage can directly trigger a tilang: police have stated private-vehicle dashcam recordings are NOT yet admissible evidence because no regulation/SOP exists; only police-vehicle ETLE recordings feed the official chain.",
+      "Assuming the Pasal 15 PDP exceptions (law enforcement / public interest) cover a private app: those exceptions are for state actors performing those functions; a private operator cannot self-declare exemption and must justify processing under Pasal 20 (legitimate interest) with safeguards.",
+      "Treating faces and plates as low-risk data: faces are 'data pribadi spesifik/biometrik' (Pasal 4) needing the strictest protection; plates are personal data because they link to an identifiable owner. Both are in scope of UU PDP.",
+      "Doing face RECOGNITION/identity matching client- or server-side: this escalates to high-risk biometric processing requiring explicit consent (impossible to get from bystanders) and a DPIA; detection-only avoids this.",
+      "Publishing or letting users share submitted clips (naming-and-shaming): high risk of UU PDP violation plus UU ITE defamation exposure and vigilante/doxxing harm.",
+      "No retention/deletion policy: storing footage indefinitely breaches Pasal 16 storage limitation; non-violation footage especially must not be retained.",
+      "Ignoring breach-notification timing: failure to notify subjects and the authority within 3x24 hours (Pasal 46) is itself a violation.",
+      "Over-editing or losing chain-of-custody on evidence sent to police, undermining UU ITE/KUHAP authenticity requirements and making the report useless and potentially challengeable.",
+      "Building a bounty/reward model without legal grounding: there is no confirmed national reward program for citizen traffic reports, and incentivized mass-surveillance of strangers amplifies PDP and abuse risks."
+    ],
+    "sources": [
+      "https://korlantas.polri.go.id/2026-05-15-teknologi-etle-perkuat-penegakan-hukum-lalu-lintas-berbasis-digital/",
+      "https://korlantas.polri.go.id/pelatihan-sistem-penindakan-pelanggaran-lalu-lintas-etle-nasional-tersentralisasi-di-korlantas-polri/",
+      "https://marinews.mahkamahagung.go.id/artikel/menilik-sistem-tilang-elektronik-etle-0jB",
+      "https://heylaw.id/blog/pemberlakuan-electronic-traffic-law-enforcement-etle-pengganti-tilang-konvensional-di-indonesia",
+      "https://www.kompas.com/tren/read/2026/06/02/161500665/12-pelanggaran-lalu-lintas-yang-bakal-terekam-kamera-etle-masyarakat-wajib",
+      "https://oto.detik.com/mobil/d-5736192/rekaman-dashcam-mobil-pribadi-bisa-jadi-alat-bukti-pelanggaran",
+      "https://www.toyota.astra.co.id/toyota-connect/news/tilang-elektronik-mobile-mulai-berjalan-di-jakarta-polisi-pakai-body-cam-helmet-cam-dan-dash-cam",
+      "https://korlantas.polri.go.id/polda-metro-jaya-pasang-etle-mobile-pada-helm-hingga-mobil-patroli/",
+      "https://korlantas.polri.go.id/kakorlantas-targetkan-5-000-kamera-etle-beroperasi-nasional-pada-2027/",
+      "https://dumaspresisi.polri.go.id/",
+      "https://tribratanews.gorontalo.polri.go.id/polres-pohuwato/43104/tanpa-datang-ke-kantor-polisi-masyarakat-bisa-lapor-lewat-aplikasi-e-dumas-presisi/",
+      "https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022",
+      "https://jdih.komdigi.go.id/produk_hukum/view/id/832/t/undangundang+nomor+27+tahun+2022",
+      "https://www.abnrlaw.com/lib/files/IND-ENG-UU%2027-2022%20Pelindungan%20Data%20Pribadi%20(ABNR).pdf",
+      "https://www.hukumonline.com/berita/a/perbedaan-jenis-data-spesifik-vs-umum-dalam-uu-pelindungan-data-pribadi-lt633f548091bfe/",
+      "https://csirt.telkom.co.id/posts/awareness/data-privacy-handling-sensitive-information",
+      "https://www.mkri.id/berita/pemrosesan-data-pribadi-hanya-dapat-dilakukan-dengan-persetujuan-yang-sah-24702",
+      "https://business-law.binus.ac.id/2025/10/10/tafsir-frasa-melawan-hukum-dalam-uu-pelindungan-data-pribadi/",
+      "https://www.privacyhelper.co.uk/facial-recognition/",
+      "https://www.gdpr-advisor.com/gdpr-and-facial-recognition-privacy-implications-and-legal-considerations/"
+    ],
+    "libraries": []
+  },
+  "doc_standards": {
+    "summary": "Research complete on canonical structures for 15 software-engineering document types plus professional formatting conventions, drawn from primary standards (ISO/IEC/IEEE 29148, 42010, 29119-3, 26514, IEEE 829), the C4 model (c4model.com), Michael Nygard's ADR + MADR, OWASP threat-modeling guidance, the OpenAPI 3.1 spec, GDPR Article 35 / ICO DPIA guidance, and established Vision/Scope (Karl Wiegers), PRD, runbook, RTM, risk-register, and RACI practice. Each document's canonical section list is given below in the recommendations array (one entry per document = its required sections), with cross-cutting pitfalls, the standards/libraries to anchor on, and sources. NOTE on the target repo: /Users/ghaisan/Documents/dashcam-project is a Next.js 15 (App Router) + TypeScript + pnpm app (see /Users/ghaisan/Documents/dashcam-project/package.json, /app, /lib) with essentially empty CLAUDE.md and a stub README.md — no docs/ folder exists yet, so these documents would be authored from scratch (suggest a top-level docs/ directory). This was a research task; no files were created or modified.",
+    "recommendations": [
+      "VISION & SCOPE (Karl Wiegers template). Canonical sections: 1. Business Requirements (1.1 Background; 1.2 Business Opportunity; 1.3 Business Objectives; 1.4 Success Metrics; 1.5 Vision Statement; 1.6 Business Risks; 1.7 Business Assumptions and Dependencies). 2. Scope and Limitations (2.1 Major Features; 2.2 Scope of Initial Release; 2.3 Scope of Subsequent Releases; 2.4 Limitations and Exclusions). 3. Business Context (3.1 Stakeholder Profiles; 3.2 Project Priorities — using the scope/schedule/cost/quality/staff constraint-driver-DOF model; 3.3 Deployment Considerations). Answers 'why are we doing this'; sits above the PRD/SRS.",
+      "PRD (Product Requirements Document). Canonical sections: Document header/control (title, author, status, reviewers, last-updated); Overview/Summary; Problem statement & background; Goals and non-goals (explicit out-of-scope); Success metrics / KPIs & release criteria; Personas / target users & market assessment; Assumptions, constraints & dependencies; User stories / use cases / user flows; Functional requirements (prioritized, e.g. MoSCoW); UX / design (wireframes, mockups); Non-functional / system & technical requirements (performance, security, scalability, compliance); Release plan / milestones / timeline & phasing; Open questions; Appendix/references. PRD is product-facing (the 'what/why for the market'); the SRS is the engineering-precise descendant.",
+      "SRS — ISO/IEC/IEEE 29148:2018 (supersedes IEEE 830). Canonical SRS outline: 1. Introduction (1.1 Purpose; 1.2 Scope; 1.3 Product perspective; 1.4 Product functions; 1.5 User characteristics; 1.6 Limitations/constraints; 1.7 Definitions, acronyms & abbreviations). 2. References. 3. Specific requirements (3.1 External interfaces — user/hardware/software/communications; 3.2 Functional requirements [each: condition, subject, action, object, constraint of action]; 3.3 Usability/quality-in-use; 3.4 Performance; 3.5 Logical database/data requirements; 3.6 Design constraints; 3.7 System software quality attributes — reliability, availability, security, maintainability, portability; 3.8 Other / compliance). 4. Verification (mirrors §3 — how each requirement is verified). 5. Appendices (incl. assumptions/dependencies; acronyms). NOTE: 29148 also defines two sibling docs — StRS (Stakeholder Requirements Spec) and SyRS (System Requirements Spec). Every requirement must be uniquely identified, verifiable, unambiguous, traceable.",
+      "SOFTWARE ARCHITECTURE DOCUMENT — ISO/IEC/IEEE 42010 + C4. From 42010, a conforming Architecture Description must contain: Architecture identification/overview & version control; Stakeholders; Concerns (mapped to stakeholders); Architecture Viewpoints (each names the concerns it frames + its model kinds); Architecture Views (one per viewpoint, composed of architecture models); Model kinds; Architecture relations/correspondences and correspondence rules (consistency across views); Architecture Decisions and Rationale; Known inconsistencies. Layer the C4 model views inside: Level 1 System Context diagram; Level 2 Container diagram; Level 3 Component diagram; Level 4 Code (optional, often auto-generated); plus supplementary System Landscape, Dynamic, and Deployment diagrams. C4 is notation/tool independent and hierarchical (zoom-in). Common practical scaffold (arc42 or 4+1) can host both. Reference ADRs from the Decisions section.",
+      "ADR (Architecture Decision Record) — Michael Nygard format (the most-used; ~723 repos). Canonical sections (verbatim): Title (short noun phrase, numbered, e.g. ADR-0007); Status (proposed | accepted | rejected | deprecated | superseded by ADR-X); Context (the forces/issue motivating the decision); Decision (what we will do, active voice 'We will…'); Consequences (what becomes easier/harder — positive, negative, neutral). MADR (Markdown Any Decision Records) is the richer alternative adding: Context and Problem Statement; Decision Drivers; Considered Options; Decision Outcome (chosen option + justification); Pros/Cons of each option; Validation; More Information. Store as immutable, append-only, sequentially numbered files (docs/adr/).",
+      "DATA MODEL / ERD. Canonical sections: Introduction/purpose & scope; Modeling notation/conventions (Crow's Foot or Chen) and the three model levels — Conceptual ERD (entities + relationships, no attributes), Logical ERD (entities, attributes, keys, normalized, DBMS-independent), Physical ERD (tables, columns, datatypes, PK/FK, indexes, constraints); Entity catalog; Attributes (name, type, nullability, default, domain/range); Relationships with cardinality & optionality (1:1, 1:N, M:N) and referential-integrity rules; Primary/foreign/candidate keys; Data Dictionary (per-attribute definitions, sources, ownership); Normalization level & any deliberate denormalization with rationale; Reference/lookup data; Data lineage, retention & classification (esp. PII — ties to the DPIA); Assumptions/constraints; Diagram(s). Version-control the schema.",
+      "OPENAPI SPECIFICATION (v3.1.x — JSON/YAML, machine-readable). Canonical top-level objects: openapi (version string, REQUIRED); info (title + version REQUIRED; plus description, termsOfService, contact, license); servers (base URLs + variables); paths (endpoints → operations: parameters, requestBody, responses, security, tags, operationId, summary/description); webhooks (3.1+); components (REUSABLE: schemas, responses, parameters, examples, requestBodies, headers, securitySchemes, links, callbacks, pathItems); security (global requirements); tags (grouping + descriptions); externalDocs. In 3.1 at least one of paths, components, or webhooks must be present. Schemas use full JSON Schema 2020-12. Best practice: define error schemas, auth (securitySchemes), examples, and consistent naming; lint with Spectral; keep it the single source of truth for the API.",
+      "TEST PLAN — ISO/IEC/IEEE 29119-3 (supersedes IEEE 829). Canonical Test Plan content items: 1. Overview/Introduction (1.1 Document identifier; 1.2 Scope; 1.3 References; 1.4 Glossary). 2. Context of testing (2.1 Project/test sub-process; 2.2 Test item(s); 2.3 Test scope — in/out; 2.4 Assumptions & constraints; 2.5 Stakeholders). 3. Testing communication. 4. Risk register (product risks + project risks). 5. Test strategy (5.1 Sub-processes; 5.2 Test deliverables; 5.3 Test design techniques; 5.4 Test completion/exit criteria; 5.5 Metrics; 5.6 Test data & environment requirements; 5.7 Retesting & regression; 5.8 Suspension/resumption criteria; 5.9 Deviations from the Organizational Test Strategy). 6. Testing activities and estimates. 7. Staffing (roles, training). 8. Schedule. The 29119-3 family also defines Test Status Report, Test Completion Report, Test Design/Case/Procedure Specifications, Test Data & Environment Requirements, Test Execution Log, and Test Incident (Defect/Anomaly) Report. (Legacy IEEE 829 'IEEE 829 Master/Level Test Plan' headings: Test plan identifier; Introduction; Test items; Features to be/not to be tested; Approach; Item pass/fail criteria; Suspension/resumption; Test deliverables; Testing tasks; Environmental needs; Responsibilities; Staffing & training; Schedule; Risks & contingencies; Approvals.)",
+      "SECURITY THREAT MODEL (STRIDE). Canonical sections: 1. Scope & objectives (system/feature analyzed, goals, date, participants, assumptions). 2. System decomposition / Architecture overview (Data Flow Diagrams — external entities, processes, data stores, data flows — with Trust Boundaries; assets; entry/exit points; privilege levels). 3. Threat identification per STRIDE category (Spoofing→Authentication, Tampering→Integrity, Repudiation→Non-repudiation, Information Disclosure→Confidentiality, Denial of Service→Availability, Elevation of Privilege→Authorization) — typically element-by-element. 4. Threat catalog/register (ID, STRIDE category, description, affected component/DFD element, risk rating — e.g. DREAD or CVSS/likelihood×impact, status). 5. Mitigations / countermeasures (per threat: Mitigate / Eliminate / Transfer / Accept(Avoid), owner, target date, residual risk). 6. Validation / assumptions / out-of-scope. 7. Review cadence. Anchor to OWASP Threat Modeling Cheat Sheet and tools like the Microsoft Threat Modeling Tool / OWASP Threat Dragon.",
+      "DPIA (Data Protection Impact Assessment) — GDPR Art. 35 + ICO 7-step template. Canonical sections: 1. Identify the need for a DPIA (what the project is, why a DPIA is required/the screening trigger). 2. Describe the processing (systematic description: nature, scope, context, purposes; data flows; data categories incl. special-category data; volumes; retention; recipients; processors; international transfers). 3. Consultation process (data subjects, DPO, processors, other stakeholders). 4. Assess necessity and proportionality (lawful basis, purpose limitation, data minimization, accuracy, retention, data-subject rights, processor compliance, transfer safeguards). 5. Identify and assess risks (source, likelihood and severity of risk to rights & freedoms → overall risk level). 6. Identify measures to reduce/eliminate risk (each measure: effect on risk, residual risk, measure approved). 7. Sign-off and record outcomes (DPO advice, residual-risk acceptance/owner, whether prior consultation with the supervisory authority is needed, review date). Must be done before high-risk processing begins; keep it a living document.",
+      "DEPLOYMENT RUNBOOK. Canonical sections: 1. Metadata header (service/system, version, owner/on-call, last-updated, environment, severity/criticality). 2. Overview & purpose. 3. Prerequisites (access/permissions, tools, approvals/change ticket, maintenance window, dependency status). 4. Pre-deployment checks (backups, DB migration readiness, feature flags, CI green, artifact/version to deploy). 5. Deployment procedure (numbered, copy-pasteable, sequential steps with expected output and a verification at each step). 6. Post-deployment validation (smoke tests, health checks, key metrics, observe ~15 min for stability). 7. Rollback procedure (trigger conditions/decision criteria, exact revert steps, how to confirm rollback succeeded). 8. Monitoring & alerts (dashboards, log locations, SLOs). 9. Communication plan (stakeholders, status updates, comms channels). 10. Troubleshooting / known issues / FAQ. 11. Contacts & escalation + related docs. Treat as version-controlled living document.",
+      "USER MANUAL — ISO/IEC/IEEE 26514 (design & development of information for users). Canonical sections: Title/identification & document control; Introduction (purpose, intended audience, scope, conventions/typographic, safety notices); Getting started (system requirements, installation, setup/configuration, first launch); Conceptual information (how it works, key concepts/architecture for users); Task/instructional information (step-by-step procedures, organized by user goal); Reference information (menus, commands, fields, options, settings, API/CLI reference); Troubleshooting & error messages (symptom→cause→resolution); FAQ; Glossary; Index; Appendices (shortcuts, accessibility, support/contact, licensing). 26514 emphasizes audience analysis, modularity, and the information models conceptual/instructional/reference/troubleshooting. Keep task-oriented, consistent, accessible.",
+      "PROJECT / SDLC PLAN with RACI. Canonical sections (aligns with PMBOK/IEEE SDLC): 1. Introduction (purpose, scope, references, definitions). 2. Project overview & objectives (deliverables, success criteria). 3. SDLC model & methodology (e.g. Agile/Scrum, Waterfall, phases: Plan→Requirements→Design→Develop→Test→Deploy→Operate/Maintain). 4. Organization & roles (org chart, stakeholders). 5. RACI matrix (rows = tasks/deliverables/decisions, columns = roles; cells = Responsible, Accountable, Consulted, Informed — rule: ≥1 R per task and exactly 1 A per task). 6. Work breakdown structure (WBS) & deliverables. 7. Schedule & milestones (Gantt, dependencies, critical path). 8. Resource & budget/cost management. 9. Risk management approach (links to Risk Register). 10. Communication management plan. 11. Quality management & metrics. 12. Configuration/change management. 13. Procurement (if any). 14. Assumptions, constraints & dependencies. 15. Approval/sign-off.",
+      "RISK REGISTER. Canonical columns/fields (one row per risk): Risk ID; Date raised/identified; Risk category (technical, schedule, cost, security, compliance, operational, external); Risk description (cause → event → effect / 'if-then'); Probability/Likelihood (scale); Impact/Severity (scale); Risk score/level/rating (Likelihood × Impact, often RAG-coded); Risk owner; Trigger/early-warning indicators; Response strategy (Avoid / Mitigate / Transfer / Accept); Mitigation/contingency actions; Action owner & due date; Residual risk (post-mitigation likelihood/impact); Status (open/in-progress/closed/realized); Last reviewed / next review date; Notes/linked issues. Pair with a probability-impact matrix (heat map). Keep continuously updated; link to the Project Plan and Threat Model.",
+      "REQUIREMENTS TRACEABILITY MATRIX (RTM). Canonical columns (one row per requirement, providing bidirectional traceability): Requirement ID; Requirement description; Requirement type/category (functional/NFR); Source/origin (business need, stakeholder, PRD/Vision §, regulation); Priority; Owner; Design element / architecture component (forward trace); Code module/build (forward trace); Test case ID(s) & verification method (forward trace to Test Plan); Test/verification status (pass/fail/not-run); Defect/issue IDs; Implementation status; Comments/notes. Provides forward (need→requirement→design→code→test) and backward (test→requirement→source) traceability and coverage analysis (orphan requirements = untested; orphan tests = scope creep). Often a spreadsheet (xlsx) or generated by a requirements tool.",
+      "PROFESSIONAL DOCUMENT FORMATTING CONVENTIONS (apply to every document above). 1. Title page (document title, project/system name, doc type & ID, version/status, author(s), owner, classification, date, organization/logo). 2. Document control / version history table (version, date, author, description of change, reviewer/approver) + distribution list + sign-off/approval block. 3. Table of contents (auto-generated, with list of figures and list of tables) — plus page numbering in footer (commonly bottom of page; main-body numbering may start after front matter). 4. Numbered hierarchical headings (1, 1.1, 1.1.1) with consistent heading styles. 5. Figure and table captions (numbered, e.g. 'Figure 3-2: …', 'Table 4-1: …', with in-text cross-references and a caption convention). 6. Headers/footers (document title, version, confidentiality/classification marking, page X of Y). 7. Body text conventions: consistent professional font (~11–12pt, e.g. Calibri/Cambria/Times), consistent line spacing, justified or left-aligned body (be consistent), styled lists; callouts for notes/warnings. 8. Glossary + list of acronyms/abbreviations; References/bibliography; Appendices. 9. Consistency throughout (styles/templates), traceable cross-references, and version control. These signal production-grade quality and aid scanability."
+    ],
+    "libraries": [
+      "ISO/IEC/IEEE 29148:2018 — Requirements engineering (SRS/SyRS/StRS)",
+      "ISO/IEC/IEEE 42010:2022 (and :2011) — Architecture description",
+      "C4 model (c4model.com) — Simon Brown: Context/Container/Component/Code + Landscape/Dynamic/Deployment",
+      "arc42 — practical architecture-doc template (hosts 42010 + C4)",
+      "Michael Nygard ADR template; MADR (Markdown Any Decision Records); adr.github.io",
+      "ISO/IEC/IEEE 29119-3:2021 — Test documentation (supersedes IEEE 829-2008)",
+      "OpenAPI Specification v3.1.x (spec.openapis.org / OAI GitHub); Spectral for linting",
+      "OWASP Threat Modeling Cheat Sheet; Microsoft STRIDE; OWASP Threat Dragon / MS Threat Modeling Tool",
+      "GDPR Article 35 + ICO DPIA guidance/template; EDPB DPIA template",
+      "ISO/IEC/IEEE 26514:2022 — Design & development of information for users (user docs)",
+      "Karl Wiegers Vision & Scope template (Software Requirements, 3rd ed.)",
+      "PMBOK / RACI (responsibility assignment matrix); SDLC phase models",
+      "Crow's Foot & Chen ERD notation; conceptual/logical/physical data models"
+    ],
+    "pitfalls": [
+      "Conflating PRD, SRS, and Vision/Scope — they are distinct layers: Vision/Scope = why & boundaries (business), PRD = what for the market (product), SRS = engineering-precise, verifiable requirements. Authoring one and labeling it another is a common production-grade failure.",
+      "Citing IEEE 830 as current — it was superseded by ISO/IEC/IEEE 29148 (2011/2018); 29148 adds the Verification section and the [condition][subject][action][object][constraint] functional-requirement syntax and requires every requirement be uniquely identified, verifiable, and traceable.",
+      "Citing IEEE 829 as current for test docs — superseded by ISO/IEC/IEEE 29119-3, which uses flexible content items rather than a fixed document set and adds a risk register and test-completion reporting.",
+      "C4 is NOT defined inside ISO/IEC/IEEE 42010 — 42010 supplies the conceptual framework (stakeholders, concerns, viewpoints, views, decisions, correspondences); C4 supplies pragmatic views. A conforming Architecture Document must still cover the 42010 required elements (esp. decisions/rationale and view correspondences), not just draw C4 diagrams.",
+      "OpenAPI 3.1 vs 3.0 differences: 3.1 aligns with full JSON Schema 2020-12, adds webhooks, and only requires one of paths/components/webhooks — don't assume paths is mandatory or that 3.0 schema rules apply.",
+      "DPIA must be done BEFORE high-risk processing starts, must assess risks to data subjects' rights & freedoms (not just security), and requires documented DPO advice and sign-off with residual-risk owner; a security-only writeup is not a valid DPIA.",
+      "ADRs must be immutable and append-only — supersede with a new ADR and set Status: superseded; editing accepted ADRs destroys the decision history. Use sequential numbering.",
+      "STRIDE threat models are incomplete without explicit trust boundaries on the DFD and per-threat mitigation status with owners; a threat list with no mitigations/residual risk is not actionable.",
+      "RACI integrity rules: every task needs ≥1 Responsible and exactly one Accountable; multiple A's or zero A's is the classic RACI defect.",
+      "RTM must be bidirectional (forward and backward) — a one-directional matrix misses orphan requirements (untested) and orphan tests (scope creep / gold-plating).",
+      "Standards are paywalled (ISO/IEEE) — the exact normative clause text must come from the purchased standard; the section outlines here reflect the standards' published structure and reputable templates, which is sufficient to author conforming documents but verify clause numbering against the licensed copy."
+    ],
+    "sources": [
+      "https://standards.ieee.org/standard/29148-2018.html",
+      "https://www.reqview.com/doc/iso-iec-ieee-29148-templates/",
+      "https://github.com/jam01/SRS-Template",
+      "https://www.iso.org/standard/74393.html (ISO/IEC/IEEE 42010:2022)",
+      "https://www.iso-architecture.org/ieee-1471/cm/",
+      "https://quality.arc42.org/standards/iso-42010",
+      "https://c4model.com/",
+      "https://github.com/joelparkerhenderson/architecture-decision-record/blob/main/locales/en/templates/decision-record-template-by-michael-nygard/index.md",
+      "https://adr.github.io/adr-templates/",
+      "https://www.iso.org/standard/56737.html (ISO/IEC/IEEE 29119-3)",
+      "https://wildart.github.io/MISG5020/standards/ISO-IEC-IEEE-29119-3.pdf",
+      "https://en.wikipedia.org/wiki/Software_test_documentation (IEEE 829)",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+      "https://owasp.org/www-community/Threat_Modeling_Process",
+      "https://gdpr.eu/data-protection-impact-assessment-template/",
+      "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+      "https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md",
+      "https://learn.openapis.org/specification/structure.html",
+      "https://www.iso.org/standard/77451.html (ISO/IEC/IEEE 26514:2022)",
+      "https://quality.arc42.org/standards/iso-26514",
+      "https://people.eecs.ku.edu/~saiedian/812/Project/Wiegers-Resources/Chapter%205/Vision%20and%20Scope%20Template.docx",
+      "https://www.atlassian.com/agile/product-management/requirements",
+      "https://en.wikipedia.org/wiki/Responsibility_assignment_matrix",
+      "https://www.section508.gov/develop/raci-matrix-for-section-508-in-sdlc/",
+      "https://www.projectmanager.com/blog/requirements-traceability-matrix",
+      "https://www.lucidchart.com/pages/er-diagrams",
+      "https://www.enov8.com/blog/deployment-runbooks-aka-runsheets-explained/",
+      "https://ohiostate.pressbooks.pub/feptechcomm/chapter/8-formatting/",
+      "https://open.library.okstate.edu/technicalandprofessionalwriting/chapter/chapter-5/"
+    ]
+  },
+  "style_guide": {
+    "style_guide": "DASHAI DOCUMENTATION STYLE GUIDE (v1.0)\nProduction-grade, black-and-white, formal engineering documents. Authored from scratch into a new top-level docs/ directory of the dashAI repo (/Users/ghaisan/Documents/dashcam-project). All documents conform to the conventions below unless a per-document outline states otherwise.\n\n1. SCOPE & GROUNDING\n- Project: dashAI — a client-side (browser, Next.js 16 App Router + React 19 + TypeScript, pnpm) AI dashcam that runs on-device computer vision (TensorFlow.js / COCO-SSD, MediaPipe, Tesseract OCR) fused with GPS + OpenStreetMap (Overpass) to detect Indonesian traffic violations (UU 22/2009 LLAJ), then cryptographically seals evidence (Ed25519 over canonical JSON; sha-256 media hashes) into tamper-EVIDENT (not tamper-proof) verifiable reports.\n- Authoritative terminology must match the codebase: \"evidence payload\" / EvidencePayload (the cryptographic boundary), \"seal/sealed\" (not \"save\"), \"tamper-evident, not tamper-proof\", \"subject = self | other\", \"tier = core | secondary | cabin\", \"citation confidence = high | medium | low | pending\", \"ego-speed (GPS, accurate)\" vs \"other-speed (estimated)\". Do not contradict lib/evidence/types.ts, lib/crypto/*, lib/legal/*.\n- Bilingual rule: prose is English; Indonesian legal terms, statute text (bunyi pasal), violation labels (labelId), and sanctions are quoted verbatim in Bahasa Indonesia, with an English gloss in parentheses on first use. Statute citations follow \"UU No. 22 Tahun 2009, Pasal NNN ayat (n)\".\n\n2. FILE FORMAT, OUTPUT & TOOLING\n- Two authoring formats only: .docx for human-narrative, sign-off-bearing documents; .pdf (or machine-source) for fixed-layout, register, or machine-readable artifacts. The format per document is fixed in doc_outlines.\n- Source-of-truth lives in docs/ under version control. Narrative docs are authored as .docx; the OpenAPI spec is authored as YAML (openapi.yaml) and is the single source of truth, with a rendered .pdf for distribution; the Risk Register and Traceability Matrix are maintained as spreadsheets and exported to .pdf for issue/sign-off snapshots.\n- Diagrams are authored as source (Mermaid / Structurizr DSL / PlantUML) committed alongside the doc, then embedded as vector (SVG preferred) so they remain legible in black-and-white print.\n\n3. PAGE GEOMETRY & TYPOGRAPHY (applies to all .docx / .pdf narrative docs)\n- Page size A4 (210 x 297 mm), portrait. Tables/diagrams that need width may use landscape section breaks.\n- Margins 2.5 cm on all four sides (top, bottom, left, right).\n- Body text justified, single column, 11 pt serif (Cambria or Times New Roman) at 1.15 line spacing; 6 pt space after paragraphs. No first-line indent (block paragraphs).\n- Headings: sans-serif (Calibri/Arial), bold, left-aligned, hierarchical numbering 1 / 1.1 / 1.1.1 (max depth 4). H1 14 pt, H2 12 pt, H3 11 pt; keep-with-next enabled; no heading orphaned at page bottom.\n- Monospace (Consolas/Courier New, 10 pt) for code, identifiers, file paths, JSON, CLI commands, hashes, keys, and statute keys (e.g. \"lawan-arus\").\n- Strictly black text on white; no color fills. Convey emphasis with bold/italic and grayscale shading (>= 15% contrast) only, never hue. Tables use 0.5 pt black rules with a light-gray (10-15%) header row.\n- Lists: bulleted for unordered, decimal for sequential procedures; nested lists indented one level.\n\n4. FRONT MATTER (every narrative document, in order)\n- Title page: document title; project name \"dashAI\"; document type and Document ID; version and status (Draft | In Review | Approved | Superseded); author(s); document owner; classification (Public | Internal | Confidential — DPIA/Threat Model are Confidential); date; organization line. No logo unless supplied (black-and-white only).\n- Document Control / Version History table: columns = Version | Date | Author | Description of Change | Reviewer/Approver. Append-only.\n- Approval / Sign-off block: Name | Role | Signature | Date (DPIA and Project Plan require this; ADRs do not).\n- Distribution list (Confidential docs).\n- Automatic Table of Contents (field-generated from heading styles), followed by List of Figures and List of Tables (auto-generated from captions). Main-body page numbering (Arabic) starts after front matter; front matter uses lower-case roman numerals.\n\n5. HEADERS, FOOTERS & IDENTIFICATION\n- Header (every body page): document title (left) | classification marking (right).\n- Footer (every body page): Document ID and version (left) | \"Page X of Y\" (right), where Y is the total page count.\n- Document ID scheme: DASHAI-<TYPE>-<NNN>[-vMAJOR.MINOR]. Type codes: VS (Vision & Scope), PRD, SRS, SAD, ADR, DM (Data Model), API, TP (Test Plan), TM (Threat Model), DPIA, LCR (Legal Citation Reference), RUN (Deployment Runbook), UM (User Manual), PP (Project Plan), RR (Risk Register), RTM (Traceability Matrix). ADRs are sequentially numbered ADR-0001, ADR-0002, ... and are immutable/append-only (supersede, never edit).\n\n6. CAPTIONS & CROSS-REFERENCES\n- Figures captioned below: \"Figure <chapter>-<n>: <description>\" (e.g. \"Figure 4-2: dashAI C4 Container diagram\"). Tables captioned above: \"Table <chapter>-<n>: <description>\".\n- All figures/tables are referenced by number in the body (\"see Figure 4-2\"), never by \"below/above\". Cross-document references use the Document ID. Requirement IDs (REQ-Fnn / REQ-NFRnn), ADR IDs, threat IDs (THR-nn), and risk IDs (RR-nn) are the canonical cross-cutting anchors that thread Vision -> PRD -> SRS -> SAD/ADR -> Test Plan -> RTM.\n\n7. REQUIREMENTS & TRACEABILITY CONVENTIONS\n- Every requirement is uniquely identified, atomic, verifiable, unambiguous, and traceable. Functional requirements use the ISO/IEC/IEEE 29148 syntax: [condition] [subject] [action] [object] [constraint]. Numbering: REQ-Fnn (functional), REQ-NFRnn (non-functional/quality attribute).\n- Each requirement carries a priority (MoSCoW: Must/Should/Could/Won't) and a verification method (Inspection/Analysis/Demonstration/Test). The RTM is bidirectional: forward (need -> requirement -> design/ADR -> module -> test) and backward (test -> requirement -> source); orphan requirements (untested) and orphan tests (scope creep) are flagged.\n\n8. STANDARDS ANCHORS (cite the exact edition; do not cite superseded standards as current)\n- SRS: ISO/IEC/IEEE 29148:2018 (NOT IEEE 830). Architecture: ISO/IEC/IEEE 42010:2022 + C4 model (C4 is pragmatic views layered inside a 42010-conforming description; 42010 still requires stakeholders, concerns, viewpoints, views, decisions, and correspondences). ADR: Michael Nygard format (MADR for option-heavy decisions); immutable/sequential. Test docs: ISO/IEC/IEEE 29119-3:2021 (NOT IEEE 829). API: OpenAPI 3.1.x (full JSON Schema 2020-12; at least one of paths/components/webhooks present). Threat model: STRIDE with explicit trust boundaries + per-threat mitigation/owner/residual risk (OWASP Threat Modeling Cheat Sheet). DPIA: GDPR Art. 35 + ICO 7-step; assess risks to data subjects' rights & freedoms (not security only), completed BEFORE high-risk processing, with DPO advice + residual-risk sign-off. User docs: ISO/IEC/IEEE 26514:2022. Vision & Scope: Karl Wiegers template. Project plan + RACI: PMBOK (each task >= 1 Responsible, exactly 1 Accountable).\n\n9. BACK MATTER (every narrative document, as applicable)\n- Glossary (domain + crypto + Indonesian-legal terms); List of Acronyms/Abbreviations (e.g. LLAJ, OSM, CV, OCR, PII, DPIA, STRIDE, ADR, RTM, SLO); References/Bibliography (numbered, with the exact standard editions and URLs); Appendices.\n\n10. QUALITY BAR & CONSISTENCY\n- One concept, one term, used identically across the whole suite. Use a single template/stylesheet so heading styles, captions, and tables are uniform. Keep all documents living and version-controlled; update the Document Control table on every change. Distinguish layers rigorously: Vision & Scope = why/boundaries (business), PRD = what for users/market (product), SRS = engineering-precise verifiable requirements. Never label one as another.",
+    "doc_outlines": [
+      {
+        "doc": "Vision & Scope",
+        "format": "docx",
+        "sections": [
+          "Front matter (Title page; Document Control / Version History; Approval & Sign-off; Table of Contents; List of Figures; List of Tables)",
+          "1. Business Requirements",
+          "1.1 Background (road-safety enforcement gap in Indonesia; citizen/dashcam evidence for UU 22/2009 violations)",
+          "1.2 Business Opportunity",
+          "1.3 Business Objectives",
+          "1.4 Success Metrics",
+          "1.5 Vision Statement",
+          "1.6 Business Risks",
+          "1.7 Business Assumptions and Dependencies (on-device CV feasibility; OSM/Overpass availability; Ed25519 trust model; legal admissibility caveats)",
+          "2. Scope and Limitations",
+          "2.1 Major Features (live detection; evidence sealing; verifiable reports; legal citation lookup; accident auto-capture)",
+          "2.2 Scope of Initial Release (core-tier violations that fire live: wrong-way, red-light, speeding-self, marka)",
+          "2.3 Scope of Subsequent Releases (secondary/cabin-tier: helmet, plate OCR, seatbelt, phone use, lights)",
+          "2.4 Limitations and Exclusions (tamper-evident not tamper-proof; other-vehicle speed is an estimate; cabin-cam features out of initial scope)",
+          "3. Business Context",
+          "3.1 Stakeholder Profiles (driver/owner, traffic authority/Korlantas, legal reviewers, the accused/data subjects)",
+          "3.2 Project Priorities (constraint/driver/degree-of-freedom across scope, schedule, cost, quality, staff)",
+          "3.3 Deployment Considerations (browser/PWA, mobile, offline-tolerant)",
+          "Back matter (Glossary; Acronyms; References)"
+        ],
+        "diagrams": [
+          "Context / ecosystem diagram (dashAI, driver, traffic authority, OSM, verifier)",
+          "Feature-to-release roadmap (initial vs subsequent, by detection tier)",
+          "Project priorities matrix (constraint/driver/DOF)"
+        ]
+      },
+      {
+        "doc": "PRD",
+        "format": "docx",
+        "sections": [
+          "Document header / control (title, author, status, reviewers, last-updated)",
+          "1. Overview / Summary",
+          "2. Problem statement & background (citizen-captured traffic violation evidence; trust and privacy problem)",
+          "3. Goals and Non-goals (explicit out-of-scope: real-time fines, server-side video storage, identifying individuals beyond plate)",
+          "4. Success Metrics / KPIs & Release Criteria",
+          "5. Personas / Target Users & Market Assessment (driver-reporter, enforcement reviewer, independent verifier)",
+          "6. Assumptions, Constraints & Dependencies (on-device inference budget; Overpass rate limits; single signing-key secret)",
+          "7. User Stories / Use Cases / User Flows (record drive -> detect -> seal -> generate report -> verify; accident auto-capture)",
+          "8. Functional Requirements (prioritized, MoSCoW; per detection tier)",
+          "9. UX / Design (live HUD with bounding boxes; mandatory face-blur in UI; report viewer; verification page)",
+          "10. Non-functional / Technical Requirements (performance/FPS on mobile, security/crypto, privacy/PII, offline tolerance, accessibility)",
+          "11. Release Plan / Milestones / Timeline & Phasing",
+          "12. Open Questions",
+          "13. Appendix / References"
+        ],
+        "diagrams": [
+          "User flow: detect -> seal -> report -> verify",
+          "Use-case diagram (driver, reviewer, verifier)",
+          "Annotated UI wireframes (live HUD, report viewer, verification result) with face-blur callout",
+          "Feature prioritization (MoSCoW) chart"
+        ]
+      },
+      {
+        "doc": "SRS",
+        "format": "docx",
+        "sections": [
+          "Front matter (Title page; Document Control; Approval; TOC; List of Figures; List of Tables)",
+          "1. Introduction",
+          "1.1 Purpose",
+          "1.2 Scope",
+          "1.3 Product Perspective (client-side app; lib/ domain layer; /api/seal & /api/public-key boundary)",
+          "1.4 Product Functions",
+          "1.5 User Characteristics",
+          "1.6 Limitations / Constraints (browser-only, on-device models, network-optional)",
+          "1.7 Definitions, Acronyms & Abbreviations",
+          "2. References (incl. ISO/IEC/IEEE 29148:2018, UU 22/2009)",
+          "3. Specific Requirements",
+          "3.1 External Interfaces (camera/DeviceMotion/Geolocation; OSM Overpass; /api/seal, /api/public-key; report PDF)",
+          "3.2 Functional Requirements (REQ-Fnn, [condition][subject][action][object][constraint]: detection, tracking, violation engine debounce/track-age gating, sealing, verification, citation lookup)",
+          "3.3 Usability / Quality-in-use",
+          "3.4 Performance (per-frame latency, FPS, model load, graceful degradation)",
+          "3.5 Logical Data Requirements (EvidencePayload, SealedEvidence, ViolationEvent; cross-ref Data Model)",
+          "3.6 Design Constraints (Ed25519, canonical JSON, sha-256 media hashes, server-only signing)",
+          "3.7 System Quality Attributes (reliability, availability, security/integrity, maintainability, portability, privacy)",
+          "3.8 Other / Compliance (UU 22/2009 citation fidelity; GDPR-aligned PII handling)",
+          "4. Verification (mirrors section 3; method per requirement)",
+          "5. Appendices (Assumptions & Dependencies; Acronyms)",
+          "Back matter (Glossary; References)"
+        ],
+        "diagrams": [
+          "System context diagram",
+          "Data-flow: frame -> CV pipeline -> violation engine -> evidence payload -> seal",
+          "State diagram of the violation engine (track-age gate, debounce, fired)",
+          "Interface diagram (browser APIs, Overpass, seal/verify endpoints)"
+        ]
+      },
+      {
+        "doc": "Software Architecture Document (SAD)",
+        "format": "docx",
+        "sections": [
+          "Front matter (Title page; Document Control; TOC; List of Figures; List of Tables)",
+          "1. Architecture Identification, Overview & Version Control",
+          "2. Stakeholders (per ISO/IEC/IEEE 42010)",
+          "3. Concerns (mapped to stakeholders: integrity, privacy, performance, verifiability, maintainability)",
+          "4. Architecture Viewpoints (concerns framed + model kinds)",
+          "5. Architecture Views",
+          "5.1 System Context View (C4 Level 1)",
+          "5.2 Container View (C4 Level 2: Next.js app, CV pipeline, crypto/seal API, public-key endpoint, report renderer)",
+          "5.3 Component View (C4 Level 3: lib/cv, lib/violations, lib/legal, lib/crypto, lib/geo, lib/sensors, lib/evidence)",
+          "5.4 Runtime / Dynamic View (sealing & verification sequences)",
+          "5.5 Deployment View (browser client + Vercel/Next server functions)",
+          "6. Model Kinds & Notation",
+          "7. Architecture Relations / Correspondences & Consistency Rules",
+          "8. Architecture Decisions & Rationale (index of ADRs: Ed25519 choice, on-device CV, canonical JSON, server-only key)",
+          "9. Quality Attribute Scenarios",
+          "10. Known Inconsistencies / Risks / Technical Debt (e.g. /api routes not yet implemented)",
+          "Back matter (Glossary; Acronyms; References)"
+        ],
+        "diagrams": [
+          "C4 Level 1 System Context",
+          "C4 Level 2 Container",
+          "C4 Level 3 Component (per lib/ module)",
+          "C4 Level 4 Code (optional, signing path)",
+          "Sequence: seal flow (canonicalize -> sha-256 -> Ed25519 sign)",
+          "Sequence: verify flow (hash match + signature verify)",
+          "Deployment diagram (client + server functions + Overpass)"
+        ]
+      },
+      {
+        "doc": "Architecture Decision Records (ADRs)",
+        "format": "docx",
+        "sections": [
+          "ADR index / register (docs/adr/) — ID, title, status, date, supersedes/superseded-by",
+          "Per-ADR (Michael Nygard format, immutable, sequentially numbered)",
+          "Title (ADR-NNNN, short noun phrase)",
+          "Status (proposed | accepted | rejected | deprecated | superseded by ADR-X)",
+          "Context (forces/issue)",
+          "Decision (active voice: 'We will...')",
+          "Consequences (positive / negative / neutral)",
+          "Seed ADRs to author: ADR-0001 On-device CV (TensorFlow.js/COCO-SSD) vs server inference",
+          "ADR-0002 Ed25519 + canonical JSON for evidence sealing",
+          "ADR-0003 sha-256 media hashes instead of inlining imagery in signature",
+          "ADR-0004 Server-only signing key (single DASHAI_SIGNING_KEY secret) + published public key",
+          "ADR-0005 OSM Overpass fusion for road context (oneway/maxspeed) with graceful degradation",
+          "ADR-0006 Tamper-evident (not tamper-proof) evidentiary posture & mandatory face-blur",
+          "ADR-0007 Citation confidence model + 3-voter adversarial legal-research workflow",
+          "Note: option-heavy decisions may use MADR (Context & Problem Statement; Decision Drivers; Considered Options; Decision Outcome; Pros/Cons; Validation; More Information)"
+        ],
+        "diagrams": [
+          "Optional per-ADR: small decision/context sketch or option-comparison table (no mandatory diagrams; ADRs are prose)"
+        ]
+      },
+      {
+        "doc": "Data Model / ERD",
+        "format": "docx",
+        "sections": [
+          "Front matter (Title page; Document Control; TOC; List of Figures; List of Tables)",
+          "1. Introduction, Purpose & Scope",
+          "2. Modeling Notation & Conventions (Crow's Foot)",
+          "3. Conceptual Model (entities: ViolationEvent, EvidencePayload, SealedEvidence, Citation/LegalSnapshot, GeoPoint, RoadContext, MediaHashes, Detection/Track)",
+          "4. Logical Model (attributes, keys, types, nullability — mirrors lib/evidence/types.ts & lib/legal)",
+          "5. Physical / Serialization Model (IndexedDB via idb; canonical JSON payload schema 'dashai.evidence.v1')",
+          "6. Entity Catalog",
+          "7. Attribute Dictionary (name, type, nullability, default, domain/range; e.g. confidence 0..1, severity 1..3, subject self|other)",
+          "8. Relationships, Cardinality & Referential Integrity (ViolationEvent 1:1 SealedEvidence; ViolationKey -> Citation; payload commits to MediaHashes)",
+          "9. The Cryptographic Boundary (which fields are signed vs presentation-only)",
+          "10. Reference / Lookup Data (VIOLATION_CATALOG, CITATIONS keyed by ViolationKey)",
+          "11. Data Lineage, Retention & Classification (PII: face/plate crops; ties to DPIA; face crops blurred, retention rules)",
+          "12. Assumptions & Constraints",
+          "Back matter (Glossary; References)"
+        ],
+        "diagrams": [
+          "Conceptual ERD (entities + relationships)",
+          "Logical ERD (attributes, keys, cardinality)",
+          "Physical / serialization ERD (IndexedDB stores + canonical payload schema)",
+          "Data-lineage diagram (capture -> blur -> hash -> seal -> report; PII flow highlighted)"
+        ]
+      },
+      {
+        "doc": "API Specification (OpenAPI)",
+        "format": "pdf",
+        "sections": [
+          "openapi: 3.1.0",
+          "info (title 'dashAI Sealing & Verification API', version, description, contact, license)",
+          "servers (local dev + deployed base URLs)",
+          "tags (Sealing, Keys, Verification)",
+          "paths: POST /api/seal (request EvidencePayload -> response SealedEvidence)",
+          "paths: GET /api/public-key (publicKeyId + Ed25519 public key)",
+          "paths: POST /api/verify (SealedEvidence -> VerificationResult) [if exposed server-side]",
+          "components.schemas (EvidencePayload, SealedEvidence, VerificationResult, GeoPoint, RoadContext, MediaHashes, LegalSnapshot, ViolationKey enum, Subject enum — JSON Schema 2020-12)",
+          "components.responses (error schemas: 400 invalid payload, 422 schema mismatch, 500)",
+          "components.securitySchemes (note: sealing is server-key based; document auth posture)",
+          "components.examples (sample sealed envelope incl. dev- vs prod- keyId)",
+          "externalDocs (link to SAD and Data Model)",
+          "Authoring notes (single source of truth: openapi.yaml; lint with Spectral; rendered to PDF for distribution)"
+        ],
+        "diagrams": [
+          "Request/response sequence for /api/seal",
+          "Request/response sequence for /api/verify",
+          "Schema relationship diagram (EvidencePayload -> SealedEvidence -> VerificationResult)"
+        ]
+      },
+      {
+        "doc": "Test Plan",
+        "format": "docx",
+        "sections": [
+          "Front matter (Title page; Document Control; Approval; TOC; List of Figures; List of Tables)",
+          "1. Overview / Introduction (1.1 Document identifier; 1.2 Scope; 1.3 References; 1.4 Glossary)",
+          "2. Context of Testing (2.1 test sub-process; 2.2 test items: lib/cv, lib/violations, lib/crypto, lib/geo, lib/legal, seal/verify endpoints, UI; 2.3 in/out of scope; 2.4 assumptions & constraints; 2.5 stakeholders)",
+          "3. Testing Communication",
+          "4. Risk Register (product risks: false positives/negatives, signature regressions, PII leakage; project risks) — links to Risk Register",
+          "5. Test Strategy",
+          "5.1 Test sub-processes & levels (unit, integration, E2E, manual device matrix)",
+          "5.2 Test deliverables",
+          "5.3 Test design techniques (boundary on confidence/severity/thresholds; equivalence on ViolationKey; golden-file canonical/seal tests; adversarial tamper tests)",
+          "5.4 Test completion / exit criteria",
+          "5.5 Metrics (detection precision/recall, seal/verify pass rate, coverage)",
+          "5.6 Test data & environment (curated sample violation set, mock GPS/OSM, dev signing key)",
+          "5.7 Retesting & regression (canonicalization & signature golden files)",
+          "5.8 Suspension / resumption criteria",
+          "5.9 Deviations from organizational strategy",
+          "6. Testing Activities & Estimates",
+          "7. Staffing (roles, training)",
+          "8. Schedule",
+          "Back matter (Glossary; References)"
+        ],
+        "diagrams": [
+          "Test pyramid / level allocation",
+          "Test environment & data-flow diagram (mock GPS/OSM, dev key, sample set)",
+          "Traceability snapshot: requirements -> test cases (links to RTM)"
+        ]
+      },
+      {
+        "doc": "Security Threat Model (STRIDE)",
+        "format": "docx",
+        "sections": [
+          "Front matter (Title page; Document Control [Confidential]; TOC; List of Figures; List of Tables)",
+          "1. Scope & Objectives (system analyzed, date, participants, assumptions; tamper-evident goal restated)",
+          "2. System Decomposition / Architecture Overview (DFD: external entities, processes, data stores, data flows; trust boundaries; assets: signing key, evidence payloads, PII crops; entry/exit points; privilege levels)",
+          "3. Threat Identification per STRIDE (Spoofing -> auth; Tampering -> integrity of payload/media; Repudiation -> non-repudiation via signature; Information Disclosure -> PII/face/plate, key exposure; DoS -> Overpass/model load; Elevation of Privilege)",
+          "4. Threat Catalog / Register (THR-nn: STRIDE category, description, affected DFD element/component, risk rating likelihood x impact, status)",
+          "5. Mitigations / Countermeasures (per threat: Mitigate/Eliminate/Transfer/Accept; owner; target date; residual risk — e.g. server-only key, canonical hashing, mandatory face-blur, dev-key labeling)",
+          "6. Validation, Assumptions & Out-of-scope (explicit: signature does not prove the camera witnessed reality)",
+          "7. Review Cadence",
+          "Back matter (Glossary; References — OWASP Threat Modeling Cheat Sheet)"
+        ],
+        "diagrams": [
+          "Data-Flow Diagram (DFD) with explicit trust boundaries",
+          "Attack surface / entry-exit point diagram",
+          "Per-element STRIDE mapping table-diagram",
+          "Signing-key trust diagram (key custody, dev vs prod)"
+        ]
+      },
+      {
+        "doc": "DPIA (Data Protection Impact Assessment)",
+        "format": "docx",
+        "sections": [
+          "Front matter (Title page; Document Control [Confidential]; Approval/Sign-off incl. DPO; TOC; List of Figures; List of Tables)",
+          "1. Identify the Need for a DPIA (screening trigger: systematic monitoring of public space, biometric/face & plate capture, large-scale)",
+          "2. Describe the Processing (nature, scope, context, purposes; data flows; data categories incl. faces=biometric/special-category and plates; volumes; retention; recipients; processors; international transfers — Overpass/CDN)",
+          "3. Consultation Process (data subjects = the recorded public/accused; DPO; processors)",
+          "4. Assess Necessity & Proportionality (lawful basis, purpose limitation, data minimization, accuracy of detections/citations, retention, data-subject rights, transfer safeguards)",
+          "5. Identify & Assess Risks to Rights & Freedoms (source, likelihood & severity -> overall risk level; misidentification, false accusation, surveillance chilling effect, PII leakage)",
+          "6. Identify Measures to Reduce/Eliminate Risk (each: effect on risk, residual risk, approved? — on-device processing, mandatory face-blur in UI, hashing not storing raw media server-side, confidence/disclaimers)",
+          "7. Sign-off & Record Outcomes (DPO advice; residual-risk owner; prior-consultation-with-supervisory-authority decision; review date)",
+          "Back matter (Glossary; References — GDPR Art. 35, ICO DPIA guidance)"
+        ],
+        "diagrams": [
+          "Data-flow diagram of personal data (capture -> on-device CV -> face-blur -> hash -> seal -> report)",
+          "Risk heat map (likelihood x severity to data subjects)",
+          "Data lifecycle / retention diagram"
+        ]
+      },
+      {
+        "doc": "Legal Citation Reference",
+        "format": "docx",
+        "sections": [
+          "Front matter (Title page; Document Control; TOC; List of Tables)",
+          "1. Introduction, Purpose & Scope (authoritative reference for UU 22/2009 citations used by lib/legal)",
+          "2. Citation Conventions & Methodology (statute format; bunyi pasal verbatim in Bahasa Indonesia + English gloss; confidence model high|medium|low|pending; 3-voter adversarial research workflow)",
+          "3. Violation-to-Citation Catalog (per ViolationKey: labelId/labelEn, UU & Pasal & ayat, bunyi pasal, sanksi, denda max, kurungan max, related articles, confidence, sources)",
+          "4. Detection-Basis & Subject Applicability (core/secondary/cabin tier; subjects self/other; per lib/legal/catalog.ts)",
+          "5. Confidence & Verification Status (which citations are 'high'/authoritative vs indicative)",
+          "6. Sources & Provenance (per-citation source list)",
+          "7. Disclaimer & Limitations (indicative not legal advice; not authoritative until raised to high; admissibility caveat)",
+          "8. Change Control for Legal Updates",
+          "Back matter (Glossary of Indonesian legal terms; References)"
+        ],
+        "diagrams": [
+          "Violation-to-statute mapping table-diagram",
+          "Citation confidence/verification-status matrix",
+          "3-voter adversarial research workflow flowchart"
+        ]
+      },
+      {
+        "doc": "Deployment Runbook",
+        "format": "docx",
+        "sections": [
+          "1. Metadata Header (service 'dashAI', version, owner/on-call, last-updated, environment, criticality)",
+          "2. Overview & Purpose",
+          "3. Prerequisites (access/permissions, pnpm + Node, Vercel/host access, DASHAI_SIGNING_KEY secret provisioned, approvals/change ticket, maintenance window)",
+          "4. Pre-deployment Checks (CI green: lint + typecheck + build; signing key validity 64-hex; public-key endpoint reachable; artifact/version to deploy; feature-flag state)",
+          "5. Deployment Procedure (numbered, copy-pasteable: build, deploy, promote; expected output + verification per step)",
+          "6. Post-deployment Validation (smoke: /api/seal seals a sample, /api/public-key returns prod- keyId not dev-, /api/verify validates; health checks; observe ~15 min)",
+          "7. Rollback Procedure (trigger conditions e.g. dev-key leakage or verify failures; exact revert steps; confirm rollback)",
+          "8. Monitoring & Alerts (dashboards, log locations, SLOs; watch Overpass failure-rate, seal latency)",
+          "9. Communication Plan (stakeholders, channels, status updates)",
+          "10. Troubleshooting / Known Issues / FAQ (Overpass timeouts, model load failures, key misconfiguration falling back to DEV key)",
+          "11. Contacts & Escalation + Related Docs",
+          "Back matter (Glossary; References)"
+        ],
+        "diagrams": [
+          "Deployment topology diagram",
+          "Deploy & promote pipeline flowchart",
+          "Rollback decision tree",
+          "Post-deploy verification checklist diagram"
+        ]
+      },
+      {
+        "doc": "User Manual",
+        "format": "docx",
+        "sections": [
+          "Front matter (Title / identification & Document Control; TOC; List of Figures)",
+          "1. Introduction (purpose, intended audience, scope, typographic conventions, safety/legal notices)",
+          "2. Getting Started (device/browser requirements, permissions: camera/location/motion, mounting the phone, first launch)",
+          "3. Conceptual Information (how dashAI works: on-device detection, sealing, tamper-evident evidence, what the signature does and does not prove; privacy & face-blur)",
+          "4. Task / Instructional Information (start a recording session; review detected violations; seal evidence; generate a report (tilang/kecelakaan/coaching); verify a report; share)",
+          "5. Reference Information (UI controls, HUD indicators, violation catalog & severity, report fields, settings)",
+          "6. Troubleshooting & Error Messages (symptom -> cause -> resolution: no GPS, camera blocked, models slow/failed, Overpass unavailable, dev-key warning)",
+          "7. FAQ (Is other-vehicle speed accurate? Is this legally binding? Where is data stored? Are faces saved?)",
+          "8. Glossary",
+          "9. Index",
+          "10. Appendices (keyboard/gestures, accessibility, support/contact, licensing)"
+        ],
+        "diagrams": [
+          "Annotated live HUD screenshot (bounding boxes, indicators, blurred faces)",
+          "Step-by-step screenshots for record -> review -> seal -> report -> verify",
+          "Report layout diagram (sealed report anatomy: citation, hashes, signature, QR)",
+          "Troubleshooting decision flowchart"
+        ]
+      },
+      {
+        "doc": "Project / SDLC Plan (with RACI)",
+        "format": "docx",
+        "sections": [
+          "Front matter (Title page; Document Control; Approval/Sign-off; TOC; List of Figures; List of Tables)",
+          "1. Introduction (purpose, scope, references, definitions)",
+          "2. Project Overview & Objectives (deliverables, success criteria)",
+          "3. SDLC Model & Methodology (phases: Plan -> Requirements -> Design -> Develop -> Test -> Deploy -> Operate/Maintain)",
+          "4. Organization & Roles (stakeholders, org chart)",
+          "5. RACI Matrix (rows = tasks/deliverables/decisions incl. each document in this suite + features; columns = roles; >= 1 R and exactly 1 A per row)",
+          "6. Work Breakdown Structure & Deliverables (incl. implementing /api routes, UI, detection tiers)",
+          "7. Schedule & Milestones (Gantt, dependencies, critical path)",
+          "8. Resource & Budget Management",
+          "9. Risk Management Approach (links to Risk Register)",
+          "10. Communication Management Plan",
+          "11. Quality Management & Metrics",
+          "12. Configuration / Change Management (docs/ + ADR governance)",
+          "13. Procurement (if any)",
+          "14. Assumptions, Constraints & Dependencies",
+          "15. Approval / Sign-off",
+          "Back matter (Glossary; Acronyms; References)"
+        ],
+        "diagrams": [
+          "RACI matrix (table-diagram)",
+          "WBS tree",
+          "Gantt chart with milestones & critical path",
+          "SDLC phase flow diagram"
+        ]
+      },
+      {
+        "doc": "Risk Register",
+        "format": "pdf",
+        "sections": [
+          "Header / metadata (project, owner, last reviewed, next review date)",
+          "Register legend (probability scale, impact scale, RAG rating, response strategies)",
+          "Columns (one row per risk): Risk ID (RR-nn) | Date raised | Category (technical/schedule/cost/security/compliance/operational/external) | Risk description (cause -> event -> effect) | Probability | Impact | Risk score/RAG | Risk owner | Trigger / early-warning indicators | Response strategy (Avoid/Mitigate/Transfer/Accept) | Mitigation/contingency actions | Action owner & due date | Residual probability/impact | Status (open/in-progress/closed/realized) | Last reviewed / next review | Notes / linked issues (link to Threat Model THR-nn & Project Plan)",
+          "Seed risks: false-positive detections -> wrongful accusation; signing-key exposure; dev-key reaching production; Overpass outage degrading wrong-way/speed; model performance on low-end mobiles; PII/face-crop leakage; legal-citation inaccuracy; admissibility challenge",
+          "Probability-Impact matrix (heat map) appendix"
+        ],
+        "diagrams": [
+          "Probability-impact matrix / risk heat map",
+          "Risk-by-category bar chart",
+          "Residual vs inherent risk comparison chart"
+        ]
+      },
+      {
+        "doc": "Requirements Traceability Matrix (RTM)",
+        "format": "pdf",
+        "sections": [
+          "Header / metadata (baseline version, owner, coverage summary, orphan counts)",
+          "Columns (one row per requirement, bidirectional): Requirement ID (REQ-Fnn/REQ-NFRnn) | Requirement description | Type (functional/NFR) | Source/origin (Vision section, PRD section, UU 22/2009, stakeholder) | Priority (MoSCoW) | Owner | Design element / ADR (forward) | Code module (lib/cv, lib/violations, lib/crypto, lib/geo, lib/legal, app/api) (forward) | Test case ID(s) & verification method (forward, links Test Plan) | Verification status (pass/fail/not-run) | Defect/issue IDs | Implementation status | Comments",
+          "Coverage analysis (forward: need -> requirement -> design -> code -> test; backward: test -> requirement -> source)",
+          "Orphan analysis (orphan requirements = untested; orphan tests = scope creep/gold-plating)"
+        ],
+        "diagrams": [
+          "Traceability flow diagram (need -> requirement -> design/ADR -> module -> test, bidirectional)",
+          "Coverage matrix heat grid (requirements x test status)",
+          "Orphan/coverage summary chart"
+        ]
+      }
+    ]
+  }
+}
