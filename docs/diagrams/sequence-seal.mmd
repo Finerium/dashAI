@@ -1,0 +1,33 @@
+%% dashAI — Sequence: detect → seal → report → verify
+%% Grounded in lib/violations/engine.ts, lib/evidence/payload.ts, app/api/{seal,report}/route.ts,
+%% lib/crypto/{canonical,sign,keys,verify}.ts, lib/evidence/store.ts.
+sequenceDiagram
+    autonumber
+    actor U as Pengguna
+    participant CV as CV Pipeline + Engine<br/>(klien)
+    participant DB as IndexedDB<br/>(klien)
+    participant S as /api/seal<br/>(server, Node)
+    participant K as DASHAI_SIGNING_KEY<br/>(env, server)
+    participant R as /api/report<br/>(server)
+    participant V as /verify<br/>(verifikator)
+
+    U->>CV: Mengarahkan kamera (frame + GPS + sensor)
+    CV->>CV: coco-ssd + IoU tracker + face/pose
+    CV->>CV: Aturan engine + debounce 6 dtk → ViolationCandidate
+    CV->>DB: saveEvent(ViolationEvent) lokal-dulu
+    U->>CV: Setujui & segel bukti
+    CV->>S: POST { event, mediaHashes, device }
+    S->>S: Validasi event + cek violation ∈ CITATIONS
+    S->>S: buildPayload (+LegalSnapshot, stempel sealedAt server)
+    S->>S: canonicalize → sha256 (payloadHash)
+    S->>K: getServerKey (priv, tak pernah keluar server)
+    S->>S: ed.signAsync(canon, priv) → signature
+    S-->>CV: SealedEvidence { payload, payloadHash, signature, publicKeyId }
+    CV->>DB: simpan event tersegel (sealed=true)
+    U->>R: POST { sealed, kind }
+    R->>R: verifySealed (cek hash + signature) sebelum render
+    R->>R: render PDF (@react-pdf) + QR → /verify?d=base64url(sealed)
+    R-->>U: PDF tilang/kecelakaan/coaching
+    V->>V: Buka /verify (dari QR), GET /api/public-key
+    V->>V: recompute hash + ed.verifyAsync
+    Note over V: VALID atau DIUBAH — tamper-evident<br/>(bukan bukti kamera menyaksikan realitas)

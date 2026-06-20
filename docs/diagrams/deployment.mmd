@@ -1,0 +1,46 @@
+%% dashAI — Deployment
+%% Grounded in README (Vercel, Node runtime), app/api/* (export const runtime = "nodejs"),
+%% lib/cv (CDN models), lib/geo/osm.ts (Overpass), lib/crypto/keys.ts (env secret).
+flowchart TB
+    subgraph device["Perangkat Pengguna"]
+        direction TB
+        subgraph browsernode["Browser (PWA, HTTPS)"]
+            spa["Next.js App Router + React 19<br/>CV Pipeline (TF.js/WebGL, MediaPipe WASM/GPU)<br/>Violation Engine + Viewer"]
+            idb[("IndexedDB<br/>bukti lokal")]
+            spa --- idb
+        end
+    end
+
+    subgraph vercel["Vercel (Cloud)"]
+        direction TB
+        edge["Edge / Static hosting<br/>aset PWA"]
+        subgraph fns["Serverless Functions — runtime Node.js"]
+            api["/api/seal · /api/verify<br/>/api/report · /api/public-key"]
+            env{{"Env Secret<br/>DASHAI_SIGNING_KEY<br/>(seed Ed25519, server-only)"}}
+            api --- env
+        end
+    end
+
+    subgraph ext["Layanan Publik (tanpa API key)"]
+        direction TB
+        overpass["OSM Overpass API<br/>overpass-api.de / kumi.systems"]
+        tfhub["TF Hub CDN<br/>(bobot coco-ssd)"]
+        mpcdn["jsDelivr + GCS<br/>(MediaPipe WASM + model)"]
+    end
+
+    browsernode -->|HTTPS: aset| edge
+    browsernode -->|"HTTPS: POST seal/report, GET public-key"| api
+    browsernode -.->|HTTPS: muat model| tfhub
+    browsernode -.->|HTTPS: muat model| mpcdn
+    browsernode -.->|"HTTPS: query konteks jalan"| overpass
+
+    classDef node fill:#e8eef7,stroke:#1168bd,color:#000
+    classDef fn fill:#85bbf0,stroke:#1168bd,color:#000
+    classDef store fill:#2d6a4f,stroke:#1b4332,color:#fff
+    classDef sec fill:#e0c060,stroke:#7a5a07,color:#000
+    classDef ext fill:#cccccc,stroke:#888,color:#000
+    class spa,edge node
+    class api fn
+    class idb store
+    class env sec
+    class overpass,tfhub,mpcdn ext

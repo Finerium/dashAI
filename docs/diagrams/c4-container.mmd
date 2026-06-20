@@ -1,0 +1,60 @@
+%% dashAI — C4 Level 2: Container
+%% Grounded in app/ (PWA + api routes), lib/cv, lib/violations, lib/evidence/store.ts (IndexedDB),
+%% lib/crypto (DASHAI_SIGNING_KEY), lib/geo/osm.ts, README architecture diagram.
+flowchart TB
+    driver["Pengguna / Pengendara<br/><i>[Person]</i>"]
+    verifier["Verifikator<br/><i>[Person]</i>"]
+
+    subgraph browser["Browser PWA — ponsel/desktop klien (Next.js App Router, React 19)"]
+        direction TB
+        camera["Kamera + Sensor<br/><i>[getUserMedia, Geolocation, DeviceMotion]</i><br/>Frame, GPS, deteksi tabrakan"]
+        cvp["CV Pipeline<br/><i>[lib/cv]</i><br/>coco-ssd, IoU tracker,<br/>MediaPipe face/pose, OCR pelat"]
+        engine["Violation Engine<br/><i>[lib/violations/engine.ts]</i><br/>Aturan + debounce 6 dtk,<br/>menghasilkan kandidat pelanggaran"]
+        viewer["Viewer / HUD + /verify<br/><i>[components, app/verify]</i><br/>Box merah, panel pasal,<br/>verifikasi sisi klien"]
+        idb[("IndexedDB<br/><i>[lib/evidence/store.ts]</i><br/>Bukti lokal-dulu (events)")]
+    end
+
+    subgraph server["Next.js Functions @ Vercel — runtime Node.js"]
+        direction TB
+        seal["/api/seal<br/><i>[lib/crypto/sign.ts]</i><br/>Stempel waktu + hash kanonik + sign Ed25519"]
+        verifyapi["/api/verify<br/><i>[lib/crypto/verify.ts]</i><br/>Verifikasi server (opsional)"]
+        report["/api/report<br/><i>[@react-pdf/renderer + qrcode]</i><br/>PDF tilang/kecelakaan/coaching + QR"]
+        pk["/api/public-key<br/><i>[lib/crypto/keys.ts]</i><br/>Menerbitkan kunci publik Ed25519"]
+        key{{"DASHAI_SIGNING_KEY<br/><i>[Env Secret — satu-satunya rahasia]</i><br/>Seed Ed25519 32-byte, tak pernah keluar server"}}
+    end
+
+    osm["OpenStreetMap Overpass<br/><i>[External]</i>"]
+    cdn["CDN Model AI<br/><i>[External: TF Hub, jsDelivr, GCS]</i>"]
+
+    driver -->|HTTPS| viewer
+    camera --> cvp --> engine --> viewer
+    camera -->|GPS/sensor| engine
+    engine -->|simpan bukti| idb
+    cvp -.->|muat model| cdn
+    engine -.->|konteks jalan| osm
+
+    viewer -->|"POST event (saat disegel)"| seal
+    seal -->|SealedEvidence| viewer
+    viewer -->|SealedEvidence| idb
+    viewer -->|"POST sealed"| report
+    viewer -->|"POST sealed (opsional)"| verifyapi
+    viewer -->|GET| pk
+
+    seal --- key
+    verifyapi --- key
+    report --- key
+    pk --- key
+
+    verifier -->|"GET kunci publik"| pk
+    verifier -->|"Buka /verify (dari QR), cek sisi klien"| viewer
+
+    classDef person fill:#08427b,stroke:#052e56,color:#ffffff
+    classDef container fill:#1168bd,stroke:#0b4884,color:#ffffff
+    classDef store fill:#2d6a4f,stroke:#1b4332,color:#ffffff
+    classDef secret fill:#b8860b,stroke:#7a5a07,color:#ffffff
+    classDef external fill:#999999,stroke:#6b6b6b,color:#ffffff
+    class driver,verifier person
+    class camera,cvp,engine,viewer,seal,verifyapi,report,pk container
+    class idb store
+    class key secret
+    class osm,cdn external

@@ -1,0 +1,25 @@
+%% dashAI — Violation lifecycle state machine
+%% Grounded in lib/violations/engine.ts (debounce/MIN_TRACK_AGE), lib/evidence/store.ts (IndexedDB),
+%% app/api/seal (sealed) + app/api/report (reported) + /verify (verified).
+stateDiagram-v2
+    [*] --> Detected
+    Detected: Detected (kandidat)\nObjek/track terlihat di frame\n(coco-ssd + IoU tracker)
+    Detected --> Detected: track age < MIN_TRACK_AGE (4)\natau di dalam debounce (6 dtk)
+    Detected --> Confirmed: aturan lolos + age >= 4\n+ debounce lewat
+    Detected --> [*]: track hilang / noise\n(cos flow tak terpenuhi)
+
+    Confirmed: Confirmed\nViolationCandidate (confidence 0..1)\n+ snapshot pasal UU 22/2009
+    Confirmed --> StoredLocal: saveEvent()
+
+    StoredLocal: Stored (lokal)\nIndexedDB di perangkat\n(privacy-by-design)
+    StoredLocal --> Sealed: pengguna setujui →\nPOST /api/seal
+    StoredLocal --> [*]: pengguna hapus (deleteEvent)
+
+    Sealed: Sealed (server)\nsealedAt + payloadHash +\ntanda tangan Ed25519
+    Sealed --> Reported: POST /api/report\n(verifySealed dulu)
+
+    Reported: Reported\nPDF tilang/kecelakaan/coaching\n+ QR ke /verify
+    Reported --> Verified: verifikator cek\nhash + signature
+
+    Verified: Verified\nVALID (utuh) atau DIUBAH\n(tamper-evident)
+    Verified --> [*]

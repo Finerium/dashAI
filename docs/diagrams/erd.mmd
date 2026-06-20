@@ -1,0 +1,92 @@
+%% dashAI — Entity / Data Model
+%% Grounded EXACTLY in lib/evidence/types.ts, lib/legal/citations.ts, lib/legal/catalog.ts.
+%% Not a relational DB (IndexedDB stores ViolationEvent); this is the type model.
+erDiagram
+    ViolationEvent ||--o| SealedEvidence : "seal (saat disegel)"
+    ViolationEvent ||--o| GeoPoint : "location"
+    ViolationEvent ||--o| RoadContext : "road"
+    SealedEvidence ||--|| EvidencePayload : "payload (yang ditandatangani)"
+    EvidencePayload ||--o| GeoPoint : "location"
+    EvidencePayload ||--o| RoadContext : "road"
+    EvidencePayload ||--|| LegalSnapshot : "legal"
+    EvidencePayload ||--|| MediaHashes : "mediaHashes"
+    ViolationMeta ||--|| Citation : "key → CITATIONS"
+    ViolationEvent }o--|| ViolationMeta : "violation (ViolationKey)"
+
+    ViolationEvent {
+        string id PK
+        ViolationKey violation
+        Subject subject "other | self"
+        number confidence "0..1"
+        number capturedAt
+        string plateText "nullable"
+        string vehicleClass
+        number egoSpeedKmh "GPS, akurat"
+        number otherSpeedKmh "ESTIMASI"
+        number speedLimitKmh "OSM maxspeed"
+        boolean sealed
+        boolean demo "data demo, bukan bukti"
+    }
+    EvidencePayload {
+        string schema "dashai.evidence.v1"
+        string eventId
+        ViolationKey violation
+        Subject subject
+        number capturedAt
+        number sealedAt "server-stamped, authoritative"
+        number confidence
+        string plateText "nullable"
+        number egoSpeedKmh
+        number otherSpeedKmh
+        number speedLimitKmh
+    }
+    SealedEvidence {
+        string algorithm "Ed25519"
+        string publicKeyId "prod- / dev-"
+        string payloadHash "hex sha-256 kanonik"
+        string signature "hex Ed25519"
+        number sealedAt
+    }
+    LegalSnapshot {
+        string uu
+        string pasal
+        string ayat
+        string sanksi
+    }
+    MediaHashes {
+        string frame "sha-256"
+        string faceCrop "sha-256"
+        string plateCrop "sha-256"
+    }
+    GeoPoint {
+        number lat
+        number lng
+        number accuracy
+        number speedMps "nullable"
+        number headingDeg "nullable"
+        number timestamp
+    }
+    RoadContext {
+        string name
+        boolean oneway
+        number bearingDeg "arah sah ruas"
+        number maxspeedKmh
+    }
+    ViolationMeta {
+        ViolationKey key PK
+        string labelId
+        string labelEn
+        DetectionTier tier "core|secondary|cabin"
+        string detectionBasis
+        boolean requiresCabinCam
+        number severity "1..3"
+    }
+    Citation {
+        string uu
+        string pasal
+        string ayat
+        string sanksi
+        number dendaMaxRupiah
+        string kurunganMax
+        boolean verified "3-voter adversarial"
+    }

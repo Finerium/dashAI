@@ -1,0 +1,52 @@
+%% dashAI — C4 Level 3: Component (CV pipeline + seal/verify flow)
+%% Grounded in lib/cv/{pipeline,detector,tracker,face,pose,plate}.ts,
+%% lib/violations/engine.ts, lib/evidence/{payload,types}.ts, lib/crypto/{canonical,keys,sign,verify}.ts, app/api/*.
+flowchart TB
+    subgraph clientcv["Browser — CV & Violation (klien)"]
+        direction TB
+        det["CocoDetector<br/><i>[detector.ts]</i><br/>TF.js coco-ssd lite_mobilenet_v2,<br/>filter TRAFFIC_CLASSES"]
+        trk["IouTracker<br/><i>[tracker.ts]</i><br/>IoU greedy, id stabil + velocity"]
+        face["FaceDetectorCV<br/><i>[face.ts]</i><br/>BlazeFace: deteksi (bukan pengenalan)"]
+        pose["PoseDetectorCV<br/><i>[pose.ts]</i><br/>Pose Landmarker skeleton"]
+        plate["readPlate<br/><i>[plate.ts]</i><br/>Tesseract.js OCR (region pelat)"]
+        pipe["CVPipeline.analyze<br/><i>[pipeline.ts]</i><br/>FrameAnalysis + dominantFlow"]
+        eng["ViolationEngine.update<br/><i>[engine.ts]</i><br/>Aturan live + debounce → ViolationCandidate"]
+        build["buildPayload<br/><i>[evidence/payload.ts]</i><br/>EvidencePayload + LegalSnapshot"]
+    end
+
+    subgraph serverseal["Next.js Functions (server)"]
+        direction TB
+        sealr["/api/seal route<br/>Validasi + stempel sealedAt"]
+        canon["canonicalize + sha256<br/><i>[crypto/canonical.ts]</i><br/>JSON kunci tersortir → hash"]
+        signc["sealPayload<br/><i>[crypto/sign.ts]</i><br/>ed.signAsync (Ed25519)"]
+        keys["getServerKey<br/><i>[crypto/keys.ts]</i><br/>baca DASHAI_SIGNING_KEY"]
+        pkr["/api/public-key route"]
+    end
+
+    subgraph verifyc["Verifikasi (klien atau server)"]
+        direction TB
+        vfy["verifySealed<br/><i>[crypto/verify.ts]</i><br/>cek hash + ed.verifyAsync"]
+    end
+
+    cite["CITATIONS (KB UU 22/2009)<br/><i>[legal/citations.ts]</i><br/>12 sitasi terverifikasi 3-voter"]
+
+    det --> trk --> pipe
+    face --> pipe
+    pose --> pipe
+    pipe --> eng
+    plate -.->|"region pelat (saat terkonfirmasi)"| eng
+    eng --> build
+    cite -->|snapshot pasal| build
+    build -->|"POST event"| sealr
+    sealr --> canon --> signc
+    keys -->|priv key| signc
+    signc -->|SealedEvidence| vfy
+    keys -->|pub key| pkr
+    pkr -->|publicKeyHex| vfy
+
+    classDef comp fill:#85bbf0,stroke:#1168bd,color:#000000
+    classDef data fill:#bdd9f0,stroke:#5a86ad,color:#000000
+    classDef secret fill:#e0c060,stroke:#7a5a07,color:#000000
+    class det,trk,face,pose,plate,pipe,eng,build,sealr,canon,signc,pkr,vfy comp
+    class cite data
+    class keys secret

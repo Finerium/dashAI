@@ -1,0 +1,50 @@
+%% dashAI — Data Flow Diagram (dengan batas kepercayaan klien | server)
+%% Grounded in lib/cv, lib/violations/engine.ts, lib/geo/osm.ts, lib/sensors/motion.ts,
+%% lib/evidence/{store,payload}.ts, app/api/{seal,report,public-key}.
+flowchart LR
+    cam(["Kamera<br/><i>getUserMedia</i>"])
+    gps(["GPS<br/><i>Geolocation</i>"])
+    sensor(["Sensor gerak<br/><i>DeviceMotion</i>"])
+
+    subgraph client["KLIEN (browser) — lokal-dulu, privacy-by-design"]
+        direction TB
+        p1["P1 CV Pipeline<br/>deteksi + tracking + face/pose"]
+        p2["P2 Violation Engine<br/>aturan + debounce"]
+        osm[/"OSM Overpass<br/>oneway + maxspeed"/]
+        d1[("D1 IndexedDB<br/>ViolationEvent lokal")]
+        p3["P3 Build payload<br/>+ LegalSnapshot"]
+    end
+
+    subgraph server["SERVER (Vercel Functions, Node)"]
+        direction TB
+        p4["P4 Seal<br/>hash kanonik + sign Ed25519"]
+        secret[["DASHAI_SIGNING_KEY<br/>(rahasia)"]]
+        p5["P5 Report<br/>PDF + QR"]
+        p6["P6 Public-key"]
+    end
+
+    verifier(["Verifikator<br/>(siapa pun)"])
+
+    cam -->|frame| p1
+    gps -->|lat/lng, speed, heading| p2
+    sensor -->|peakG impact/brake| p2
+    p1 -->|FrameAnalysis| p2
+    osm -->|RoadContext| p2
+    p2 -->|ViolationEvent| d1
+    p2 -->|kandidat disetujui| p3
+    p3 ==>|"EvidencePayload (HTTPS) — satu-satunya data lintas batas"| p4
+    secret -.->|priv key| p4
+    p4 ==>|SealedEvidence| d1
+    p4 -->|sealed| p5
+    secret -.->|pub key| p6
+    p5 ==>|PDF + QR| verifier
+    p6 ==>|publicKeyHex| verifier
+
+    classDef proc fill:#85bbf0,stroke:#1168bd,color:#000
+    classDef store fill:#2d6a4f,stroke:#1b4332,color:#fff
+    classDef ext fill:#cccccc,stroke:#888,color:#000
+    classDef sec fill:#e0c060,stroke:#7a5a07,color:#000
+    class p1,p2,p3,p4,p5,p6 proc
+    class d1 store
+    class cam,gps,sensor,osm,verifier ext
+    class secret sec

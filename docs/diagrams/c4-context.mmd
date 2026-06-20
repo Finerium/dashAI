@@ -1,0 +1,24 @@
+%% dashAI — C4 Level 1: System Context
+%% Grounded in README.md + app/api + lib/geo/osm.ts + lib/cv (CDN models)
+flowchart TB
+    driver["Pengguna / Pengendara<br/><i>[Person]</i><br/>Memantau jalan via kamera ponsel,<br/>meninjau & menyegel bukti, mengunduh laporan"]
+    verifier["Verifikator<br/><i>[Person: polisi / asuransi / siapa pun]</i><br/>Memverifikasi keaslian laporan<br/>tersegel secara independen"]
+
+    dashai["<b>dashAI</b><br/><i>[Software System]</i><br/>Dashcam AI: deteksi pelanggaran lalu lintas real-time di browser,<br/>sitasi UU 22/2009 (LLAJ) terverifikasi, penyegelan bukti Ed25519<br/>(tamper-evident), laporan PDF + verifikasi mandiri"]
+
+    osm["OpenStreetMap Overpass API<br/><i>[External System, tanpa API key]</i><br/>Konteks jalan: tag oneway & maxspeed"]
+    cdn["CDN Model AI<br/><i>[External System]</i><br/>TF.js coco-ssd (TF Hub) +<br/>MediaPipe Tasks face/pose (jsDelivr/GCS)"]
+
+    driver -->|"Mengarahkan kamera, meninjau,<br/>menyegel & melaporkan (HTTPS)"| dashai
+    dashai -->|"Menampilkan HUD, bukti tersegel,<br/>laporan PDF + QR"| driver
+    dashai -->|"Query konteks jalan<br/>(lat/lng dibulatkan ~11 m, HTTPS)"| osm
+    dashai -->|"Memuat bobot model saat runtime (HTTPS)"| cdn
+    dashai -->|"Menerbitkan kunci publik via /api/public-key,<br/>laporan PDF + QR ke /verify"| verifier
+    verifier -->|"Mengecek hash + tanda tangan Ed25519<br/>(sisi klien, tanpa memercayai UI dashAI)"| dashai
+
+    classDef person fill:#08427b,stroke:#052e56,color:#ffffff
+    classDef system fill:#1168bd,stroke:#0b4884,color:#ffffff
+    classDef external fill:#999999,stroke:#6b6b6b,color:#ffffff
+    class driver,verifier person
+    class dashai system
+    class osm,cdn external

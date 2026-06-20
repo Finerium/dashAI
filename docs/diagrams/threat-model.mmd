@@ -1,0 +1,40 @@
+%% dashAI — Threat Model (STRIDE) across trust boundaries
+%% Grounded in README (tamper-evident not tamper-proof), lib/crypto/*, app/api/seal (server time),
+%% lib/geo/osm.ts (coord rounding), lib/cv/face.ts (detection not recognition), privacy-by-design.
+flowchart TB
+    subgraph tb1["Batas 1: KLIEN (browser, tak tepercaya penuh)"]
+        direction TB
+        t1["S/T — Spoofing input:<br/>kamera diarahkan ke layar →<br/>dashAI hanya tamper-EVIDENT,<br/>bukan tamper-proof"]
+        t2["I — Privasi: face DETECTION<br/>(bukan recognition), blur default,<br/>IndexedDB lokal-dulu (UU 27/2022)"]
+        t3["T — capturedAt klien tak otoritatif<br/>→ sealedAt distempel server"]
+    end
+
+    subgraph tb2["Batas 2: JARINGAN (HTTPS)"]
+        direction TB
+        n1["T/I — MITM dimitigasi TLS;<br/>koordinat OSM dibulatkan ~11 m<br/>(minim data ke pihak ketiga)"]
+        n2["D — Overpass/CDN gagal →<br/>degradasi anggun (return null),<br/>pipeline tak memblok"]
+    end
+
+    subgraph tb3["Batas 3: SERVER (Vercel Functions, Node)"]
+        direction TB
+        s1["T — Integritas: canonicalize +<br/>sha256 + Ed25519; verifySealed<br/>menolak payload berubah"]
+        s2["R — Non-repudiation: tanda tangan<br/>+ keyId (prod-/dev-) di tiap envelope"]
+        s3["S — Sitasi hukum: KB terverifikasi<br/>3-voter, bukan halusinasi model"]
+    end
+
+    subgraph tb4["Batas 4: KUNCI PENANDATANGANAN (aset paling kritis)"]
+        direction TB
+        k1["I/E — DASHAI_SIGNING_KEY:<br/>satu rahasia, server-only,<br/>tak pernah ke klien"]
+        k2["Kompromi kunci = bisa palsukan seal →<br/>rotasi kunci + keyId, pub key publik<br/>via /api/public-key"]
+    end
+
+    roadmap["Roadmap tamper-resistance:<br/>device attestation (Play Integrity/App Attest),<br/>kontinuitas GPS, dashcam perangkat keras.<br/>Penilaian akhir tetap pada pihak berwenang."]
+
+    tb1 --> tb2 --> tb3 --> tb4
+    tb4 --> roadmap
+
+    classDef boundary fill:#fff3cd,stroke:#b8860b,color:#000
+    classDef risk fill:#f8d7da,stroke:#c0392b,color:#000
+    classDef note fill:#d4edda,stroke:#2d6a4f,color:#000
+    class t1,t2,t3,n1,n2,s1,s2,s3,k1,k2 risk
+    class roadmap note

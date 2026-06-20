@@ -1,0 +1,29 @@
+%% dashAI — CV Pipeline (frame → candidate)
+%% Grounded in lib/cv/{pipeline,detector,tracker,face,pose,plate,types}.ts + lib/violations/engine.ts.
+flowchart LR
+    frame(["Frame video<br/><i>HTMLVideoElement</i>"])
+
+    det["CocoDetector.detect<br/><i>TF.js coco-ssd<br/>lite_mobilenet_v2</i><br/>top-20, skor ≥ 0.45,<br/>filter TRAFFIC_CLASSES"]
+    trk["IouTracker.update<br/>IoU greedy (≥0.3),<br/>maxMissed 8 → id stabil<br/>+ velocity (vx,vy), age"]
+    face["FaceDetectorCV<br/>BlazeFace: deteksi wajah<br/>(crop+blur, BUKAN pengenalan)"]
+    pose["PoseDetectorCV<br/>Pose Landmarker skeleton"]
+    flow["dominantFlow<br/>rata-rata velocity track bergerak"]
+    fa["FrameAnalysis<br/>detections, faces, poses,<br/>dominantFlow"]
+
+    eng["ViolationEngine.update<br/>aturan live: lawan-arus (other/self),<br/>melebihi-kecepatan (self, GPS vs OSM),<br/>boncengan-lebih, terobos-lampu-merah (self)<br/>+ debounce 6 dtk"]
+    plate["readPlate (Tesseract.js)<br/>OCR region pelat<br/>(hanya saat terkonfirmasi)"]
+    cand(["ViolationCandidate<br/>violation, subject, confidence,<br/>trackId, bbox"])
+
+    frame --> det --> trk --> fa
+    frame --> face --> fa
+    frame --> pose --> fa
+    trk --> flow --> fa
+    fa --> eng
+    eng -.->|"region pelat"| plate
+    plate -.->|plateText| eng
+    eng --> cand
+
+    classDef io fill:#bdd9f0,stroke:#5a86ad,color:#000
+    classDef stage fill:#85bbf0,stroke:#1168bd,color:#000
+    class frame,cand io
+    class det,trk,face,pose,flow,fa,eng,plate stage
