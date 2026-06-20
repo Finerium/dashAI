@@ -209,6 +209,27 @@ docs/                 # research artifacts + screenshots + industry docs
 
 Sitasi UU **bukan halusinasi model**. Knowledge base digenerate dari workflow riset multi-agent dengan **verifikasi adversarial 3-voter** terhadap sumber resmi/terpercaya (hukumonline, korlantas.polri.go.id, dishub, dll). Artefak riset: [`docs/research/phase0-research.json`](docs/research/phase0-research.json).
 
+## Dokumentasi teknis (skala industri)
+
+Set dokumen formal (DOCX/PDF) di [`docs/specs/`](docs/specs/), dengan diagram di [`docs/diagrams/`](docs/diagrams/):
+
+| # | Dokumen | Format |
+|---|---------|--------|
+| 01 | [Vision & Scope](docs/specs/01-vision-and-scope.docx) | DOCX |
+| 02 | [Product Requirements (PRD)](docs/specs/02-prd.docx) | DOCX |
+| 03 | [Software Requirements (SRS, ISO/IEC/IEEE 29148)](docs/specs/03-srs.docx) | DOCX |
+| 04 | [Software Architecture (SAD, 42010 + C4)](docs/specs/04-software-architecture.pdf) | PDF |
+| 05 | [Architecture Decision Records](docs/specs/05-adr.pdf) | PDF |
+| 06 | [Data Model & ERD](docs/specs/06-data-model.pdf) | PDF |
+| 07 | [API Specification](docs/specs/07-api-specification.pdf) | PDF |
+| 08 | [Test Plan (29119 / 829)](docs/specs/08-test-plan.docx) | DOCX |
+| 09 | [Security & Threat Model (STRIDE)](docs/specs/09-threat-model.pdf) | PDF |
+| 10 | [DPIA / Privacy (UU PDP 27/2022)](docs/specs/10-dpia-privacy.docx) | DOCX |
+| 11 | [Legal Citation Reference (UU 22/2009)](docs/specs/11-legal-citation-reference.pdf) | PDF |
+| 12 | [Deployment & Ops Runbook](docs/specs/12-deployment-runbook.pdf) | PDF |
+| 13 | [User Manual](docs/specs/13-user-manual.docx) | DOCX |
+| 14 | [Project Plan, RACI & Risk Register](docs/specs/14-project-plan-raci-risk.docx) | DOCX |
+
 ## Roadmap
 
 - [ ] Device attestation (Play Integrity / App Attest) untuk tamper-resistance produksi
