@@ -8,6 +8,7 @@ import {
 } from "@react-pdf/renderer";
 import type { ReportKind, SealedEvidence } from "@/lib/evidence/types";
 import { VIOLATION_CATALOG } from "@/lib/legal/catalog";
+import { citationFor } from "@/lib/legal/citations";
 import { fmtTime } from "@/lib/utils";
 
 const styles = StyleSheet.create({
@@ -126,7 +127,7 @@ export function ReportDocument({ sealed, kind, qrDataUrl, verifyUrl, isDev }: Re
         <Text style={styles.h2}>3. {meta.legalHeading}</Text>
         <Row label="Undang-undang" value={p.legal.uu} />
         <Row label="Pasal" value={`${p.legal.pasal}${p.legal.ayat ? " " + p.legal.ayat : ""}`} />
-        <Text style={[styles.para, { marginTop: 6 }]}>“{citeBunyi(p.legal.pasal)}”</Text>
+        <Text style={[styles.para, { marginTop: 6 }]}>“{citationFor(p.violation).bunyi}”</Text>
         <Row label="Ancaman / sanksi" value={p.legal.sanksi} />
 
         <Text style={styles.h2}>4. Integritas Kriptografi</Text>
@@ -170,11 +171,4 @@ export function ReportDocument({ sealed, kind, qrDataUrl, verifyUrl, isDev }: Re
       </Page>
     </Document>
   );
-}
-
-// The full article text lives in the citation KB; we pass only the snapshot in
-// the signed payload, so re-derive a readable line here for presentation.
-function citeBunyi(pasal: string): string {
-  // Presentation-only; the authoritative text is in the signed legal snapshot.
-  return `Lihat ${pasal} UU No. 22 Tahun 2009 tentang Lalu Lintas dan Angkutan Jalan.`;
 }
