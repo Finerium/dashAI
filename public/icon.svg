@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="dashAI reticle mark">
+  <!-- Dark forensic surface -->
+  <rect width="512" height="512" fill="#0a0b0d"/>
+  <!-- Square aperture / evidence frame -->
+  <rect x="156" y="156" width="200" height="200" fill="none" stroke="#ffb020" stroke-width="14"/>
+  <!-- HUD corner brackets framing the aperture -->
+  <g fill="none" stroke="#ffb020" stroke-width="16" stroke-linecap="square">
+    <!-- top-left -->
+    <path d="M96 156V96h60"/>
+    <!-- top-right -->
+    <path d="M356 96h60v60"/>
+    <!-- bottom-right -->
+    <path d="M416 356v60h-60"/>
+    <!-- bottom-left -->
+    <path d="M156 416H96v-60"/>
+  </g>
+  <!-- Central target dot -->
+  <circle cx="256" cy="256" r="22" fill="#ffb020"/>
+</svg>

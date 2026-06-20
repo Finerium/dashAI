@@ -1,0 +1,26 @@
+{
+  "name": "dashAI — Saksi Mata Digital",
+  "short_name": "dashAI",
+  "description": "Deteksi pelanggaran lalu lintas dan segel bukti digital langsung dari dasbor Anda.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0b0d",
+  "theme_color": "#0a0b0d",
+  "orientation": "any",
+  "lang": "id",
+  "categories": ["utilities", "navigation"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "maskable"
+    }
+  ]
+}
