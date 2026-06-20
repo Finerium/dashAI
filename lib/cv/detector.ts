@@ -51,6 +51,7 @@ export class CocoDetector implements ObjectDetector {
   }
 
   dispose(): void {
+    this.model?.dispose?.();
     this.model = null;
     this.ready = false;
   }

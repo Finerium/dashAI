@@ -73,7 +73,15 @@ export class IouTracker {
       t.missed = 0;
     }
 
-    // New tracks for unmatched detections.
+    // Age out unmatched pre-existing tracks (snapshot before adding new ones so
+    // brand-new tracks aren't aged on the frame they appear).
+    const existing = this.tracks;
+    for (const t of existing) {
+      if (!matchedTracks.has(t)) t.missed += 1;
+    }
+    this.tracks = existing.filter((t) => t.missed <= this.maxMissed);
+
+    // New tracks for unmatched detections (added after aging/filtering).
     raws.forEach((r, ri) => {
       if (matchedRaws.has(ri)) return;
       const c = center(r.bbox);
@@ -90,12 +98,6 @@ export class IouTracker {
         cy: c.cy,
       });
     });
-
-    // Age out unmatched tracks.
-    for (const t of this.tracks) {
-      if (!matchedTracks.has(t) && t.missed >= 0 && t.age) t.missed += 1;
-    }
-    this.tracks = this.tracks.filter((t) => t.missed <= this.maxMissed);
 
     return this.tracks
       .filter((t) => t.missed === 0)

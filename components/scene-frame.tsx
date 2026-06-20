@@ -385,7 +385,7 @@ function BottomStrip({ event }: { event: ViolationEvent }) {
         <span className="flex items-center gap-1">
           <span className={cn(over ? "text-signal" : "text-fg/90")}>{speed}</span>
           <span className="text-dim">
-            {limit != null ? `/${limit}` : ""} KM/J
+            {limit != null ? `/${limit}` : ""} km/j
           </span>
         </span>
       )}

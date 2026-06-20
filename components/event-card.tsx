@@ -73,7 +73,7 @@ export function EventCard({ event, href }: EventCardProps) {
         </div>
 
         {event.plateText ? (
-          <div className="mono text-xs tracking-[0.12em] text-fg">{event.plateText}</div>
+          <div className="mono text-xs tracking-[0.12em] text-fg blur-[3px] select-none">{event.plateText}</div>
         ) : null}
       </div>
     </article>

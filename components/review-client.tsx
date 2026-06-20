@@ -198,9 +198,8 @@ export function ReviewClient() {
           </div>
         </div>
 
-        {/* Subject filter tabs */}
+        {/* Subject filter */}
         <div
-          role="tablist"
           aria-label="Saring berdasarkan subjek"
           className="mt-6 flex flex-wrap gap-2"
         >
@@ -213,8 +212,8 @@ export function ReviewClient() {
             return (
               <button
                 key={tab.key}
-                role="tab"
-                aria-selected={selected}
+                aria-pressed={selected}
+                aria-label={`Saring: ${tab.label}`}
                 onClick={() => setFilter(tab.key)}
                 className={cn(
                   "mono inline-flex items-center gap-2 border px-3 py-1.5 text-xs uppercase tracking-[0.12em] transition-colors",

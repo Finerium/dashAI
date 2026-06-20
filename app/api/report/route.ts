@@ -2,6 +2,8 @@ import { renderToBuffer } from "@react-pdf/renderer";
 import QRCode from "qrcode";
 import { ReportDocument } from "@/lib/report/ReportDocument";
 import { getServerKey } from "@/lib/crypto/keys";
+import { verifySealed } from "@/lib/crypto/verify";
+import { CITATIONS } from "@/lib/legal/citations";
 import type { ReportKind, SealedEvidence } from "@/lib/evidence/types";
 
 export const runtime = "nodejs";
@@ -25,6 +27,25 @@ export async function POST(req: Request) {
     return Response.json({ error: "Envelope tidak lengkap." }, { status: 400 });
   }
 
+  if (!(sealed.payload.violation in CITATIONS)) {
+    return Response.json(
+      { error: "Jenis pelanggaran (violation) tidak dikenal." },
+      { status: 400 },
+    );
+  }
+
+  const { pubHex, isDev } = await getServerKey();
+  const verification = await verifySealed(sealed, pubHex);
+  if (!verification.valid) {
+    return Response.json(
+      {
+        error: "Envelope tidak dapat diverifikasi — laporan resmi tidak dibuat.",
+        reason: verification.reason,
+      },
+      { status: 422 },
+    );
+  }
+
   const reportKind: ReportKind =
     kind ?? (sealed.payload.subject === "self" ? "coaching" : "tilang");
   const origin = new URL(req.url).origin;
@@ -43,16 +64,24 @@ export async function POST(req: Request) {
     /* QR is best-effort; the URL is also printed in the PDF */
   }
 
-  const { isDev } = await getServerKey();
-  const element = ReportDocument({
-    sealed,
-    kind: reportKind,
-    qrDataUrl,
-    verifyUrl,
-    isDev,
-  }) as unknown as Parameters<typeof renderToBuffer>[0];
+  let buffer: Buffer;
+  try {
+    const element = ReportDocument({
+      sealed,
+      kind: reportKind,
+      qrDataUrl,
+      verifyUrl,
+      isDev,
+    }) as unknown as Parameters<typeof renderToBuffer>[0];
 
-  const buffer = await renderToBuffer(element);
+    buffer = await renderToBuffer(element);
+  } catch {
+    return Response.json(
+      { error: "Gagal membuat dokumen PDF laporan." },
+      { status: 500 },
+    );
+  }
+
   return new Response(new Uint8Array(buffer), {
     headers: {
       "Content-Type": "application/pdf",

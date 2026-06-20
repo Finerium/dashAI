@@ -41,7 +41,6 @@ export const viewport: Viewport = {
   themeColor: "#0a0b0d",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
 };
 
 export default function RootLayout({
@@ -50,8 +49,16 @@ export default function RootLayout({
   return (
     <html lang="id" className={`${display.variable} ${mono.variable} h-full`}>
       <body className="min-h-dvh flex flex-col antialiased">
+        <a
+          href="#konten"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-amber focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-fg"
+        >
+          Lewati ke konten
+        </a>
         <SiteHeader />
-        <main className="flex-1 flex flex-col">{children}</main>
+        <main id="konten" tabIndex={-1} className="flex-1 flex flex-col">
+          {children}
+        </main>
         <SiteFooter />
       </body>
     </html>

@@ -79,6 +79,14 @@ export class ViolationEngine {
     if (!flow) return [];
     const flowMag = Math.hypot(flow.vx, flow.vy);
     if (flowMag < 0.02) return []; // not enough motion to define a flow
+    // Require enough moving vehicle tracks before trusting the dominant flow,
+    // otherwise the direction is too noisy and yields false positives.
+    const movingVehicles = frame.detections.filter(
+      (d) =>
+        VEHICLE_CLASSES.has(d.cls) &&
+        Math.hypot(d.vx ?? 0, d.vy ?? 0) > 0.02,
+    );
+    if (movingVehicles.length < 3) return [];
     const res: ViolationCandidate[] = [];
     for (const d of frame.detections) {
       if (!VEHICLE_CLASSES.has(d.cls)) continue;
@@ -153,7 +161,7 @@ export class ViolationEngine {
     for (const m of motorcycles) {
       const onBike = persons.filter((p) => {
         const c = center(p.bbox);
-        return pointInBox(c.x, c.y, m.bbox, 0.05);
+        return pointInBox(c.x, c.y, m.bbox);
       });
       if (onBike.length >= 3) {
         res.push({

@@ -19,7 +19,6 @@ import { useSession } from "@/lib/state/session";
 import type {
   GeoPoint,
   RoadContext,
-  SealedEvidence,
   ViolationEvent,
 } from "@/lib/evidence/types";
 import { VIOLATION_CATALOG } from "@/lib/legal/catalog";
@@ -108,7 +107,6 @@ export function LiveClient() {
   const setDetectionCount = useSession((s) => s.setDetectionCount);
   const setGeo = useSession((s) => s.setGeo);
   const addEvent = useSession((s) => s.addEvent);
-  const updateEvent = useSession((s) => s.updateEvent);
   const reset = useSession((s) => s.reset);
 
   const [errorKind, setErrorKind] = useState<GuMErrorKind | null>(null);
@@ -133,36 +131,6 @@ export function LiveClient() {
       return undefined;
     }
   }, []);
-
-  // ---- seal an event server-side, then mark it sealed locally ----
-  const sealEvent = useCallback(
-    async (event: ViolationEvent) => {
-      try {
-        const res = await fetch("/api/seal", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            event,
-            device: {
-              userAgent:
-                typeof navigator !== "undefined" ? navigator.userAgent : undefined,
-              platform:
-                typeof navigator !== "undefined" ? navigator.platform : undefined,
-            },
-          }),
-        });
-        if (!res.ok) return;
-        const seal = (await res.json()) as SealedEvidence;
-        const patch = { sealed: true as const, seal };
-        updateEvent(event.id, patch);
-        // Persist the sealed version too (best-effort, no-op on server).
-        void saveEvent({ ...event, ...patch });
-      } catch {
-        /* sealing is best-effort; the event is still stored locally */
-      }
-    },
-    [updateEvent],
-  );
 
   // ---- main analysis loop ----
   const startLoop = useCallback(() => {
@@ -223,12 +191,11 @@ export function LiveClient() {
           };
           addEvent(event);
           void saveEvent(event);
-          void sealEvent(event);
         }
       }
     };
     rafRef.current = requestAnimationFrame(tick);
-  }, [addEvent, captureFrame, sealEvent, setDetectionCount, setFps]);
+  }, [addEvent, captureFrame, setDetectionCount, setFps]);
 
   // ---- geolocation + road context wiring ----
   const startGeo = useCallback(() => {
@@ -285,9 +252,8 @@ export function LiveClient() {
       };
       addEvent(event);
       void saveEvent(event);
-      void sealEvent(event);
     });
-  }, [addEvent, captureFrame, sealEvent]);
+  }, [addEvent, captureFrame]);
 
   // ---- teardown ----
   const teardown = useCallback(() => {
@@ -469,18 +435,20 @@ export function LiveClient() {
             )}
           </div>
 
-          {/* top HUD bar */}
-          <HudBar
-            running={isRunning}
-            fps={fps}
-            detectionCount={detectionCount}
-            egoSpeedKmh={egoSpeedKmh}
-            maxspeedKmh={road?.maxspeedKmh ?? null}
-            overLimit={overLimit}
-            roadName={road?.name ?? null}
-            oneway={road?.oneway ?? false}
-            pipeline={pipeline}
-          />
+          {/* top HUD bar — only while the camera is actually running */}
+          {isRunning && (
+            <HudBar
+              running={isRunning}
+              fps={fps}
+              detectionCount={detectionCount}
+              egoSpeedKmh={egoSpeedKmh}
+              maxspeedKmh={road?.maxspeedKmh ?? null}
+              overLimit={overLimit}
+              roadName={road?.name ?? null}
+              oneway={road?.oneway ?? false}
+              pipeline={pipeline}
+            />
+          )}
         </section>
 
         {/* ---- violation feed ---- */}
@@ -503,6 +471,11 @@ export function LiveClient() {
 
       {/* hidden canvas used for frame capture */}
       <canvas ref={canvasRef} className="hidden" aria-hidden />
+
+      {/* visually-hidden live region mirroring the session status for SR users */}
+      <p className="sr-only" role="status" aria-live="polite">
+        {statusMessage}
+      </p>
     </div>
   );
 }
@@ -651,7 +624,10 @@ function EventCard({ event }: { event: ViolationEvent }) {
 function ErrorPanel({ kind }: { kind: GuMErrorKind }) {
   const copy = ERROR_COPY[kind];
   return (
-    <div className="relative max-w-sm border border-signal/40 bg-signal/5 p-5 text-left">
+    <div
+      role="alert"
+      className="relative max-w-sm border border-signal/40 bg-signal/5 p-5 text-left"
+    >
       <CornerBrackets tone="signal" />
       <div className="flex items-center gap-2 text-signal">
         <AlertTriangle className="h-4 w-4" strokeWidth={1.5} aria-hidden />

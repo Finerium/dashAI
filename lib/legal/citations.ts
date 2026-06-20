@@ -200,7 +200,7 @@ export const CITATIONS: Record<ViolationKey, Citation> = {
     "ayat": "ayat (6)",
     "bunyi": "Pasal 289: ’Setiap orang yang mengemudikan Kendaraan Bermotor atau Penumpang yang duduk di samping Pengemudi yang tidak mengenakan sabuk keselamatan sebagaimana dimaksud dalam Pasal 106 ayat (6) dipidana dengan pidana kurungan paling lama 1 (satu) bulan atau denda paling banyak Rp250.000,00 (dua ratus lima puluh ribu rupiah).’ Kewajiban dasarnya, Pasal 106 ayat (6): ’Setiap orang yang mengemudikan Kendaraan Bermotor beroda empat atau lebih di Jalan dan Penumpang yang duduk di sampingnya wajib mengenakan sabuk keselamatan.",
     "sanksi": "Pidana kurungan paling lama 1 (satu) bulan atau denda paling banyak Rp250.000,00 (dua ratus lima puluh ribu rupiah). Sanksi bersifat alternatif (kurungan ATAU denda).",
-    "dendaMaxRupiah": 25000000,
+    "dendaMaxRupiah": 250000,
     "kurunganMax": "1 (satu) bulan",
     "relatedArticles": [
       "Pasal 106 ayat (6) UU 22/2009 - kewajiban pengemudi kendaraan beroda empat atau lebih dan penumpang di sampingnya mengenakan sabuk keselamatan (pasal kewajiban yang dirujuk Pasal 289)",
@@ -313,6 +313,7 @@ export const CITATIONS: Record<ViolationKey, Citation> = {
   }
 };
 
+/** Returns the citation for a key, or undefined for an unknown key (callers must guard). */
 export function citationFor(key: ViolationKey): Citation {
   return CITATIONS[key];
 }

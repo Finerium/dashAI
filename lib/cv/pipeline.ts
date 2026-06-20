@@ -83,10 +83,10 @@ export class CVPipeline {
     }
 
     const moving = detections.filter(
-      (d) => d.vx !== undefined && d.vy !== undefined,
+      (d) => Math.hypot(d.vx ?? 0, d.vy ?? 0) > 0.01,
     );
     const dominantFlow = moving.length
-      ? { vx: mean(moving.map((d) => d.vx!)), vy: mean(moving.map((d) => d.vy!)) }
+      ? { vx: mean(moving.map((d) => d.vx ?? 0)), vy: mean(moving.map((d) => d.vy ?? 0)) }
       : null;
 
     return { width, height, ts: tsMs, detections, faces, poses, dominantFlow };

@@ -15,11 +15,11 @@ export const metadata = {
  */
 export default function VerifyPage() {
   return (
-    <main className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6 sm:py-16">
+    <section className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6 sm:py-16">
       <Suspense fallback={<VerifyFallback />}>
         <VerifyClient />
       </Suspense>
-    </main>
+    </section>
   );
 }
 

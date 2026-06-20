@@ -53,8 +53,13 @@ export async function resolveRoadContext(
   const key = cacheKey(lat, lng);
   if (cache.has(key)) return cache.get(key) ?? null;
 
+  // Round to 4 decimals (~11 m, matching cache granularity) so we never send
+  // full-precision coordinates to the third-party Overpass servers.
+  const qLat = lat.toFixed(4);
+  const qLng = lng.toFixed(4);
+
   const query =
-    `[out:json][timeout:8];way(around:25,${lat},${lng})` +
+    `[out:json][timeout:8];way(around:25,${qLat},${qLng})` +
     `["highway"~"^(motorway|trunk|primary|secondary|tertiary|residential|unclassified|service|living_street)$"];` +
     `out tags geom 1;`;
 

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { sealPayload } from "@/lib/crypto/sign";
 import { buildPayload } from "@/lib/evidence/payload";
+import { CITATIONS } from "@/lib/legal/citations";
 import type { ViolationEvent } from "@/lib/evidence/types";
 
 export const runtime = "nodejs";
@@ -32,6 +33,30 @@ export async function POST(req: Request) {
       { status: 400 },
     );
   }
+
+  if (!(event.violation in CITATIONS)) {
+    return NextResponse.json(
+      { error: "Jenis pelanggaran (violation) tidak dikenal." },
+      { status: 400 },
+    );
+  }
+  if (event.subject !== "self" && event.subject !== "other") {
+    return NextResponse.json(
+      { error: "Subjek (subject) harus 'self' atau 'other'." },
+      { status: 400 },
+    );
+  }
+  if (typeof event.capturedAt !== "number") {
+    return NextResponse.json(
+      { error: "Waktu pengambilan (capturedAt) harus berupa angka." },
+      { status: 400 },
+    );
+  }
+
+  const confidence = Number(event.confidence);
+  event.confidence = Number.isFinite(confidence)
+    ? Math.min(1, Math.max(0, confidence))
+    : 0;
 
   const sealedAt = Date.now();
   const payload = buildPayload(event, sealedAt, {
