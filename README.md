@@ -11,6 +11,8 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-2ecf7e?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
 [![Tamper-evident](https://img.shields.io/badge/evidence-Ed25519_signed-ff4d4f?style=flat-square)](#-tamper-evidence-jujur-soal-apa-yang-bisa-dijanjikan)
 
+### → [**Coba demo langsung: dashai-mu.vercel.app**](https://dashai-mu.vercel.app) ←
+
 </div>
 
 ---
